@@ -4,6 +4,10 @@ project(SupermercadoEDD CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Flags de compilacion: sin warnings, optimizacion basica
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
+
+# Recolecta todos los .cpp de src/
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 add_executable(supermercado ${SOURCES})
