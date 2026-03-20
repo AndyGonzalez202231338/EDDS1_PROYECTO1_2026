@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
 
-CXX_FLAGS = -g -std=gnu++17
+CXX_FLAGS =  -Wall -Wextra -Wpedantic -g -std=gnu++17
 
