@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" version="29.6.4">
+  <diagram name="Página-1" id="yEgeeSC2y8JWdmGZeHa4">
+    <mxGraphModel dx="1250" dy="599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Personaje" vertex="1">
+          <mxGeometry height="130" width="200" x="220" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="2" style="text;align=left;verticalAlign=top;spacingLeft=4;" value="- nombre: String&#xa;- nivel: int&#xa;- puntosDeVida: int" vertex="1">
+          <mxGeometry height="60" width="200" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="2" style="text;align=left;verticalAlign=top;spacingLeft=4;" value="+ atacar()&#xa;+ mostrarInfo()" vertex="1">
+          <mxGeometry height="44" width="200" y="86" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#ffe6cc;strokeColor=#d79b00;" value="Guerrero" vertex="1">
+          <mxGeometry height="130" width="180" x="20" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="10" style="text;align=left;verticalAlign=top;spacingLeft=4;" value="- armadura: int" vertex="1">
+          <mxGeometry height="30" width="180" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="10" style="text;align=left;verticalAlign=top;spacingLeft=4;" value="+ atacar()&#xa;+ golpeEscudo()" vertex="1">
+          <mxGeometry height="44" width="180" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#d5e8d4;strokeColor=#82b366;" value="Mago" vertex="1">
+          <mxGeometry height="130" width="180" x="230" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="20" style="text;align=left;verticalAlign=top;spacingLeft=4;" value="- elemento: String" vertex="1">
+          <mxGeometry height="30" width="180" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="20" style="text;align=left;verticalAlign=top;spacingLeft=4;" value="+ atacar()&#xa;+ lanzarHechizo()" vertex="1">
+          <mxGeometry height="44" width="180" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="30" parent="1" style="swimlane;fontStyle=1;align=center;startSize=26;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Arquero" vertex="1">
+          <mxGeometry height="130" width="180" x="440" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="31" parent="30" style="text;align=left;verticalAlign=top;spacingLeft=4;" value="- flechas: int" vertex="1">
+          <mxGeometry height="30" width="180" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="32" parent="30" style="text;align=left;verticalAlign=top;spacingLeft=4;" value="+ atacar()&#xa;+ dispararFlecha()" vertex="1">
+          <mxGeometry height="44" width="180" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="40" edge="1" parent="1" source="10" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#6c8ebf;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="41" edge="1" parent="1" source="20" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#6c8ebf;" target="2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="42" edge="1" parent="1" source="30" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#6c8ebf;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

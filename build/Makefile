@@ -321,6 +321,30 @@ src/Logger.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Logger.cpp.s
 .PHONY : src/Logger.cpp.s
 
+src/Product.o: src/Product.cpp.o
+.PHONY : src/Product.o
+
+# target to build an object file
+src/Product.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Product.cpp.o
+.PHONY : src/Product.cpp.o
+
+src/Product.i: src/Product.cpp.i
+.PHONY : src/Product.i
+
+# target to preprocess a source file
+src/Product.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Product.cpp.i
+.PHONY : src/Product.cpp.i
+
+src/Product.s: src/Product.cpp.s
+.PHONY : src/Product.s
+
+# target to generate assembly for a file
+src/Product.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Product.cpp.s
+.PHONY : src/Product.cpp.s
+
 src/SortedLinkedList.o: src/SortedLinkedList.cpp.o
 .PHONY : src/SortedLinkedList.o
 
@@ -402,6 +426,9 @@ help:
 	@echo "... src/Logger.o"
 	@echo "... src/Logger.i"
 	@echo "... src/Logger.s"
+	@echo "... src/Product.o"
+	@echo "... src/Product.i"
+	@echo "... src/Product.s"
 	@echo "... src/SortedLinkedList.o"
 	@echo "... src/SortedLinkedList.i"
 	@echo "... src/SortedLinkedList.s"
