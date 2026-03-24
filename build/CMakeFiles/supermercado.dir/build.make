@@ -181,10 +181,24 @@ CMakeFiles/supermercado.dir/src/Logger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/src/Logger.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Logger.cpp" -o CMakeFiles/supermercado.dir/src/Logger.cpp.s
 
+CMakeFiles/supermercado.dir/src/Product.cpp.o: CMakeFiles/supermercado.dir/flags.make
+CMakeFiles/supermercado.dir/src/Product.cpp.o: ../src/Product.cpp
+CMakeFiles/supermercado.dir/src/Product.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/supermercado.dir/src/Product.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/Product.cpp.o -MF CMakeFiles/supermercado.dir/src/Product.cpp.o.d -o CMakeFiles/supermercado.dir/src/Product.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Product.cpp"
+
+CMakeFiles/supermercado.dir/src/Product.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/supermercado.dir/src/Product.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Product.cpp" > CMakeFiles/supermercado.dir/src/Product.cpp.i
+
+CMakeFiles/supermercado.dir/src/Product.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/src/Product.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Product.cpp" -o CMakeFiles/supermercado.dir/src/Product.cpp.s
+
 CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o: CMakeFiles/supermercado.dir/flags.make
 CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o: ../src/SortedLinkedList.cpp
 CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o -MF CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o.d -o CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/SortedLinkedList.cpp"
 
 CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.i: cmake_force
@@ -198,7 +212,7 @@ CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.s: cmake_force
 CMakeFiles/supermercado.dir/src/main.cpp.o: CMakeFiles/supermercado.dir/flags.make
 CMakeFiles/supermercado.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/supermercado.dir/src/main.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/supermercado.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/supermercado.dir/src/main.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/main.cpp.o -MF CMakeFiles/supermercado.dir/src/main.cpp.o.d -o CMakeFiles/supermercado.dir/src/main.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/main.cpp"
 
 CMakeFiles/supermercado.dir/src/main.cpp.i: cmake_force
@@ -219,6 +233,7 @@ supermercado_OBJECTS = \
 "CMakeFiles/supermercado.dir/src/Catalog.cpp.o" \
 "CMakeFiles/supermercado.dir/src/LinkedList.cpp.o" \
 "CMakeFiles/supermercado.dir/src/Logger.cpp.o" \
+"CMakeFiles/supermercado.dir/src/Product.cpp.o" \
 "CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o" \
 "CMakeFiles/supermercado.dir/src/main.cpp.o"
 
@@ -233,11 +248,12 @@ supermercado: CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o
 supermercado: CMakeFiles/supermercado.dir/src/Catalog.cpp.o
 supermercado: CMakeFiles/supermercado.dir/src/LinkedList.cpp.o
 supermercado: CMakeFiles/supermercado.dir/src/Logger.cpp.o
+supermercado: CMakeFiles/supermercado.dir/src/Product.cpp.o
 supermercado: CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o
 supermercado: CMakeFiles/supermercado.dir/src/main.cpp.o
 supermercado: CMakeFiles/supermercado.dir/build.make
 supermercado: CMakeFiles/supermercado.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable supermercado"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable supermercado"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/supermercado.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

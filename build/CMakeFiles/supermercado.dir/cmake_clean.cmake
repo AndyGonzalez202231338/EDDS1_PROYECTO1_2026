@@ -15,6 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/supermercado.dir/src/LinkedList.cpp.o.d"
   "CMakeFiles/supermercado.dir/src/Logger.cpp.o"
   "CMakeFiles/supermercado.dir/src/Logger.cpp.o.d"
+  "CMakeFiles/supermercado.dir/src/Product.cpp.o"
+  "CMakeFiles/supermercado.dir/src/Product.cpp.o.d"
   "CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o"
   "CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o.d"
   "CMakeFiles/supermercado.dir/src/main.cpp.o"
