@@ -5,11 +5,10 @@
 #include <fstream>
 #include <string>
 
-/* Grado minimo del arbol B+.
- * Hojas: entre T-1 y 2*T-1 entradas. Con T=4: entre 3 y 7 entradas por hoja.
- * Nodos internos: entre T-1 y 2*T-1 claves y entre T y 2*T hijos.
- * Misma justificacion que BTree: altura max 5 para n=1000, .dot legible.
- */
+// Grado minimo del arbol B+.
+// Hojas: entre T-1 y 2*T-1 entradas. Con T=4: entre 3 y 7 entradas por hoja.
+// Nodos internos: entre T-1 y 2*T-1 claves y entre T y 2*T hijos.
+// Misma justificacion que BTree: altura max 5 para n=1000, .dot legible.
 static const int BPLUS_T = 4;
 
 // Capacidad maxima de claves en un nodo
@@ -82,6 +81,7 @@ public:
     BPlusTree();
     ~BPlusTree();
 
+    // Prohibir copia
     BPlusTree(const BPlusTree&)            = delete;
     BPlusTree& operator=(const BPlusTree&) = delete;
 
@@ -111,7 +111,7 @@ public:
      *                count indica cuantos se encontraron.
      * Complejidad: O(log n + k)
      */
-    void searchCategory(const std::string& category, Product** results, int& count, int maxResults) const;
+    void searchCategory(const std::string& category, Product** results, int& count,int maxResults) const;
 
     /*
      * leafTraversal
@@ -149,11 +149,8 @@ private:
     // Busca la hoja donde deberia estar category
     BPlusLeaf* findLeaf(const std::string& category) const;
 
-    // Insercion en hoja con posible split
+    // Insercion ordenada dentro de una hoja
     void insertInLeaf(BPlusLeaf* leaf, const Product& p);
-    void splitLeaf(BPlusLeaf* leaf, BPlusInternal* parent, int childIdx);
-    void splitInternal(BPlusInternal* node, BPlusInternal* parent, int childIdx);
-    void insertInParent(BPlusNode* left, const std::string& key, BPlusNode* right);
 
     // Generacion de DOT recursiva
     void toDotNode(BPlusNode* node, std::ofstream& out, int& nodeId) const;

@@ -73,155 +73,169 @@ CMakeFiles/supermercado.dir/src/AVLTree.cpp.o: CMakeFiles/supermercado.dir/flags
 CMakeFiles/supermercado.dir/src/AVLTree.cpp.o: ../src/AVLTree.cpp
 CMakeFiles/supermercado.dir/src/AVLTree.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/supermercado.dir/src/AVLTree.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/AVLTree.cpp.o -MF CMakeFiles/supermercado.dir/src/AVLTree.cpp.o.d -o CMakeFiles/supermercado.dir/src/AVLTree.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/AVLTree.cpp"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/AVLTree.cpp.o -MF CMakeFiles/supermercado.dir/src/AVLTree.cpp.o.d -o CMakeFiles/supermercado.dir/src/AVLTree.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/AVLTree.cpp"
 
 CMakeFiles/supermercado.dir/src/AVLTree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/supermercado.dir/src/AVLTree.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/AVLTree.cpp" > CMakeFiles/supermercado.dir/src/AVLTree.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/AVLTree.cpp" > CMakeFiles/supermercado.dir/src/AVLTree.cpp.i
 
 CMakeFiles/supermercado.dir/src/AVLTree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/src/AVLTree.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/AVLTree.cpp" -o CMakeFiles/supermercado.dir/src/AVLTree.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/AVLTree.cpp" -o CMakeFiles/supermercado.dir/src/AVLTree.cpp.s
 
 CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o: CMakeFiles/supermercado.dir/flags.make
 CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o: ../src/BPlusTree.cpp
 CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o -MF CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o.d -o CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BPlusTree.cpp"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o -MF CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o.d -o CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BPlusTree.cpp"
 
 CMakeFiles/supermercado.dir/src/BPlusTree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/supermercado.dir/src/BPlusTree.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BPlusTree.cpp" > CMakeFiles/supermercado.dir/src/BPlusTree.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BPlusTree.cpp" > CMakeFiles/supermercado.dir/src/BPlusTree.cpp.i
 
 CMakeFiles/supermercado.dir/src/BPlusTree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/src/BPlusTree.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BPlusTree.cpp" -o CMakeFiles/supermercado.dir/src/BPlusTree.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BPlusTree.cpp" -o CMakeFiles/supermercado.dir/src/BPlusTree.cpp.s
 
 CMakeFiles/supermercado.dir/src/BTree.cpp.o: CMakeFiles/supermercado.dir/flags.make
 CMakeFiles/supermercado.dir/src/BTree.cpp.o: ../src/BTree.cpp
 CMakeFiles/supermercado.dir/src/BTree.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/supermercado.dir/src/BTree.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/BTree.cpp.o -MF CMakeFiles/supermercado.dir/src/BTree.cpp.o.d -o CMakeFiles/supermercado.dir/src/BTree.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BTree.cpp"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/BTree.cpp.o -MF CMakeFiles/supermercado.dir/src/BTree.cpp.o.d -o CMakeFiles/supermercado.dir/src/BTree.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BTree.cpp"
 
 CMakeFiles/supermercado.dir/src/BTree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/supermercado.dir/src/BTree.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BTree.cpp" > CMakeFiles/supermercado.dir/src/BTree.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BTree.cpp" > CMakeFiles/supermercado.dir/src/BTree.cpp.i
 
 CMakeFiles/supermercado.dir/src/BTree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/src/BTree.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BTree.cpp" -o CMakeFiles/supermercado.dir/src/BTree.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BTree.cpp" -o CMakeFiles/supermercado.dir/src/BTree.cpp.s
 
 CMakeFiles/supermercado.dir/src/Benchmark.cpp.o: CMakeFiles/supermercado.dir/flags.make
 CMakeFiles/supermercado.dir/src/Benchmark.cpp.o: ../src/Benchmark.cpp
 CMakeFiles/supermercado.dir/src/Benchmark.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/supermercado.dir/src/Benchmark.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/Benchmark.cpp.o -MF CMakeFiles/supermercado.dir/src/Benchmark.cpp.o.d -o CMakeFiles/supermercado.dir/src/Benchmark.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Benchmark.cpp"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/Benchmark.cpp.o -MF CMakeFiles/supermercado.dir/src/Benchmark.cpp.o.d -o CMakeFiles/supermercado.dir/src/Benchmark.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Benchmark.cpp"
 
 CMakeFiles/supermercado.dir/src/Benchmark.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/supermercado.dir/src/Benchmark.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Benchmark.cpp" > CMakeFiles/supermercado.dir/src/Benchmark.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Benchmark.cpp" > CMakeFiles/supermercado.dir/src/Benchmark.cpp.i
 
 CMakeFiles/supermercado.dir/src/Benchmark.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/src/Benchmark.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Benchmark.cpp" -o CMakeFiles/supermercado.dir/src/Benchmark.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Benchmark.cpp" -o CMakeFiles/supermercado.dir/src/Benchmark.cpp.s
 
 CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o: CMakeFiles/supermercado.dir/flags.make
 CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o: ../src/CSVLoader.cpp
 CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o -MF CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o.d -o CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/CSVLoader.cpp"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o -MF CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o.d -o CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/CSVLoader.cpp"
 
 CMakeFiles/supermercado.dir/src/CSVLoader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/supermercado.dir/src/CSVLoader.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/CSVLoader.cpp" > CMakeFiles/supermercado.dir/src/CSVLoader.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/CSVLoader.cpp" > CMakeFiles/supermercado.dir/src/CSVLoader.cpp.i
 
 CMakeFiles/supermercado.dir/src/CSVLoader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/src/CSVLoader.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/CSVLoader.cpp" -o CMakeFiles/supermercado.dir/src/CSVLoader.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/CSVLoader.cpp" -o CMakeFiles/supermercado.dir/src/CSVLoader.cpp.s
 
 CMakeFiles/supermercado.dir/src/Catalog.cpp.o: CMakeFiles/supermercado.dir/flags.make
 CMakeFiles/supermercado.dir/src/Catalog.cpp.o: ../src/Catalog.cpp
 CMakeFiles/supermercado.dir/src/Catalog.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/supermercado.dir/src/Catalog.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/Catalog.cpp.o -MF CMakeFiles/supermercado.dir/src/Catalog.cpp.o.d -o CMakeFiles/supermercado.dir/src/Catalog.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Catalog.cpp"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/Catalog.cpp.o -MF CMakeFiles/supermercado.dir/src/Catalog.cpp.o.d -o CMakeFiles/supermercado.dir/src/Catalog.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Catalog.cpp"
 
 CMakeFiles/supermercado.dir/src/Catalog.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/supermercado.dir/src/Catalog.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Catalog.cpp" > CMakeFiles/supermercado.dir/src/Catalog.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Catalog.cpp" > CMakeFiles/supermercado.dir/src/Catalog.cpp.i
 
 CMakeFiles/supermercado.dir/src/Catalog.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/src/Catalog.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Catalog.cpp" -o CMakeFiles/supermercado.dir/src/Catalog.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Catalog.cpp" -o CMakeFiles/supermercado.dir/src/Catalog.cpp.s
 
 CMakeFiles/supermercado.dir/src/LinkedList.cpp.o: CMakeFiles/supermercado.dir/flags.make
 CMakeFiles/supermercado.dir/src/LinkedList.cpp.o: ../src/LinkedList.cpp
 CMakeFiles/supermercado.dir/src/LinkedList.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/supermercado.dir/src/LinkedList.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/LinkedList.cpp.o -MF CMakeFiles/supermercado.dir/src/LinkedList.cpp.o.d -o CMakeFiles/supermercado.dir/src/LinkedList.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/LinkedList.cpp"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/LinkedList.cpp.o -MF CMakeFiles/supermercado.dir/src/LinkedList.cpp.o.d -o CMakeFiles/supermercado.dir/src/LinkedList.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/LinkedList.cpp"
 
 CMakeFiles/supermercado.dir/src/LinkedList.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/supermercado.dir/src/LinkedList.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/LinkedList.cpp" > CMakeFiles/supermercado.dir/src/LinkedList.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/LinkedList.cpp" > CMakeFiles/supermercado.dir/src/LinkedList.cpp.i
 
 CMakeFiles/supermercado.dir/src/LinkedList.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/src/LinkedList.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/LinkedList.cpp" -o CMakeFiles/supermercado.dir/src/LinkedList.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/LinkedList.cpp" -o CMakeFiles/supermercado.dir/src/LinkedList.cpp.s
 
 CMakeFiles/supermercado.dir/src/Logger.cpp.o: CMakeFiles/supermercado.dir/flags.make
 CMakeFiles/supermercado.dir/src/Logger.cpp.o: ../src/Logger.cpp
 CMakeFiles/supermercado.dir/src/Logger.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/supermercado.dir/src/Logger.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/Logger.cpp.o -MF CMakeFiles/supermercado.dir/src/Logger.cpp.o.d -o CMakeFiles/supermercado.dir/src/Logger.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Logger.cpp"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/Logger.cpp.o -MF CMakeFiles/supermercado.dir/src/Logger.cpp.o.d -o CMakeFiles/supermercado.dir/src/Logger.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Logger.cpp"
 
 CMakeFiles/supermercado.dir/src/Logger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/supermercado.dir/src/Logger.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Logger.cpp" > CMakeFiles/supermercado.dir/src/Logger.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Logger.cpp" > CMakeFiles/supermercado.dir/src/Logger.cpp.i
 
 CMakeFiles/supermercado.dir/src/Logger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/src/Logger.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Logger.cpp" -o CMakeFiles/supermercado.dir/src/Logger.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Logger.cpp" -o CMakeFiles/supermercado.dir/src/Logger.cpp.s
+
+CMakeFiles/supermercado.dir/src/Menu.cpp.o: CMakeFiles/supermercado.dir/flags.make
+CMakeFiles/supermercado.dir/src/Menu.cpp.o: ../src/Menu.cpp
+CMakeFiles/supermercado.dir/src/Menu.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/supermercado.dir/src/Menu.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/Menu.cpp.o -MF CMakeFiles/supermercado.dir/src/Menu.cpp.o.d -o CMakeFiles/supermercado.dir/src/Menu.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Menu.cpp"
+
+CMakeFiles/supermercado.dir/src/Menu.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/supermercado.dir/src/Menu.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Menu.cpp" > CMakeFiles/supermercado.dir/src/Menu.cpp.i
+
+CMakeFiles/supermercado.dir/src/Menu.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/src/Menu.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Menu.cpp" -o CMakeFiles/supermercado.dir/src/Menu.cpp.s
 
 CMakeFiles/supermercado.dir/src/Product.cpp.o: CMakeFiles/supermercado.dir/flags.make
 CMakeFiles/supermercado.dir/src/Product.cpp.o: ../src/Product.cpp
 CMakeFiles/supermercado.dir/src/Product.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/supermercado.dir/src/Product.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/Product.cpp.o -MF CMakeFiles/supermercado.dir/src/Product.cpp.o.d -o CMakeFiles/supermercado.dir/src/Product.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Product.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/supermercado.dir/src/Product.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/Product.cpp.o -MF CMakeFiles/supermercado.dir/src/Product.cpp.o.d -o CMakeFiles/supermercado.dir/src/Product.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Product.cpp"
 
 CMakeFiles/supermercado.dir/src/Product.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/supermercado.dir/src/Product.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Product.cpp" > CMakeFiles/supermercado.dir/src/Product.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Product.cpp" > CMakeFiles/supermercado.dir/src/Product.cpp.i
 
 CMakeFiles/supermercado.dir/src/Product.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/src/Product.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Product.cpp" -o CMakeFiles/supermercado.dir/src/Product.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Product.cpp" -o CMakeFiles/supermercado.dir/src/Product.cpp.s
 
 CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o: CMakeFiles/supermercado.dir/flags.make
 CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o: ../src/SortedLinkedList.cpp
 CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o -MF CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o.d -o CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/SortedLinkedList.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o -MF CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o.d -o CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/SortedLinkedList.cpp"
 
 CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/SortedLinkedList.cpp" > CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/SortedLinkedList.cpp" > CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.i
 
 CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/SortedLinkedList.cpp" -o CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/SortedLinkedList.cpp" -o CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.s
 
 CMakeFiles/supermercado.dir/src/main.cpp.o: CMakeFiles/supermercado.dir/flags.make
 CMakeFiles/supermercado.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/supermercado.dir/src/main.cpp.o: CMakeFiles/supermercado.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/supermercado.dir/src/main.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/main.cpp.o -MF CMakeFiles/supermercado.dir/src/main.cpp.o.d -o CMakeFiles/supermercado.dir/src/main.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/supermercado.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/supermercado.dir/src/main.cpp.o -MF CMakeFiles/supermercado.dir/src/main.cpp.o.d -o CMakeFiles/supermercado.dir/src/main.cpp.o -c "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/main.cpp"
 
 CMakeFiles/supermercado.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/supermercado.dir/src/main.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/main.cpp" > CMakeFiles/supermercado.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/main.cpp" > CMakeFiles/supermercado.dir/src/main.cpp.i
 
 CMakeFiles/supermercado.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/supermercado.dir/src/main.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/main.cpp" -o CMakeFiles/supermercado.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/main.cpp" -o CMakeFiles/supermercado.dir/src/main.cpp.s
 
 # Object files for target supermercado
 supermercado_OBJECTS = \
@@ -233,6 +247,7 @@ supermercado_OBJECTS = \
 "CMakeFiles/supermercado.dir/src/Catalog.cpp.o" \
 "CMakeFiles/supermercado.dir/src/LinkedList.cpp.o" \
 "CMakeFiles/supermercado.dir/src/Logger.cpp.o" \
+"CMakeFiles/supermercado.dir/src/Menu.cpp.o" \
 "CMakeFiles/supermercado.dir/src/Product.cpp.o" \
 "CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o" \
 "CMakeFiles/supermercado.dir/src/main.cpp.o"
@@ -248,12 +263,13 @@ supermercado: CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o
 supermercado: CMakeFiles/supermercado.dir/src/Catalog.cpp.o
 supermercado: CMakeFiles/supermercado.dir/src/LinkedList.cpp.o
 supermercado: CMakeFiles/supermercado.dir/src/Logger.cpp.o
+supermercado: CMakeFiles/supermercado.dir/src/Menu.cpp.o
 supermercado: CMakeFiles/supermercado.dir/src/Product.cpp.o
 supermercado: CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o
 supermercado: CMakeFiles/supermercado.dir/src/main.cpp.o
 supermercado: CMakeFiles/supermercado.dir/build.make
 supermercado: CMakeFiles/supermercado.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable supermercado"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable supermercado"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/supermercado.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
