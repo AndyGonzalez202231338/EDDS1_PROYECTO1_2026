@@ -53,10 +53,10 @@ void Menu::printSeparator() const {
 }
 
 void Menu::clearScreen() const {
-#ifdef _WIN32
+#ifdef _WIN32 // Para Windows
     system("cls");
 #else
-    system("clear");
+    system("clear"); // Para Unix/Linux/Mac
 #endif
 }
 
@@ -72,6 +72,7 @@ int Menu::readOption() const {
     return opt;
 }
 
+// Lectura de campos con validacion
 std::string Menu::readString(const std::string& prompt) const {
     std::cout << "  " << prompt << ": ";
     std::string value;
@@ -79,6 +80,7 @@ std::string Menu::readString(const std::string& prompt) const {
     return value;
 }
 
+// Lectura de double con validacion
 double Menu::readDouble(const std::string& prompt) const {
     double value;
     std::cout << "  " << prompt << ": ";
@@ -91,6 +93,7 @@ double Menu::readDouble(const std::string& prompt) const {
     return value;
 }
 
+// Lectura de int con validacion
 int Menu::readInt(const std::string& prompt) const {
     int value;
     std::cout << "  " << prompt << ": ";
@@ -116,7 +119,7 @@ void Menu::handleOption(int opt) {
         case 9:  actionBenchmark();      break;
         case 10: actionGenerateDot();    break;
         case 0:
-            std::cout << "\n  Hasta luego.\n";
+            std::cout << "\n  Saliendo.\n";
             _running = false;
             break;
         default:
@@ -163,6 +166,7 @@ void Menu::actionFindByBarcode() {
     }
 }
 
+// Buscar por categoria y rango de fechas requieren manejo de arrays de resultados
 void Menu::actionFindByCategory() {
     std::cout << "\n-- Buscar por categoria --\n";
     std::string cat = readString("Categoria");
@@ -183,6 +187,7 @@ void Menu::actionFindByCategory() {
     }
 }
 
+// Buscar por rango de fechas
 void Menu::actionFindByDateRange() {
     std::cout << "\n-- Buscar por rango de fechas (YYYY-MM-DD) --\n";
     std::string d1 = readString("Fecha inicio");
@@ -202,7 +207,7 @@ void Menu::actionFindByDateRange() {
         return;
     }
     std::cout << "\n  " << count << " producto(s) con caducidad en ["
-              << d1 << ", " << d2 << "]:\n";
+    << d1 << ", " << d2 << "]:\n";
     printSeparator();
     for (int i = 0; i < count; ++i) {
         printProduct(*results[i]);
@@ -247,9 +252,9 @@ void Menu::actionGenerateDot() {
     _catalog.generateDotFiles();
     std::cout << "  Archivos generados en output/\n";
     std::cout << "  Para convertir a PNG:\n";
-    std::cout << "    dot -Tpng output/avl.dot      -o output/avl.png\n";
-    std::cout << "    dot -Tpng output/btree.dot     -o output/btree.png\n";
-    std::cout << "    dot -Tpng output/bplustree.dot -o output/bplustree.png\n";
+    std::cout << "  dot -Tpng output/avl.dot -o output/avl.png\n";
+    std::cout << "  dot -Tpng output/btree.dot -o output/btree.png\n";
+    std::cout << "  dot -Tpng output/bplustree.dot -o output/bplustree.png\n";
 }
 
 Product Menu::promptProduct() const {
