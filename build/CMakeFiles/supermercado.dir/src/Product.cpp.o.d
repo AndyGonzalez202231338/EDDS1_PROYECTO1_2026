@@ -1,7 +1,6 @@
-CMakeFiles/supermercado.dir/src/main.cpp.o: \
- /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura\ de\ datos/Proyecto1/src/main.cpp \
+CMakeFiles/supermercado.dir/src/Product.cpp.o: \
+ /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura\ de\ datos/Proyecto1/src/Product.cpp \
  /usr/include/stdc-predef.h \
- /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura\ de\ datos/Proyecto1/include/Catalog.h \
  /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura\ de\ datos/Proyecto1/include/Product.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -130,13 +129,9 @@ CMakeFiles/supermercado.dir/src/main.cpp.o: \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/11/bits/charconv.h \
- /usr/include/c++/11/bits/basic_string.tcc \
- /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura\ de\ datos/Proyecto1/include/LinkedList.h \
- /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura\ de\ datos/Proyecto1/include/SortedLinkedList.h \
- /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura\ de\ datos/Proyecto1/include/AVLTree.h \
- /usr/include/c++/11/fstream /usr/include/c++/11/istream \
- /usr/include/c++/11/ios /usr/include/c++/11/exception \
- /usr/include/c++/11/bits/exception_ptr.h \
+ /usr/include/c++/11/bits/basic_string.tcc /usr/include/c++/11/sstream \
+ /usr/include/c++/11/istream /usr/include/c++/11/ios \
+ /usr/include/c++/11/exception /usr/include/c++/11/bits/exception_ptr.h \
  /usr/include/c++/11/bits/cxxabi_init_exception.h \
  /usr/include/c++/11/typeinfo /usr/include/c++/11/bits/nested_exception.h \
  /usr/include/c++/11/bits/ios_base.h \
@@ -155,34 +150,17 @@ CMakeFiles/supermercado.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/locale_facets.tcc \
  /usr/include/c++/11/bits/basic_ios.tcc /usr/include/c++/11/ostream \
  /usr/include/c++/11/bits/ostream.tcc \
- /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/bits/codecvt.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
- /usr/include/c++/11/bits/fstream.tcc /usr/include/c++/11/functional \
- /usr/include/c++/11/tuple /usr/include/c++/11/utility \
- /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/array \
- /usr/include/c++/11/bits/uses_allocator.h \
- /usr/include/c++/11/bits/invoke.h /usr/include/c++/11/bits/refwrap.h \
- /usr/include/c++/11/bits/std_function.h \
- /usr/include/c++/11/unordered_map \
- /usr/include/c++/11/ext/aligned_buffer.h \
- /usr/include/c++/11/bits/hashtable.h \
- /usr/include/c++/11/bits/hashtable_policy.h \
- /usr/include/c++/11/bits/enable_special_members.h \
- /usr/include/c++/11/bits/node_handle.h \
- /usr/include/c++/11/bits/unordered_map.h \
- /usr/include/c++/11/bits/erase_if.h /usr/include/c++/11/vector \
- /usr/include/c++/11/bits/stl_uninitialized.h \
- /usr/include/c++/11/bits/stl_vector.h \
- /usr/include/c++/11/bits/stl_bvector.h \
- /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/bits/stl_algo.h \
- /usr/include/c++/11/bits/algorithmfwd.h \
- /usr/include/c++/11/bits/stl_heap.h \
- /usr/include/c++/11/bits/stl_tempbuf.h \
- /usr/include/c++/11/bits/uniform_int_dist.h \
- /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura\ de\ datos/Proyecto1/include/BTree.h \
- /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura\ de\ datos/Proyecto1/include/BPlusTree.h \
- /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura\ de\ datos/Proyecto1/include/Logger.h \
- /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura\ de\ datos/Proyecto1/include/Menu.h \
- /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura\ de\ datos/Proyecto1/include/Catalog.h \
- /usr/include/c++/11/iostream
+ /usr/include/c++/11/bits/istream.tcc \
+ /usr/include/c++/11/bits/sstream.tcc /usr/include/c++/11/iomanip \
+ /usr/include/c++/11/locale \
+ /usr/include/c++/11/bits/locale_facets_nonio.h /usr/include/c++/11/ctime \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/11/bits/codecvt.h \
+ /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/11/bits/locale_conv.h \
+ /usr/include/c++/11/bits/unique_ptr.h /usr/include/c++/11/utility \
+ /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/tuple \
+ /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
+ /usr/include/c++/11/bits/invoke.h \
+ /usr/include/c++/11/bits/quoted_string.h
