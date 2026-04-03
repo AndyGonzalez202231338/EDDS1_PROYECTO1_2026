@@ -74,6 +74,8 @@ public:
      * Complejidad: O(1)
      */
     const SortedListNode* getHead() const;
+    void insertFront(const Product& p);
+    void sortInPlace();
 
 private:
     SortedListNode* _head; // puntero al primer nodo (menor alfabeticamente)

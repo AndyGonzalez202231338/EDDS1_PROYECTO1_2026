@@ -41,8 +41,21 @@ private:
     // Imprime una linea separadora decorativa
     void printSeparator() const;
 
+    // Imprime una linea separadora fina entre productos
+    void printThinSeparator() const;
+
     // Limpia la pantalla
     void clearScreen() const;
+
+    /*
+     * printTablePaged
+     * Muestra un arreglo de productos en tabla de 3 columnas con paginacion.
+     * Cada celda muestra todos los campos del producto.
+     * Navegacion: S=siguiente, A=anterior, Q=volver.
+     * Precondicion: results != nullptr, count >= 0.
+     * Complejidad: O(count)
+     */
+    void printTablePaged(Product** results, int count, const std::string& title) const;
 
 
     /*

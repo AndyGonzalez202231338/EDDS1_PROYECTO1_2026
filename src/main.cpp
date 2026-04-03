@@ -3,29 +3,25 @@
 #include <iostream>
 #include <string>
 
-#define BG_ROJO     "\033[41m"
-#define ROJO_BRILLANTE  "\033[91m"
-#define BG_AZUL     "\033[44m"
-#define AZUL_BRILLANTE  "\033[94m"
-#define RESET   "\033[0m"
-
 int main(int argc, char* argv[]) {
-    // Crear directorio de salida para los .dot
-    system("mkdir -p output");
+    // Crear directorio de resultados al mismo nivel que src/ e include/
+    system("mkdir -p ../resultados");
 
-    // Inicializar el catalogo con su logger
-    Catalog catalog("errors.log");
+    // Inicializar el catalogo - errors.log se guarda en resultados/
+    Catalog catalog("../resultados/errors.log");
 
     // Carga automatica si se pasa un CSV como argumento
+    // Uso: ./supermercado productos.csv
     if (argc == 2) {
         std::string csvPath = argv[1];
-        std::cout <<AZUL_BRILLANTE<< "Cargando catalogo desde: " << csvPath << RESET << "\n";
+        std::cout << "Cargando catalogo desde: " << csvPath << "\n";
         if (!catalog.loadFromCSV(csvPath)) {
-            std::cerr <<BG_ROJO<<"!"<< ROJO_BRILLANTE << "No se pudo abrir: " << csvPath << RESET << "\n";
-            std::cerr << AZUL_BRILLANTE << "Iniciando con catalogo vacio.\n" << RESET;
+            std::cerr << "No se pudo abrir: " << csvPath << "\n";
+            std::cerr << "Iniciando con catalogo vacio.\n";
         }
     }
 
+    // Iniciar el menu interactivo
     Menu menu(catalog);
     menu.run();
 

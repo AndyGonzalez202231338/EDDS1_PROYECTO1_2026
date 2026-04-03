@@ -5,103 +5,127 @@
 #include <string>
 
 /*
- * Modos de busqueda para el benchmark.
- * LIST     : busqueda secuencial en LinkedList
- * SORTED   : busqueda secuencial en SortedLinkedList
- * AVL      : busqueda binaria en AVLTree
+ * SearchMode
+ * Modos de busqueda por nombre para el benchmark comparativo.
+ * El PDF pide comparar: lista sin ordenar, lista ordenada y AVL.
  */
 enum class SearchMode { LIST, SORTED, AVL };
 
 /*
  * BenchmarkResult
- * Resultado de una serie de mediciones para un modo y caso especifico.
+ * Resultado de una serie de mediciones para una operacion,
+ * estructura y caso especifico.
  */
 struct BenchmarkResult {
-    std::string  mode;        // nombre del modo ("LinkedList", "SortedList", "AVL")
-    std::string  caseType;    // "hit_random", "miss", "hit_first", "hit_last"
-    double       avgTimeUs;   // tiempo promedio en microsegundos
-    double       minTimeUs;   // tiempo minimo observado
-    double       maxTimeUs;   // tiempo maximo observado
-    int          N;           // consultas por repeticion
-    int          M;           // numero de repeticiones
+    std::string operation;   // "busqueda", "insercion", "eliminacion"
+    std::string structure;   // "LinkedList", "SortedList", "AVL", "BTree", "BPlus"
+    std::string caseType;    // "hit_random", "miss", "hit_first", "hit_last", "general"
+    double      avgTimeUs;   // promedio en microsegundos por operacion individual
+    double      minTimeUs;   // minimo observado
+    double      maxTimeUs;   // maximo observado
+    int         N;           // consultas por repeticion
+    int         M;           // repeticiones
 };
 
 /*
  * Benchmark
- * Mide y compara tiempos de busqueda entre LinkedList, SortedLinkedList
- * y AVLTree ejecutando N consultas por prueba, repetidas M veces.
+ * Mide y compara tiempos de busqueda, insercion y eliminacion
+ * entre las estructuras del catalogo segun lo requerido en la Seccion 8
+ * del proyecto.
  *
- * Casos de prueba:
- *   hit_random : busqueda de un elemento que existe (posicion aleatoria)
- *   miss       : busqueda de un elemento que no existe
- *   hit_first  : busqueda del primer elemento (mejor caso para lista)
- *   hit_last   : busqueda del ultimo elemento (peor caso para lista)
+ * Seccion de busqueda (N=20, M=5):
+ *   Estructura    Clave         Casos
+ *   LinkedList    nombre        hit_random, miss, hit_first, hit_last
+ *   SortedList    nombre        hit_random, miss, hit_first, hit_last
+ *   AVL           nombre        hit_random, miss, hit_first, hit_last
  *
- * Complejidades propias del Benchmark (sin contar costo de busqueda):
- *   run            : O(N * M * costo_busqueda)
- *   measureSearch  : O(N * costo_busqueda)
- *   reportResults  : O(r)  donde r = cantidad de resultados almacenados
+ * Seccion de insercion (N=20, M=5):
+ *   LinkedList, SortedList, AVL, BTree, BPlus
+ *   Caso: insertar un producto nuevo, medir tiempo por insercion.
+ *   Nota: el producto se elimina despues de cada serie para no acumular.
+ *
+ * Seccion de eliminacion (N=20, M=5):
+ *   LinkedList, SortedList, AVL, BTree, BPlus
+ *   Caso: eliminar un producto existente, medir tiempo por eliminacion.
+ *   Nota: el producto se vuelve a insertar despues para no agotar el catalogo.
  */
 class Benchmark {
 public:
     /*
      * Constructor
-     * Precondicion: catalog inicializado con productos cargados; N > 0; M > 0.
-     * Postcondicion: benchmark listo para ejecutarse.
+     * Precondicion: catalog inicializado con productos; N > 0; M > 0.
      */
     Benchmark(Catalog& catalog, int N = 20, int M = 5);
 
     /*
      * run
-     * Ejecuta todas las pruebas para los tres modos y cuatro casos.
-     * Precondicion: catalog tiene al menos 1 producto.
-     * Postcondicion: resultados almacenados internamente; listos para reportar.
-     * Complejidad: O(N * M * costo_busqueda) por prueba.
+     * Ejecuta las tres secciones del benchmark: busqueda, insercion,
+     * eliminacion. Almacena todos los resultados internamente.
+     * Precondicion: catalog tiene al menos 4 productos.
+     * Complejidad: O(N * M * max_costo_operacion)
      */
     void run();
 
     /*
-     * measureSearch
-     * Mide el tiempo promedio de N busquedas del mismo key en el modo indicado.
-     * Precondicion: mode valido; key no vacio.
-     * Postcondicion: retorna tiempo promedio en microsegundos.
-     * Complejidad: O(N * costo_busqueda_del_modo)
-     */
-    double measureSearch(const std::string& key, SearchMode mode) const;
-
-    /*
      * reportResults
-     * Imprime una tabla comparativa en stdout con todos los resultados.
+     * Imprime las tres tablas comparativas en stdout.
      * Precondicion: run() ejecutado previamente.
-     * Postcondicion: tabla formateada impresa en stdout.
-     * Complejidad: O(r)
      */
     void reportResults() const;
 
+    /*
+     * measureSearch
+     * Mide una busqueda individual en el modo indicado.
+     * Retorna tiempo en microsegundos.
+     */
+    double measureSearch(const std::string& key, SearchMode mode) const;
+
 private:
-    Catalog& _catalog;           // referencia al catalogo a medir
-    int      _N;                 // consultas por repeticion
-    int      _M;                 // numero de repeticiones
-    BenchmarkResult _results[12]; // 3 modos x 4 casos
-    int      _resultCount;       // cantidad de resultados almacenados
+    Catalog& _catalog;
+    int      _N;
+    int      _M;
 
-    // Selecciona una clave aleatoria de los productos del catalogo
-    std::string randomKey() const;
+    /**
+     * Capacidad: 4 casos x 3 estructuras busqueda = 12
+     *          + 1 caso  x 5 estructuras insercion = 5
+     *          + 1 caso  x 5 estructuras eliminacion = 5
+     *          Total = 22 resultados maximos
+     */
+    static const int MAX_RESULTS = 32;
+    BenchmarkResult  _results[MAX_RESULTS];
+    int              _resultCount;
 
-    // Selecciona la clave del primer producto en la lista
-    std::string firstKey() const;
+    // Busqueda
+    void runSearchBenchmark();
 
-    // Selecciona la clave del ultimo producto en la lista
-    std::string lastKey() const;
+    
+    /**
+     * Mide el tiempo de insertar un producto en cada estructura
+     * de forma independiente (no atomica) para aislar el costo individual.
+     */
+    void runInsertBenchmark();
 
-    // Retorna una clave que no existe en el catalogo
-    std::string missKey() const;
+    /**
+     * Mide el tiempo de eliminar un producto de cada estructura
+     * de forma independiente, reinsertandolo despues de cada serie.
+     */
+    void runRemoveBenchmark();
 
-    // Imprime una fila de la tabla de resultados
+    // Claves para los casos de busqueda
+    std::string randomKey()  const;
+    std::string firstKey()   const;
+    std::string lastKey()    const;
+    std::string missKey()    const;
+
+    // Producto temporal para pruebas de insercion/eliminacion
+    Product benchProduct() const;
+
+    // Impresion para formar tablas comparativas en reportResults()
+    void printSearchTable()  const;
+    void printInsertTable()  const;
+    void printRemoveTable()  const;
     void printRow(const BenchmarkResult& r) const;
-
-    // Imprime el encabezado de la tabla
-    void printHeader() const;
+    void printSectionHeader(const std::string& title,const std::string& cols) const;
 };
 
 #endif
