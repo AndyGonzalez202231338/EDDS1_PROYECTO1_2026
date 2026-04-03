@@ -1,0 +1,20 @@
+digraph BPlusTree {
+    rankdir=TB;
+    node [shape=record fontname="Arial" fontsize=10];
+    edge [arrowsize=0.7];
+    node0 [style=filled fillcolor=lightyellow label="<p0> ↓|<f0> Carnes|<p1> ↓|<f1> Granos|<p2> ↓|<f2> Lacteos|<p3> ↓|<f3> Panaderia|<p4> ↓"];
+    leaf1 [style=filled fillcolor=lightblue label="<e0> Bebidas\nBebida Energia|<e1> Bebidas\nCafe Molido|<e2> Bebidas\nRefresco Cola|<e3> Bebidas\nAgua Mineral|<next> →"];
+    node0:p0 -> leaf1;
+    leaf2 [style=filled fillcolor=lightblue label="<e0> Carnes\nSalchicha Frankfurt|<e1> Congelados\nHelado Vainilla|<e2> Frutas\nMango Ataulfo|<e3> Frutas\nNaranja|<e4> Frutas\nUva Verde|<next> →"];
+    node0:p1 -> leaf2;
+    leaf3 [style=filled fillcolor=lightblue label="<e0> Granos\nArroz Blanco|<e1> Granos\nFrijol Negro|<e2> Higiene\nJabon Barra|<next> →"];
+    node0:p2 -> leaf3;
+    leaf4 [style=filled fillcolor=lightblue label="<e0> Lacteos\nLeche Entera|<e1> Lacteos\nQueso Manchego|<e2> Lacteos\nYogurt Natural|<next> →"];
+    node0:p3 -> leaf4;
+    leaf5 [style=filled fillcolor=lightblue label="<e0> Panaderia\nDona Azucar|<e1> Panaderia\nGalleta Maria|<e2> Panaderia\nPan Blanco|<e3> Verduras\nTomate Rojo|<e4> Verduras\nZanahoria|<next> →"];
+    node0:p4 -> leaf5;
+    leaf1:next -> leaf2:w [style=dashed color="#888888" arrowsize=0.6];
+    leaf2:next -> leaf3:w [style=dashed color="#888888" arrowsize=0.6];
+    leaf3:next -> leaf4:w [style=dashed color="#888888" arrowsize=0.6];
+    leaf4:next -> leaf5:w [style=dashed color="#888888" arrowsize=0.6];
+}

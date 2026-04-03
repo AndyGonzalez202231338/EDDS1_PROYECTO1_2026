@@ -11,7 +11,7 @@
 #include <string>
 #include <fstream>
 
-// Tamano maximo de resultados para operaciones de busqueda multiple
+// Tamaño maximo de resultados para operaciones de busqueda multiple
 static const int MAX_RESULTS = 2048;
 
 /*
@@ -42,7 +42,6 @@ public:
      */
     ~Catalog();
 
-    // Prohibir copia
     Catalog(const Catalog&)            = delete;
     Catalog& operator=(const Catalog&) = delete;
 
@@ -76,6 +75,17 @@ public:
      * Complejidad: O(n * log n) donde n = lineas validas del CSV.
      */
     bool loadFromCSV(const std::string& path);
+
+    /*
+     * beginBulkLoad / endBulkLoad
+     * Activan el modo de carga masiva optimizada.
+     * Durante beginBulkLoad..endBulkLoad, addProduct inserta en
+     * SortedLinkedList con insertFront O(1) en lugar de insertSorted O(n).
+     * endBulkLoad llama sortInPlace() una sola vez en O(n log n).
+     * Reduccion: O(n^2) -> O(n log n) para la construccion de la lista ordenada.
+     */
+    void beginBulkLoad();
+    void endBulkLoad();
 
     /*
      * findByName
@@ -136,17 +146,20 @@ public:
 
     /*
      * generateDotFiles
-     * Genera archivos .dot para AVLTree, BTree y BPlusTree en el directorio output/.
-     * Precondicion: directorio output/ existe o puede crearse.
-     * Postcondicion: archivos output/avl.dot, output/btree.dot,
-     *                output/bplustree.dot creados o sobreescritos.
+     * Genera .dot y PNG para AVL, BTree y BPlusTree en el directorio dir.
+     * Los archivos se nombran: <label>_AVL, <label>_BTree, <label>_BPlus.
+     * Precondicion: dir existe o puede crearse; label no vacio.
      * Complejidad: O(n)
      */
-    void generateDotFiles() const;
+    void generateDotFiles(const std::string& label, const std::string& dir) const;
 
+    // Acceso a estructuras internas (para CSVLoader y Benchmark)
     LinkedList&       getList();
     SortedLinkedList& getSortedList();
     AVLTree&          getAVL();
+    const AVLTree&    getAVL() const;
+    BTree&            getBTree();
+    BPlusTree&        getBPlus();
     Logger&           getLogger();
 
 private:
@@ -156,11 +169,14 @@ private:
     BTree            _btree;       // arbol B por fecha de caducidad
     BPlusTree        _bplus;       // arbol B+ por categoria
     Logger           _logger;      // registro de errores
+    bool             _bulkLoading; // true durante carga masiva de CSV
 
-    // Rollback: elimina p de las estructuras donde ya fue insertado.
-    // insertedList, insertedSorted, insertedAVL, insertedBTree, insertedBPlus
-    // indican cuales ya procesaron la insercion.
+    /**
+     * Rollback: elimina p de las estructuras donde ya fue insertado.
+     * Precondicion: p fue insertado en alguna estructura.
+     * Postcondicion: p eliminado de todas las estructuras donde estaba.
+     */ 
     void rollback(const Product& p, bool insertedList, bool insertedSorted, bool insertedAVL, bool insertedBTree, bool insertedBPlus);
 };
 
-#endif
+#endif // CATALOG_H

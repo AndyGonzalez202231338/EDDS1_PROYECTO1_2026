@@ -125,3 +125,64 @@ void SortedLinkedList::clear() {
     _head = nullptr;
     _size = 0;
 }
+
+// insertFront
+// Inserta al frente sin mantener orden.
+// Usado exclusivamente durante la carga masiva del CSV.
+// Despues de todas las llamadas, llamar sortInPlace().
+// Complejidad: O(1)
+void SortedLinkedList::insertFront(const Product& p) {
+    SortedListNode* node = new SortedListNode(p);
+    node->next = _head;
+    _head      = node;
+    ++_size;
+}
+
+// ─────────────────────────────────────────────
+// Merge sort sobre lista enlazada
+// ─────────────────────────────────────────────
+
+static SortedListNode* mergeSort(SortedListNode* head) {
+    if (head == nullptr || head->next == nullptr) return head;
+
+    // Encontrar el punto medio con puntero lento/rapido
+    SortedListNode* slow = head;
+    SortedListNode* fast = head->next;
+    while (fast != nullptr && fast->next != nullptr) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    SortedListNode* mid = slow->next;
+    slow->next          = nullptr;
+
+    SortedListNode* left  = mergeSort(head);
+    SortedListNode* right = mergeSort(mid);
+
+    // Fusionar las dos mitades ordenadas usando un nodo centinela
+    Product        dummy;
+    SortedListNode sentinel(dummy);
+    SortedListNode* curr = &sentinel;
+
+    while (left != nullptr && right != nullptr) {
+        if (left->data.name <= right->data.name) {
+            curr->next = left;
+            left       = left->next;
+        } else {
+            curr->next = right;
+            right      = right->next;
+        }
+        curr = curr->next;
+    }
+    curr->next = (left != nullptr) ? left : right;
+
+    return sentinel.next;
+}
+
+// sortInPlace
+// Ordena la lista por nombre usando merge sort.
+// Complejidad: O(n log n)
+void SortedLinkedList::sortInPlace() {
+    if (_head == nullptr || _head->next == nullptr) return;
+    _head = mergeSort(_head);
+}

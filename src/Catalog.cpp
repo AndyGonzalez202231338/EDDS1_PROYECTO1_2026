@@ -4,33 +4,67 @@
 #include <fstream>
 #include <chrono>
 #include <iomanip>
+#include <functional>
 
-Catalog::Catalog(const std::string& logPath): _logger(logPath) {}
+Catalog::Catalog(const std::string& logPath) : _logger(logPath), _bulkLoading(false) {}
 
 Catalog::~Catalog() {}
 
+/**
+ * beginBulkLoad
+ * Activa el modo masivo. Desde este momento addProduct usara
+ * insertFront en SortedLinkedList en lugar de insertSorted.
+ */
+void Catalog::beginBulkLoad() {
+    _bulkLoading = true;
+}
+
+/**
+ * endBulkLoad
+ * Desactiva el modo masivo y ordena la SortedLinkedList una sola vez.
+ * Complejidad del ordenamiento: O(n log n)
+ */
+void Catalog::endBulkLoad() {
+    _bulkLoading = false;
+    _sortedList.sortInPlace();
+}
+
+
+// addProduct — insercion atomica en las 5 estructuras
 bool Catalog::addProduct(const Product& p) {
     if (!p.isValid()) {
         _logger.logError("addProduct: producto invalido barcode=" + p.barcode);
         return false;
     }
-    // Verificar duplicado por barcode en la lista
+
+    // Verificar duplicado por barcode en la lista (O(n))
     if (_list.searchSequential(p.barcode) != nullptr) {
         _logger.logDuplicate(p.barcode);
         return false;
     }
+
+    // Insertar en cada estructura en orden.
     // Si alguna falla, rollback de las anteriores.
     bool inList    = false;
     bool inSorted  = false;
     bool inAVL     = false;
     bool inBTree   = false;
     bool inBPlus   = false;
+
     try {
-        _list.insertFront(p); inList   = true;
-        _sortedList.insertSorted(p); inSorted = true;
-        _avl.insert(p); inAVL    = true;
-        _btree.insert(p); inBTree  = true;
-        _bplus.insert(p); inBPlus  = true;
+        _list.insertFront(p);       inList   = true;
+
+        // Modo bulk: insertFront O(1); sortInPlace al final en endBulkLoad.
+        // Modo normal: insertSorted O(n) para mantener orden inmediatamente.
+        if (_bulkLoading) {
+            _sortedList.insertFront(p);
+        } else {
+            _sortedList.insertSorted(p);
+        }
+        inSorted = true;
+        _avl.insert(p);             inAVL    = true;
+        _btree.insert(p);           inBTree  = true;
+        _bplus.insert(p);           inBPlus  = true;
     } catch (...) {
         _logger.logError("addProduct: excepcion al insertar barcode=" + p.barcode);
         rollback(p, inList, inSorted, inAVL, inBTree, inBPlus);
@@ -40,7 +74,7 @@ bool Catalog::addProduct(const Product& p) {
     return true;
 }
 
-// eliminacion en las 5 estructuras
+// removeProduct — eliminacion en las 5 estructuras
 bool Catalog::removeProduct(const std::string& barcode) {
     // Verificar que el producto existe antes de intentar eliminar
     Product* existing = _list.searchSequential(barcode);
@@ -80,7 +114,6 @@ void Catalog::findByDateRange(const std::string& d1, const std::string& d2, Prod
     _btree.rangeSearch(d1, d2, results, count, MAX_RESULTS);
 }
 
-// listAllByName, recorrido inorder del AVL
 void Catalog::listAllByName() const {
     if (_avl.isEmpty()) {
         std::cout << "El catalogo esta vacio.\n";
@@ -97,7 +130,6 @@ void Catalog::listAllByName() const {
     std::cout << "Total: " << count << " productos.\n";
 }
 
-// benchmarkSearch
 void Catalog::benchmarkSearch(int N, int M) const {
     if (_list.isEmpty()) {
         std::cout << "El catalogo esta vacio, no se puede medir.\n";
@@ -124,6 +156,7 @@ void Catalog::benchmarkSearch(int N, int M) const {
               << std::setw(18) << "AVL (us)"
               << "\n";
     std::cout << std::string(70, '-') << "\n";
+
     for (auto& caso : casos) {
         double totalList   = 0;
         double totalSorted = 0;
@@ -166,47 +199,47 @@ void Catalog::benchmarkSearch(int N, int M) const {
     std::cout << std::string(70, '-') << "\n";
 }
 
-void Catalog::generateDotFiles() const {
-    // AVL
-    {
-        std::ofstream out("output/avl.dot");
-        if (out.is_open()) {
-            _avl.toDot(out);
-            std::cout << "Generado: output/avl.dot\n";
-        } else {
-            std::cerr << "No se pudo crear output/avl.dot\n";
+void Catalog::generateDotFiles(const std::string& label, const std::string& dir) const {
+    // Construir rutas con el nombre elegido por el usuario
+    // Formato: dir/label_AVL.dot, dir/label_BTree.dot, dir/label_BPlus.dot
+    auto genFile = [&](const std::string& suffix,
+                       std::function<void(std::ofstream&)> writeFn) {
+        std::string dotPath = dir + "/" + label + "_" + suffix + ".dot";
+        std::string pngPath = dir + "/" + label + "_" + suffix + ".png";
+
+        std::ofstream out(dotPath);
+        if (!out.is_open()) {
+            std::cerr << "  No se pudo crear: " << dotPath << "\n";
+            return;
         }
-    }
-    // BTree
-    {
-        std::ofstream out("output/btree.dot");
-        if (out.is_open()) {
-            _btree.toDot(out);
-            std::cout << "Generado: output/btree.dot\n";
+        writeFn(out);
+        out.close();
+        std::cout << "  Generado: " << dotPath << "\n";
+
+        // Convertir a PNG usando Graphviz
+        std::string cmd = "dot -Tpng \"" + dotPath +
+                          "\" -o \"" + pngPath + "\"";
+        if (system(cmd.c_str()) == 0) {
+            std::cout << "  Generado: " << pngPath << "\n";
         } else {
-            std::cerr << "No se pudo crear output/btree.dot\n";
+            std::cout << "  PNG omitido (instala Graphviz: sudo apt install graphviz)\n";
         }
-    }
-    // BPlusTree
-    {
-        std::ofstream out("output/bplustree.dot");
-        if (out.is_open()) {
-            _bplus.toDot(out);
-            std::cout << "Generado: output/bplustree.dot\n";
-        } else {
-            std::cerr << "No se pudo crear output/bplustree.dot\n";
-        }
-    }
+    };
+
+    genFile("AVL",   [this](std::ofstream& o){ _avl.toDot(o);   });
+    genFile("BTree", [this](std::ofstream& o){ _btree.toDot(o); });
+    genFile("BPlus", [this](std::ofstream& o){ _bplus.toDot(o); });
 }
 
-// Acceso a estructuras internas
 LinkedList&       Catalog::getList()       { return _list;       }
 SortedLinkedList& Catalog::getSortedList() { return _sortedList; }
 AVLTree&          Catalog::getAVL()        { return _avl;        }
+const AVLTree&    Catalog::getAVL() const  { return _avl;        }
+BTree&            Catalog::getBTree()      { return _btree;      }
+BPlusTree&        Catalog::getBPlus()      { return _bplus;      }
 Logger&           Catalog::getLogger()     { return _logger;     }
 
-// rollback (privado)
-void Catalog::rollback(const Product& p, bool insertedList, bool insertedSorted, bool insertedAVL, bool insertedBTree, bool insertedBPlus) {
+void Catalog::rollback(const Product& p,bool insertedList, bool insertedSorted, bool insertedAVL, bool insertedBTree, bool insertedBPlus) {
     if (insertedBPlus)  _bplus.remove(p.category);
     if (insertedBTree)  _btree.remove(p.expiry_date);
     if (insertedAVL)    _avl.remove(p.name);

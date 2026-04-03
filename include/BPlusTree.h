@@ -123,6 +123,8 @@ public:
      */
     void leafTraversal(Product** results, int& count, int maxResults) const;
 
+    
+
     /*
      * toDot
      * Genera representacion Graphviz del arbol B+.
@@ -156,7 +158,7 @@ private:
     void insertInParent(BPlusNode* left, const std::string& key, BPlusNode* right);
 
     // Generacion de DOT recursiva
-    void toDotNode(BPlusNode* node, std::ofstream& out, int& nodeId) const;
+    void toDotNode(BPlusNode* node, std::ofstream& out, int& nodeId, BPlusLeaf** leafPtrs, int* leafIds, int& leafCount) const;
 
     // Destruccion recursiva
     void destroyNode(BPlusNode* node);

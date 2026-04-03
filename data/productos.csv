@@ -1,0 +1,1001 @@
+"Nombre","CodigoBarra","Categoria","FechaCaducidad","Marca","Precio","Stock"
+"Leche Entera","7500000000001","Lacteos","2026-04-20","Lala",79.39,176
+"Leche Descremada","7500000000002","Lacteos","2025-12-13","Alpura",20.50,178
+"Leche Semidescremada","7500000000003","Lacteos","2028-06-23","Nestlé",30.16,483
+"Yogurt Natural","7500000000004","Lacteos","2028-11-13","Sello Rojo",51.87,138
+"Yogurt Fresa","7500000000005","Lacteos","2028-11-24","Centrolac",21.01,69
+"Yogurt Vainilla","7500000000006","Lacteos","2028-12-27","Lala",33.74,79
+"Queso Manchego","7500000000007","Lacteos","2027-09-22","Alpura",21.58,36
+"Queso Oaxaca","7500000000008","Lacteos","2028-08-18","Nestlé",23.48,418
+"Queso Cottage","7500000000009","Lacteos","2026-06-08","Sello Rojo",30.39,85
+"Mantequilla","7500000000010","Lacteos","2026-03-18","Centrolac",60.41,179
+"Crema Acida","7500000000011","Lacteos","2025-09-22","Lala",77.84,104
+"Jocoque","7500000000012","Lacteos","2025-06-24","Alpura",13.82,47
+"Leche Entera v2","7500000000013","Lacteos","2028-04-14","Nestlé",50.00,295
+"Leche Descremada v2","7500000000014","Lacteos","2026-07-18","Sello Rojo",67.89,121
+"Leche Semidescremada v2","7500000000015","Lacteos","2027-06-24","Centrolac",35.89,423
+"Yogurt Natural v2","7500000000016","Lacteos","2026-06-17","Lala",76.10,439
+"Yogurt Fresa v2","7500000000017","Lacteos","2028-03-15","Alpura",37.21,382
+"Yogurt Vainilla v2","7500000000018","Lacteos","2026-04-08","Nestlé",24.14,402
+"Queso Manchego v2","7500000000019","Lacteos","2027-03-07","Sello Rojo",66.49,436
+"Queso Oaxaca v2","7500000000020","Lacteos","2028-04-03","Centrolac",66.14,401
+"Queso Cottage v2","7500000000021","Lacteos","2025-03-02","Lala",42.39,209
+"Mantequilla v2","7500000000022","Lacteos","2028-12-05","Alpura",35.51,177
+"Crema Acida v2","7500000000023","Lacteos","2028-03-28","Nestlé",25.62,180
+"Jocoque v2","7500000000024","Lacteos","2027-12-09","Sello Rojo",46.27,379
+"Leche Entera v3","7500000000025","Lacteos","2026-08-25","Centrolac",26.64,390
+"Leche Descremada v3","7500000000026","Lacteos","2025-05-03","Lala",64.36,404
+"Leche Semidescremada v3","7500000000027","Lacteos","2025-04-18","Alpura",71.28,227
+"Yogurt Natural v3","7500000000028","Lacteos","2025-04-13","Nestlé",46.87,279
+"Yogurt Fresa v3","7500000000029","Lacteos","2028-10-20","Sello Rojo",18.93,93
+"Yogurt Vainilla v3","7500000000030","Lacteos","2028-01-09","Centrolac",29.70,223
+"Queso Manchego v3","7500000000031","Lacteos","2025-02-02","Lala",9.63,390
+"Queso Oaxaca v3","7500000000032","Lacteos","2028-01-08","Alpura",67.88,108
+"Queso Cottage v3","7500000000033","Lacteos","2025-05-26","Nestlé",40.47,362
+"Mantequilla v3","7500000000034","Lacteos","2028-08-12","Sello Rojo",53.76,432
+"Crema Acida v3","7500000000035","Lacteos","2025-01-11","Centrolac",59.78,438
+"Jocoque v3","7500000000036","Lacteos","2027-01-13","Lala",49.00,154
+"Leche Entera v4","7500000000037","Lacteos","2025-07-22","Alpura",35.81,103
+"Leche Descremada v4","7500000000038","Lacteos","2028-06-03","Nestlé",66.73,222
+"Leche Semidescremada v4","7500000000039","Lacteos","2026-08-07","Sello Rojo",35.88,151
+"Yogurt Natural v4","7500000000040","Lacteos","2025-03-21","Centrolac",28.17,320
+"Yogurt Fresa v4","7500000000041","Lacteos","2026-12-28","Lala",49.27,243
+"Yogurt Vainilla v4","7500000000042","Lacteos","2026-07-24","Alpura",33.79,205
+"Queso Manchego v4","7500000000043","Lacteos","2028-11-10","Nestlé",56.25,42
+"Queso Oaxaca v4","7500000000044","Lacteos","2026-07-09","Sello Rojo",22.20,174
+"Queso Cottage v4","7500000000045","Lacteos","2027-02-16","Centrolac",9.49,464
+"Mantequilla v4","7500000000046","Lacteos","2027-08-26","Lala",29.49,306
+"Crema Acida v4","7500000000047","Lacteos","2025-09-19","Alpura",28.17,248
+"Jocoque v4","7500000000048","Lacteos","2027-05-08","Nestlé",59.12,362
+"Leche Entera v5","7500000000049","Lacteos","2028-05-10","Sello Rojo",78.66,291
+"Leche Descremada v5","7500000000050","Lacteos","2027-08-09","Centrolac",51.76,106
+"Leche Semidescremada v5","7500000000051","Lacteos","2027-07-06","Lala",56.90,457
+"Yogurt Natural v5","7500000000052","Lacteos","2026-10-26","Alpura",61.51,484
+"Yogurt Fresa v5","7500000000053","Lacteos","2028-11-21","Nestlé",10.10,307
+"Yogurt Vainilla v5","7500000000054","Lacteos","2026-07-22","Sello Rojo",14.81,337
+"Queso Manchego v5","7500000000055","Lacteos","2028-01-11","Centrolac",13.45,449
+"Queso Oaxaca v5","7500000000056","Lacteos","2027-06-10","Lala",56.45,419
+"Queso Cottage v5","7500000000057","Lacteos","2027-02-11","Alpura",40.69,200
+"Mantequilla v5","7500000000058","Lacteos","2025-07-20","Nestlé",78.87,333
+"Crema Acida v5","7500000000059","Lacteos","2028-06-28","Sello Rojo",59.32,484
+"Jocoque v5","7500000000060","Lacteos","2025-10-06","Centrolac",68.54,61
+"Leche Entera v6","7500000000061","Lacteos","2028-02-05","Lala",64.13,466
+"Leche Descremada v6","7500000000062","Lacteos","2025-05-06","Alpura",59.43,165
+"Leche Semidescremada v6","7500000000063","Lacteos","2028-05-07","Nestlé",35.74,167
+"Yogurt Natural v6","7500000000064","Lacteos","2027-04-21","Sello Rojo",70.25,331
+"Yogurt Fresa v6","7500000000065","Lacteos","2025-10-08","Centrolac",31.21,426
+"Yogurt Vainilla v6","7500000000066","Lacteos","2025-05-12","Lala",51.03,56
+"Queso Manchego v6","7500000000067","Lacteos","2026-03-21","Alpura",20.21,67
+"Queso Oaxaca v6","7500000000068","Lacteos","2027-11-24","Nestlé",39.13,329
+"Queso Cottage v6","7500000000069","Lacteos","2026-09-18","Sello Rojo",37.26,173
+"Mantequilla v6","7500000000070","Lacteos","2026-08-08","Centrolac",77.36,262
+"Crema Acida v6","7500000000071","Lacteos","2025-02-24","Lala",12.90,304
+"Jocoque v6","7500000000072","Lacteos","2026-02-15","Alpura",72.54,216
+"Leche Entera v7","7500000000073","Lacteos","2027-12-27","Nestlé",12.03,149
+"Leche Descremada v7","7500000000074","Lacteos","2027-08-07","Sello Rojo",10.11,370
+"Leche Semidescremada v7","7500000000075","Lacteos","2027-06-21","Centrolac",63.61,435
+"Yogurt Natural v7","7500000000076","Lacteos","2026-02-04","Lala",59.30,421
+"Yogurt Fresa v7","7500000000077","Lacteos","2027-08-13","Alpura",64.52,148
+"Yogurt Vainilla v7","7500000000078","Lacteos","2027-04-11","Nestlé",65.27,81
+"Queso Manchego v7","7500000000079","Lacteos","2028-08-19","Sello Rojo",20.14,116
+"Queso Oaxaca v7","7500000000080","Lacteos","2025-05-09","Centrolac",34.21,459
+"Queso Cottage v7","7500000000081","Lacteos","2028-06-05","Lala",60.98,271
+"Mantequilla v7","7500000000082","Lacteos","2026-05-16","Alpura",19.17,44
+"Crema Acida v7","7500000000083","Lacteos","2025-06-12","Nestlé",54.20,399
+"Jocoque v7","7500000000084","Lacteos","2028-05-02","Sello Rojo",70.67,469
+"Leche Entera v8","7500000000085","Lacteos","2025-08-19","Centrolac",65.33,487
+"Leche Descremada v8","7500000000086","Lacteos","2028-03-14","Lala",47.89,495
+"Leche Semidescremada v8","7500000000087","Lacteos","2026-11-10","Alpura",30.33,116
+"Yogurt Natural v8","7500000000088","Lacteos","2025-03-13","Nestlé",50.25,116
+"Yogurt Fresa v8","7500000000089","Lacteos","2026-09-02","Sello Rojo",23.11,488
+"Yogurt Vainilla v8","7500000000090","Lacteos","2025-09-16","Centrolac",76.45,187
+"Queso Manchego v8","7500000000091","Lacteos","2026-12-15","Lala",8.17,81
+"Queso Oaxaca v8","7500000000092","Lacteos","2028-10-04","Alpura",78.65,41
+"Queso Cottage v8","7500000000093","Lacteos","2027-01-05","Nestlé",44.71,330
+"Mantequilla v8","7500000000094","Lacteos","2026-12-20","Sello Rojo",66.33,478
+"Crema Acida v8","7500000000095","Lacteos","2025-07-09","Centrolac",44.94,51
+"Jocoque v8","7500000000096","Lacteos","2027-10-14","Lala",75.52,497
+"Leche Entera v9","7500000000097","Lacteos","2028-02-26","Alpura",51.64,402
+"Leche Descremada v9","7500000000098","Lacteos","2027-08-27","Nestlé",10.42,429
+"Leche Semidescremada v9","7500000000099","Lacteos","2028-12-25","Sello Rojo",55.86,73
+"Yogurt Natural v9","7500000000100","Lacteos","2028-03-11","Centrolac",10.49,277
+"Refresco Cola","7500000000101","Bebidas","2028-03-24","Coca-Cola",49.77,296
+"Refresco Lima","7500000000102","Bebidas","2028-06-13","Pepsi",40.55,191
+"Jugo Naranja","7500000000103","Bebidas","2028-07-13","Jumex",6.23,81
+"Jugo Manzana","7500000000104","Bebidas","2028-12-11","Bonafont",13.03,96
+"Agua Mineral","7500000000105","Bebidas","2027-09-02","Del Valle",56.88,432
+"Agua Natural","7500000000106","Bebidas","2027-11-25","Coca-Cola",27.53,478
+"Leche Chocolate","7500000000107","Bebidas","2027-05-04","Pepsi",19.31,216
+"Te Verde","7500000000108","Bebidas","2027-11-15","Jumex",25.47,487
+"Te Negro","7500000000109","Bebidas","2026-02-25","Bonafont",21.09,234
+"Cafe Soluble","7500000000110","Bebidas","2025-04-20","Del Valle",23.99,168
+"Cafe Molido","7500000000111","Bebidas","2026-06-25","Coca-Cola",22.76,172
+"Bebida Energetica","7500000000112","Bebidas","2027-05-13","Pepsi",40.04,305
+"Refresco Cola v2","7500000000113","Bebidas","2028-10-25","Jumex",39.26,180
+"Refresco Lima v2","7500000000114","Bebidas","2025-05-15","Bonafont",50.73,93
+"Jugo Naranja v2","7500000000115","Bebidas","2027-12-17","Del Valle",11.18,16
+"Jugo Manzana v2","7500000000116","Bebidas","2027-06-07","Coca-Cola",18.20,413
+"Agua Mineral v2","7500000000117","Bebidas","2028-07-25","Pepsi",5.06,42
+"Agua Natural v2","7500000000118","Bebidas","2025-08-21","Jumex",51.63,145
+"Leche Chocolate v2","7500000000119","Bebidas","2026-04-17","Bonafont",58.74,452
+"Te Verde v2","7500000000120","Bebidas","2028-09-04","Del Valle",51.12,106
+"Te Negro v2","7500000000121","Bebidas","2025-06-10","Coca-Cola",42.14,161
+"Cafe Soluble v2","7500000000122","Bebidas","2025-05-14","Pepsi",55.96,301
+"Cafe Molido v2","7500000000123","Bebidas","2026-08-11","Jumex",31.78,291
+"Bebida Energetica v2","7500000000124","Bebidas","2027-04-14","Bonafont",40.66,117
+"Refresco Cola v3","7500000000125","Bebidas","2028-09-15","Del Valle",49.25,251
+"Refresco Lima v3","7500000000126","Bebidas","2025-06-14","Coca-Cola",21.84,244
+"Jugo Naranja v3","7500000000127","Bebidas","2025-02-18","Pepsi",41.01,434
+"Jugo Manzana v3","7500000000128","Bebidas","2025-03-01","Jumex",52.45,173
+"Agua Mineral v3","7500000000129","Bebidas","2027-10-15","Bonafont",8.27,19
+"Agua Natural v3","7500000000130","Bebidas","2027-01-24","Del Valle",38.92,199
+"Leche Chocolate v3","7500000000131","Bebidas","2025-04-22","Coca-Cola",53.68,17
+"Te Verde v3","7500000000132","Bebidas","2028-06-02","Pepsi",41.50,305
+"Te Negro v3","7500000000133","Bebidas","2028-10-22","Jumex",56.17,406
+"Cafe Soluble v3","7500000000134","Bebidas","2027-10-12","Bonafont",46.53,105
+"Cafe Molido v3","7500000000135","Bebidas","2028-09-06","Del Valle",30.89,140
+"Bebida Energetica v3","7500000000136","Bebidas","2028-12-02","Coca-Cola",27.41,87
+"Refresco Cola v4","7500000000137","Bebidas","2027-11-05","Pepsi",51.24,403
+"Refresco Lima v4","7500000000138","Bebidas","2025-11-19","Jumex",57.11,452
+"Jugo Naranja v4","7500000000139","Bebidas","2025-03-25","Bonafont",15.15,187
+"Jugo Manzana v4","7500000000140","Bebidas","2026-09-02","Del Valle",56.92,420
+"Agua Mineral v4","7500000000141","Bebidas","2028-04-22","Coca-Cola",36.74,138
+"Agua Natural v4","7500000000142","Bebidas","2028-02-03","Pepsi",19.70,12
+"Leche Chocolate v4","7500000000143","Bebidas","2025-01-11","Jumex",21.29,447
+"Te Verde v4","7500000000144","Bebidas","2025-11-09","Bonafont",14.72,232
+"Te Negro v4","7500000000145","Bebidas","2028-05-05","Del Valle",47.94,177
+"Cafe Soluble v4","7500000000146","Bebidas","2025-06-16","Coca-Cola",43.83,74
+"Cafe Molido v4","7500000000147","Bebidas","2026-07-10","Pepsi",56.27,163
+"Bebida Energetica v4","7500000000148","Bebidas","2026-08-28","Jumex",43.16,261
+"Refresco Cola v5","7500000000149","Bebidas","2026-08-17","Bonafont",30.58,319
+"Refresco Lima v5","7500000000150","Bebidas","2026-09-24","Del Valle",48.18,85
+"Jugo Naranja v5","7500000000151","Bebidas","2026-04-04","Coca-Cola",29.14,86
+"Jugo Manzana v5","7500000000152","Bebidas","2026-02-20","Pepsi",53.86,365
+"Agua Mineral v5","7500000000153","Bebidas","2026-03-05","Jumex",57.63,160
+"Agua Natural v5","7500000000154","Bebidas","2028-11-07","Bonafont",47.07,364
+"Leche Chocolate v5","7500000000155","Bebidas","2026-12-14","Del Valle",32.78,337
+"Te Verde v5","7500000000156","Bebidas","2026-06-05","Coca-Cola",19.97,378
+"Te Negro v5","7500000000157","Bebidas","2028-03-03","Pepsi",22.52,411
+"Cafe Soluble v5","7500000000158","Bebidas","2026-09-07","Jumex",17.09,177
+"Cafe Molido v5","7500000000159","Bebidas","2028-12-09","Bonafont",25.36,353
+"Bebida Energetica v5","7500000000160","Bebidas","2025-07-24","Del Valle",37.80,446
+"Refresco Cola v6","7500000000161","Bebidas","2026-11-01","Coca-Cola",8.28,52
+"Refresco Lima v6","7500000000162","Bebidas","2025-04-05","Pepsi",7.69,103
+"Jugo Naranja v6","7500000000163","Bebidas","2026-11-26","Jumex",13.16,82
+"Jugo Manzana v6","7500000000164","Bebidas","2028-12-21","Bonafont",43.03,484
+"Agua Mineral v6","7500000000165","Bebidas","2028-01-12","Del Valle",38.22,144
+"Agua Natural v6","7500000000166","Bebidas","2025-10-13","Coca-Cola",57.50,348
+"Leche Chocolate v6","7500000000167","Bebidas","2028-05-21","Pepsi",27.78,393
+"Te Verde v6","7500000000168","Bebidas","2027-12-09","Jumex",52.60,171
+"Te Negro v6","7500000000169","Bebidas","2028-01-22","Bonafont",17.66,300
+"Cafe Soluble v6","7500000000170","Bebidas","2027-09-13","Del Valle",15.73,104
+"Cafe Molido v6","7500000000171","Bebidas","2026-07-08","Coca-Cola",9.71,479
+"Bebida Energetica v6","7500000000172","Bebidas","2028-05-12","Pepsi",41.44,90
+"Refresco Cola v7","7500000000173","Bebidas","2025-04-16","Jumex",40.95,120
+"Refresco Lima v7","7500000000174","Bebidas","2025-08-02","Bonafont",10.38,154
+"Jugo Naranja v7","7500000000175","Bebidas","2027-10-19","Del Valle",22.67,246
+"Jugo Manzana v7","7500000000176","Bebidas","2028-02-28","Coca-Cola",41.23,29
+"Agua Mineral v7","7500000000177","Bebidas","2026-08-09","Pepsi",6.89,144
+"Agua Natural v7","7500000000178","Bebidas","2026-05-18","Jumex",51.27,24
+"Leche Chocolate v7","7500000000179","Bebidas","2026-10-08","Bonafont",16.66,416
+"Te Verde v7","7500000000180","Bebidas","2027-06-11","Del Valle",39.51,238
+"Te Negro v7","7500000000181","Bebidas","2025-01-09","Coca-Cola",41.69,345
+"Cafe Soluble v7","7500000000182","Bebidas","2027-02-18","Pepsi",55.67,211
+"Cafe Molido v7","7500000000183","Bebidas","2025-10-19","Jumex",13.63,340
+"Bebida Energetica v7","7500000000184","Bebidas","2025-07-21","Bonafont",25.92,417
+"Refresco Cola v8","7500000000185","Bebidas","2028-06-22","Del Valle",35.55,261
+"Refresco Lima v8","7500000000186","Bebidas","2026-10-14","Coca-Cola",34.70,305
+"Jugo Naranja v8","7500000000187","Bebidas","2025-03-25","Pepsi",54.79,242
+"Jugo Manzana v8","7500000000188","Bebidas","2025-05-07","Jumex",16.16,331
+"Agua Mineral v8","7500000000189","Bebidas","2025-06-15","Bonafont",35.13,334
+"Agua Natural v8","7500000000190","Bebidas","2028-06-02","Del Valle",25.71,294
+"Leche Chocolate v8","7500000000191","Bebidas","2026-08-07","Coca-Cola",11.68,451
+"Te Verde v8","7500000000192","Bebidas","2025-03-04","Pepsi",12.97,134
+"Te Negro v8","7500000000193","Bebidas","2026-11-18","Jumex",7.11,467
+"Cafe Soluble v8","7500000000194","Bebidas","2026-01-02","Bonafont",19.22,156
+"Cafe Molido v8","7500000000195","Bebidas","2027-07-23","Del Valle",35.40,317
+"Bebida Energetica v8","7500000000196","Bebidas","2027-10-13","Coca-Cola",13.79,218
+"Refresco Cola v9","7500000000197","Bebidas","2025-02-21","Pepsi",58.33,372
+"Refresco Lima v9","7500000000198","Bebidas","2028-11-13","Jumex",7.92,100
+"Jugo Naranja v9","7500000000199","Bebidas","2026-01-15","Bonafont",23.30,39
+"Jugo Manzana v9","7500000000200","Bebidas","2025-04-21","Del Valle",5.23,173
+"Arroz Largo","7500000000201","Granos","2025-03-22","La Merced",25.90,13
+"Arroz Integral","7500000000202","Granos","2027-05-20","Maseca",27.77,49
+"Frijol Negro","7500000000203","Granos","2027-06-11","Bachoco",43.09,417
+"Frijol Pinto","7500000000204","Granos","2025-03-18","El Guapo",38.77,17
+"Lenteja","7500000000205","Granos","2025-12-26","Aroz Gold",26.46,99
+"Garbanzo","7500000000206","Granos","2027-10-03","La Merced",27.78,67
+"Harina Trigo","7500000000207","Granos","2025-02-19","Maseca",35.00,216
+"Harina Maiz","7500000000208","Granos","2028-05-19","Bachoco",48.81,169
+"Avena","7500000000209","Granos","2025-01-26","El Guapo",11.10,272
+"Pasta Espagueti","7500000000210","Granos","2028-07-22","Aroz Gold",31.65,413
+"Pasta Caracol","7500000000211","Granos","2028-08-12","La Merced",12.95,152
+"Cereal Maiz","7500000000212","Granos","2028-07-11","Maseca",24.00,36
+"Arroz Largo v2","7500000000213","Granos","2025-08-20","Bachoco",41.14,311
+"Arroz Integral v2","7500000000214","Granos","2026-04-17","El Guapo",42.72,26
+"Frijol Negro v2","7500000000215","Granos","2025-12-07","Aroz Gold",15.88,357
+"Frijol Pinto v2","7500000000216","Granos","2028-07-14","La Merced",14.16,498
+"Lenteja v2","7500000000217","Granos","2028-02-16","Maseca",16.79,428
+"Garbanzo v2","7500000000218","Granos","2028-04-01","Bachoco",30.71,40
+"Harina Trigo v2","7500000000219","Granos","2028-12-27","El Guapo",15.32,347
+"Harina Maiz v2","7500000000220","Granos","2027-06-18","Aroz Gold",11.96,446
+"Avena v2","7500000000221","Granos","2026-01-08","La Merced",16.68,151
+"Pasta Espagueti v2","7500000000222","Granos","2026-05-01","Maseca",22.21,324
+"Pasta Caracol v2","7500000000223","Granos","2026-06-22","Bachoco",25.39,376
+"Cereal Maiz v2","7500000000224","Granos","2025-08-27","El Guapo",48.01,389
+"Arroz Largo v3","7500000000225","Granos","2028-02-27","Aroz Gold",39.69,320
+"Arroz Integral v3","7500000000226","Granos","2027-07-02","La Merced",15.53,69
+"Frijol Negro v3","7500000000227","Granos","2027-12-14","Maseca",43.97,416
+"Frijol Pinto v3","7500000000228","Granos","2027-11-19","Bachoco",49.74,167
+"Lenteja v3","7500000000229","Granos","2026-07-10","El Guapo",13.73,263
+"Garbanzo v3","7500000000230","Granos","2028-11-27","Aroz Gold",28.50,471
+"Harina Trigo v3","7500000000231","Granos","2025-11-15","La Merced",32.66,170
+"Harina Maiz v3","7500000000232","Granos","2025-04-03","Maseca",22.97,371
+"Avena v3","7500000000233","Granos","2025-05-10","Bachoco",16.39,137
+"Pasta Espagueti v3","7500000000234","Granos","2028-09-19","El Guapo",20.35,156
+"Pasta Caracol v3","7500000000235","Granos","2026-08-02","Aroz Gold",31.01,355
+"Cereal Maiz v3","7500000000236","Granos","2026-03-28","La Merced",41.08,414
+"Arroz Largo v4","7500000000237","Granos","2027-01-13","Maseca",38.99,351
+"Arroz Integral v4","7500000000238","Granos","2027-08-27","Bachoco",19.40,37
+"Frijol Negro v4","7500000000239","Granos","2028-07-20","El Guapo",19.34,297
+"Frijol Pinto v4","7500000000240","Granos","2025-08-05","Aroz Gold",20.47,266
+"Lenteja v4","7500000000241","Granos","2025-11-01","La Merced",46.82,144
+"Garbanzo v4","7500000000242","Granos","2025-04-28","Maseca",39.07,13
+"Harina Trigo v4","7500000000243","Granos","2028-08-25","Bachoco",32.66,397
+"Harina Maiz v4","7500000000244","Granos","2026-05-07","El Guapo",22.99,171
+"Avena v4","7500000000245","Granos","2026-11-01","Aroz Gold",32.31,12
+"Pasta Espagueti v4","7500000000246","Granos","2028-12-18","La Merced",45.64,337
+"Pasta Caracol v4","7500000000247","Granos","2026-09-12","Maseca",16.72,211
+"Cereal Maiz v4","7500000000248","Granos","2026-05-07","Bachoco",12.83,304
+"Arroz Largo v5","7500000000249","Granos","2027-10-16","El Guapo",32.58,410
+"Arroz Integral v5","7500000000250","Granos","2025-09-08","Aroz Gold",30.10,481
+"Frijol Negro v5","7500000000251","Granos","2028-10-27","La Merced",39.88,496
+"Frijol Pinto v5","7500000000252","Granos","2026-06-06","Maseca",30.45,238
+"Lenteja v5","7500000000253","Granos","2027-04-21","Bachoco",23.30,239
+"Garbanzo v5","7500000000254","Granos","2027-02-25","El Guapo",23.54,467
+"Harina Trigo v5","7500000000255","Granos","2027-02-14","Aroz Gold",15.20,63
+"Harina Maiz v5","7500000000256","Granos","2025-06-03","La Merced",45.79,267
+"Avena v5","7500000000257","Granos","2025-04-18","Maseca",42.67,35
+"Pasta Espagueti v5","7500000000258","Granos","2028-03-22","Bachoco",25.16,240
+"Pasta Caracol v5","7500000000259","Granos","2026-07-24","El Guapo",46.61,128
+"Cereal Maiz v5","7500000000260","Granos","2025-04-06","Aroz Gold",16.94,446
+"Arroz Largo v6","7500000000261","Granos","2026-02-21","La Merced",46.85,79
+"Arroz Integral v6","7500000000262","Granos","2025-03-18","Maseca",34.93,62
+"Frijol Negro v6","7500000000263","Granos","2028-02-08","Bachoco",24.44,212
+"Frijol Pinto v6","7500000000264","Granos","2026-04-26","El Guapo",31.05,489
+"Lenteja v6","7500000000265","Granos","2025-01-27","Aroz Gold",35.50,296
+"Garbanzo v6","7500000000266","Granos","2028-10-22","La Merced",49.94,175
+"Harina Trigo v6","7500000000267","Granos","2028-04-17","Maseca",25.88,201
+"Harina Maiz v6","7500000000268","Granos","2025-07-05","Bachoco",33.21,115
+"Avena v6","7500000000269","Granos","2027-12-18","El Guapo",42.75,57
+"Pasta Espagueti v6","7500000000270","Granos","2026-01-20","Aroz Gold",11.99,339
+"Pasta Caracol v6","7500000000271","Granos","2027-02-05","La Merced",15.30,399
+"Cereal Maiz v6","7500000000272","Granos","2025-11-26","Maseca",25.27,77
+"Arroz Largo v7","7500000000273","Granos","2028-07-03","Bachoco",18.30,57
+"Arroz Integral v7","7500000000274","Granos","2028-06-23","El Guapo",12.20,344
+"Frijol Negro v7","7500000000275","Granos","2026-08-10","Aroz Gold",25.97,471
+"Frijol Pinto v7","7500000000276","Granos","2028-08-21","La Merced",40.16,50
+"Lenteja v7","7500000000277","Granos","2025-11-24","Maseca",43.20,86
+"Garbanzo v7","7500000000278","Granos","2027-09-08","Bachoco",34.89,444
+"Harina Trigo v7","7500000000279","Granos","2025-09-18","El Guapo",26.38,60
+"Harina Maiz v7","7500000000280","Granos","2025-09-28","Aroz Gold",45.26,429
+"Avena v7","7500000000281","Granos","2028-05-26","La Merced",24.14,215
+"Pasta Espagueti v7","7500000000282","Granos","2026-07-24","Maseca",34.66,279
+"Pasta Caracol v7","7500000000283","Granos","2028-11-02","Bachoco",45.89,71
+"Cereal Maiz v7","7500000000284","Granos","2025-06-09","El Guapo",45.48,342
+"Arroz Largo v8","7500000000285","Granos","2027-05-18","Aroz Gold",20.81,143
+"Arroz Integral v8","7500000000286","Granos","2028-07-24","La Merced",17.37,181
+"Frijol Negro v8","7500000000287","Granos","2026-02-17","Maseca",42.97,458
+"Frijol Pinto v8","7500000000288","Granos","2026-05-02","Bachoco",49.17,421
+"Lenteja v8","7500000000289","Granos","2026-05-28","El Guapo",19.97,298
+"Garbanzo v8","7500000000290","Granos","2025-11-24","Aroz Gold",47.65,498
+"Harina Trigo v8","7500000000291","Granos","2025-12-09","La Merced",46.04,63
+"Harina Maiz v8","7500000000292","Granos","2028-12-19","Maseca",40.05,35
+"Avena v8","7500000000293","Granos","2027-06-27","Bachoco",24.43,118
+"Pasta Espagueti v8","7500000000294","Granos","2025-07-28","El Guapo",15.40,118
+"Pasta Caracol v8","7500000000295","Granos","2025-04-28","Aroz Gold",40.82,180
+"Cereal Maiz v8","7500000000296","Granos","2028-09-12","La Merced",39.93,412
+"Arroz Largo v9","7500000000297","Granos","2027-11-12","Maseca",10.24,48
+"Arroz Integral v9","7500000000298","Granos","2026-12-10","Bachoco",35.24,424
+"Frijol Negro v9","7500000000299","Granos","2027-08-15","El Guapo",44.33,500
+"Frijol Pinto v9","7500000000300","Granos","2027-09-09","Aroz Gold",20.41,126
+"Manzana Roja","7500000000301","Frutas","2028-08-12","Del Monte",13.90,351
+"Manzana Verde","7500000000302","Frutas","2028-10-14","Dole",35.60,112
+"Platano","7500000000303","Frutas","2025-12-02","Fresh",22.57,216
+"Naranja","7500000000304","Frutas","2026-04-14","Campo Bello",26.89,265
+"Mandarina","7500000000305","Frutas","2026-09-28","La Huerta",16.91,87
+"Uva Verde","7500000000306","Frutas","2028-12-28","Del Monte",6.94,354
+"Uva Morada","7500000000307","Frutas","2026-07-12","Dole",25.66,357
+"Mango Ataulfo","7500000000308","Frutas","2028-09-20","Fresh",21.46,326
+"Papaya","7500000000309","Frutas","2028-06-11","Campo Bello",32.25,17
+"Melon","7500000000310","Frutas","2025-02-07","La Huerta",37.10,181
+"Sandia","7500000000311","Frutas","2026-10-19","Del Monte",19.07,485
+"Fresa","7500000000312","Frutas","2025-12-20","Dole",40.00,481
+"Manzana Roja v2","7500000000313","Frutas","2028-04-18","Fresh",11.40,76
+"Manzana Verde v2","7500000000314","Frutas","2028-11-24","Campo Bello",14.32,120
+"Platano v2","7500000000315","Frutas","2026-05-22","La Huerta",20.21,479
+"Naranja v2","7500000000316","Frutas","2026-07-26","Del Monte",20.73,118
+"Mandarina v2","7500000000317","Frutas","2027-12-17","Dole",8.75,248
+"Uva Verde v2","7500000000318","Frutas","2025-06-01","Fresh",32.98,343
+"Uva Morada v2","7500000000319","Frutas","2027-11-27","Campo Bello",37.74,353
+"Mango Ataulfo v2","7500000000320","Frutas","2026-01-06","La Huerta",6.24,291
+"Papaya v2","7500000000321","Frutas","2027-08-24","Del Monte",30.79,86
+"Melon v2","7500000000322","Frutas","2026-11-16","Dole",10.82,95
+"Sandia v2","7500000000323","Frutas","2026-03-17","Fresh",12.77,174
+"Fresa v2","7500000000324","Frutas","2025-05-16","Campo Bello",5.58,424
+"Manzana Roja v3","7500000000325","Frutas","2028-09-11","La Huerta",11.45,272
+"Manzana Verde v3","7500000000326","Frutas","2026-12-24","Del Monte",11.55,32
+"Platano v3","7500000000327","Frutas","2027-12-05","Dole",18.46,398
+"Naranja v3","7500000000328","Frutas","2027-02-01","Fresh",17.01,157
+"Mandarina v3","7500000000329","Frutas","2028-08-03","Campo Bello",35.67,289
+"Uva Verde v3","7500000000330","Frutas","2025-03-18","La Huerta",34.15,90
+"Uva Morada v3","7500000000331","Frutas","2025-04-06","Del Monte",23.22,68
+"Mango Ataulfo v3","7500000000332","Frutas","2027-01-16","Dole",30.00,163
+"Papaya v3","7500000000333","Frutas","2025-02-14","Fresh",20.84,299
+"Melon v3","7500000000334","Frutas","2028-11-28","Campo Bello",38.36,427
+"Sandia v3","7500000000335","Frutas","2027-10-03","La Huerta",12.66,53
+"Fresa v3","7500000000336","Frutas","2025-12-01","Del Monte",37.85,416
+"Manzana Roja v4","7500000000337","Frutas","2026-02-22","Dole",24.33,175
+"Manzana Verde v4","7500000000338","Frutas","2027-09-10","Fresh",31.87,448
+"Platano v4","7500000000339","Frutas","2025-07-28","Campo Bello",36.08,378
+"Naranja v4","7500000000340","Frutas","2026-04-24","La Huerta",27.39,443
+"Mandarina v4","7500000000341","Frutas","2027-04-18","Del Monte",35.55,462
+"Uva Verde v4","7500000000342","Frutas","2025-10-28","Dole",37.30,46
+"Uva Morada v4","7500000000343","Frutas","2027-05-22","Fresh",9.70,165
+"Mango Ataulfo v4","7500000000344","Frutas","2025-08-04","Campo Bello",11.21,410
+"Papaya v4","7500000000345","Frutas","2025-12-01","La Huerta",36.76,388
+"Melon v4","7500000000346","Frutas","2027-07-06","Del Monte",10.28,306
+"Sandia v4","7500000000347","Frutas","2027-07-01","Dole",16.35,70
+"Fresa v4","7500000000348","Frutas","2028-01-22","Fresh",20.15,136
+"Manzana Roja v5","7500000000349","Frutas","2028-08-05","Campo Bello",15.61,169
+"Manzana Verde v5","7500000000350","Frutas","2028-03-13","La Huerta",5.57,272
+"Platano v5","7500000000351","Frutas","2028-01-16","Del Monte",17.43,217
+"Naranja v5","7500000000352","Frutas","2026-07-28","Dole",15.47,481
+"Mandarina v5","7500000000353","Frutas","2027-01-27","Fresh",38.61,156
+"Uva Verde v5","7500000000354","Frutas","2027-12-14","Campo Bello",7.09,357
+"Uva Morada v5","7500000000355","Frutas","2025-04-06","La Huerta",13.06,80
+"Mango Ataulfo v5","7500000000356","Frutas","2025-08-14","Del Monte",19.31,206
+"Papaya v5","7500000000357","Frutas","2025-01-17","Dole",38.82,89
+"Melon v5","7500000000358","Frutas","2028-11-22","Fresh",7.30,30
+"Sandia v5","7500000000359","Frutas","2028-11-25","Campo Bello",25.98,33
+"Fresa v5","7500000000360","Frutas","2028-12-09","La Huerta",21.09,272
+"Manzana Roja v6","7500000000361","Frutas","2027-08-25","Del Monte",30.12,397
+"Manzana Verde v6","7500000000362","Frutas","2028-10-07","Dole",29.22,212
+"Platano v6","7500000000363","Frutas","2027-05-05","Fresh",8.90,321
+"Naranja v6","7500000000364","Frutas","2025-10-02","Campo Bello",11.02,45
+"Mandarina v6","7500000000365","Frutas","2026-08-11","La Huerta",31.86,57
+"Uva Verde v6","7500000000366","Frutas","2027-11-18","Del Monte",19.26,136
+"Uva Morada v6","7500000000367","Frutas","2026-11-04","Dole",32.87,321
+"Mango Ataulfo v6","7500000000368","Frutas","2027-08-22","Fresh",17.73,383
+"Papaya v6","7500000000369","Frutas","2026-10-06","Campo Bello",20.57,220
+"Melon v6","7500000000370","Frutas","2026-03-13","La Huerta",37.91,26
+"Sandia v6","7500000000371","Frutas","2028-06-17","Del Monte",22.04,443
+"Fresa v6","7500000000372","Frutas","2025-03-22","Dole",19.00,40
+"Manzana Roja v7","7500000000373","Frutas","2025-08-11","Fresh",9.70,207
+"Manzana Verde v7","7500000000374","Frutas","2027-09-19","Campo Bello",30.96,156
+"Platano v7","7500000000375","Frutas","2026-08-14","La Huerta",5.32,300
+"Naranja v7","7500000000376","Frutas","2027-09-24","Del Monte",5.78,380
+"Mandarina v7","7500000000377","Frutas","2027-11-01","Dole",24.35,379
+"Uva Verde v7","7500000000378","Frutas","2026-05-11","Fresh",34.82,462
+"Uva Morada v7","7500000000379","Frutas","2027-07-05","Campo Bello",30.46,62
+"Mango Ataulfo v7","7500000000380","Frutas","2025-09-10","La Huerta",11.30,321
+"Papaya v7","7500000000381","Frutas","2027-11-07","Del Monte",16.83,188
+"Melon v7","7500000000382","Frutas","2028-03-07","Dole",36.03,130
+"Sandia v7","7500000000383","Frutas","2027-05-24","Fresh",11.02,254
+"Fresa v7","7500000000384","Frutas","2028-08-16","Campo Bello",36.44,197
+"Manzana Roja v8","7500000000385","Frutas","2027-08-01","La Huerta",35.95,436
+"Manzana Verde v8","7500000000386","Frutas","2026-05-18","Del Monte",34.04,44
+"Platano v8","7500000000387","Frutas","2026-01-26","Dole",10.98,36
+"Naranja v8","7500000000388","Frutas","2028-06-03","Fresh",16.50,27
+"Mandarina v8","7500000000389","Frutas","2028-12-28","Campo Bello",24.19,39
+"Uva Verde v8","7500000000390","Frutas","2027-01-10","La Huerta",18.98,257
+"Uva Morada v8","7500000000391","Frutas","2027-02-26","Del Monte",19.88,426
+"Mango Ataulfo v8","7500000000392","Frutas","2027-01-05","Dole",6.24,430
+"Papaya v8","7500000000393","Frutas","2025-01-28","Fresh",18.88,430
+"Melon v8","7500000000394","Frutas","2026-03-06","Campo Bello",12.67,284
+"Sandia v8","7500000000395","Frutas","2025-06-16","La Huerta",11.52,79
+"Fresa v8","7500000000396","Frutas","2026-08-05","Del Monte",7.17,380
+"Manzana Roja v9","7500000000397","Frutas","2026-01-22","Dole",18.51,366
+"Manzana Verde v9","7500000000398","Frutas","2026-12-03","Fresh",19.42,112
+"Platano v9","7500000000399","Frutas","2028-01-20","Campo Bello",29.87,357
+"Naranja v9","7500000000400","Frutas","2026-12-22","La Huerta",26.62,499
+"Tomate Rojo","7500000000401","Verduras","2026-07-17","Del Monte",16.19,223
+"Tomate Verde","7500000000402","Verduras","2028-09-08","Herdez",26.37,370
+"Chile Serrano","7500000000403","Verduras","2028-05-24","La Costeña",29.52,441
+"Chile Habanero","7500000000404","Verduras","2027-08-15","McCormick",30.31,353
+"Cebolla Blanca","7500000000405","Verduras","2025-11-22","Local",17.41,358
+"Cebolla Morada","7500000000406","Verduras","2026-03-18","Del Monte",20.57,249
+"Papa Blanca","7500000000407","Verduras","2026-01-16","Herdez",20.66,151
+"Papa Cambray","7500000000408","Verduras","2028-01-12","La Costeña",34.15,262
+"Zanahoria","7500000000409","Verduras","2027-10-02","McCormick",31.49,343
+"Brocoli","7500000000410","Verduras","2027-03-22","Local",34.04,433
+"Coliflor","7500000000411","Verduras","2025-01-14","Del Monte",7.86,486
+"Lechuga","7500000000412","Verduras","2026-01-21","Herdez",21.99,241
+"Tomate Rojo v2","7500000000413","Verduras","2025-09-09","La Costeña",17.21,285
+"Tomate Verde v2","7500000000414","Verduras","2026-10-05","McCormick",27.07,379
+"Chile Serrano v2","7500000000415","Verduras","2027-10-11","Local",5.14,58
+"Chile Habanero v2","7500000000416","Verduras","2028-01-12","Del Monte",11.80,215
+"Cebolla Blanca v2","7500000000417","Verduras","2027-07-24","Herdez",27.63,374
+"Cebolla Morada v2","7500000000418","Verduras","2028-01-20","La Costeña",8.80,297
+"Papa Blanca v2","7500000000419","Verduras","2027-01-15","McCormick",14.56,109
+"Papa Cambray v2","7500000000420","Verduras","2027-05-22","Local",6.25,69
+"Zanahoria v2","7500000000421","Verduras","2027-11-11","Del Monte",25.31,254
+"Brocoli v2","7500000000422","Verduras","2027-02-09","Herdez",9.66,254
+"Coliflor v2","7500000000423","Verduras","2027-09-04","La Costeña",19.05,233
+"Lechuga v2","7500000000424","Verduras","2025-10-05","McCormick",31.28,89
+"Tomate Rojo v3","7500000000425","Verduras","2026-07-04","Local",21.52,282
+"Tomate Verde v3","7500000000426","Verduras","2027-12-04","Del Monte",28.89,10
+"Chile Serrano v3","7500000000427","Verduras","2028-05-13","Herdez",22.34,114
+"Chile Habanero v3","7500000000428","Verduras","2028-11-21","La Costeña",7.74,218
+"Cebolla Blanca v3","7500000000429","Verduras","2025-07-23","McCormick",23.61,93
+"Cebolla Morada v3","7500000000430","Verduras","2026-02-15","Local",24.25,313
+"Papa Blanca v3","7500000000431","Verduras","2028-12-17","Del Monte",33.69,266
+"Papa Cambray v3","7500000000432","Verduras","2027-11-10","Herdez",23.29,137
+"Zanahoria v3","7500000000433","Verduras","2027-12-20","La Costeña",5.03,111
+"Brocoli v3","7500000000434","Verduras","2025-07-08","McCormick",15.04,194
+"Coliflor v3","7500000000435","Verduras","2028-09-04","Local",14.93,483
+"Lechuga v3","7500000000436","Verduras","2026-02-21","Del Monte",22.22,434
+"Tomate Rojo v4","7500000000437","Verduras","2026-08-16","Herdez",27.54,420
+"Tomate Verde v4","7500000000438","Verduras","2027-12-14","La Costeña",27.16,266
+"Chile Serrano v4","7500000000439","Verduras","2027-12-23","McCormick",18.19,496
+"Chile Habanero v4","7500000000440","Verduras","2027-10-25","Local",23.70,473
+"Cebolla Blanca v4","7500000000441","Verduras","2027-11-28","Del Monte",13.61,474
+"Cebolla Morada v4","7500000000442","Verduras","2027-01-04","Herdez",8.81,171
+"Papa Blanca v4","7500000000443","Verduras","2028-08-13","La Costeña",28.83,373
+"Papa Cambray v4","7500000000444","Verduras","2025-09-01","McCormick",26.35,274
+"Zanahoria v4","7500000000445","Verduras","2028-11-09","Local",5.16,451
+"Brocoli v4","7500000000446","Verduras","2027-11-01","Del Monte",25.25,163
+"Coliflor v4","7500000000447","Verduras","2025-02-27","Herdez",19.56,429
+"Lechuga v4","7500000000448","Verduras","2026-05-25","La Costeña",26.60,210
+"Tomate Rojo v5","7500000000449","Verduras","2025-12-05","McCormick",6.96,456
+"Tomate Verde v5","7500000000450","Verduras","2025-07-23","Local",17.97,151
+"Chile Serrano v5","7500000000451","Verduras","2028-07-12","Del Monte",15.18,102
+"Chile Habanero v5","7500000000452","Verduras","2028-11-20","Herdez",33.25,170
+"Cebolla Blanca v5","7500000000453","Verduras","2026-10-14","La Costeña",33.99,366
+"Cebolla Morada v5","7500000000454","Verduras","2028-08-11","McCormick",9.04,481
+"Papa Blanca v5","7500000000455","Verduras","2027-01-17","Local",8.92,291
+"Papa Cambray v5","7500000000456","Verduras","2027-06-19","Del Monte",30.42,24
+"Zanahoria v5","7500000000457","Verduras","2025-05-26","Herdez",6.53,454
+"Brocoli v5","7500000000458","Verduras","2025-12-09","La Costeña",16.26,213
+"Coliflor v5","7500000000459","Verduras","2025-06-26","McCormick",23.51,496
+"Lechuga v5","7500000000460","Verduras","2027-05-27","Local",19.02,105
+"Tomate Rojo v6","7500000000461","Verduras","2028-06-03","Del Monte",13.65,291
+"Tomate Verde v6","7500000000462","Verduras","2026-06-23","Herdez",9.26,107
+"Chile Serrano v6","7500000000463","Verduras","2025-11-02","La Costeña",20.16,186
+"Chile Habanero v6","7500000000464","Verduras","2028-01-11","McCormick",31.20,390
+"Cebolla Blanca v6","7500000000465","Verduras","2026-07-21","Local",24.62,459
+"Cebolla Morada v6","7500000000466","Verduras","2028-09-03","Del Monte",23.60,213
+"Papa Blanca v6","7500000000467","Verduras","2027-04-21","Herdez",34.48,247
+"Papa Cambray v6","7500000000468","Verduras","2025-12-10","La Costeña",27.26,371
+"Zanahoria v6","7500000000469","Verduras","2028-05-09","McCormick",14.38,492
+"Brocoli v6","7500000000470","Verduras","2028-02-11","Local",26.68,311
+"Coliflor v6","7500000000471","Verduras","2028-12-08","Del Monte",21.92,188
+"Lechuga v6","7500000000472","Verduras","2025-10-22","Herdez",10.72,133
+"Tomate Rojo v7","7500000000473","Verduras","2027-10-04","La Costeña",11.39,323
+"Tomate Verde v7","7500000000474","Verduras","2026-08-24","McCormick",15.83,60
+"Chile Serrano v7","7500000000475","Verduras","2028-04-10","Local",17.06,323
+"Chile Habanero v7","7500000000476","Verduras","2025-06-23","Del Monte",18.08,54
+"Cebolla Blanca v7","7500000000477","Verduras","2027-09-21","Herdez",34.04,164
+"Cebolla Morada v7","7500000000478","Verduras","2028-08-21","La Costeña",29.34,144
+"Papa Blanca v7","7500000000479","Verduras","2026-12-24","McCormick",33.75,319
+"Papa Cambray v7","7500000000480","Verduras","2025-06-23","Local",26.85,384
+"Zanahoria v7","7500000000481","Verduras","2028-11-15","Del Monte",14.00,311
+"Brocoli v7","7500000000482","Verduras","2027-10-25","Herdez",29.17,282
+"Coliflor v7","7500000000483","Verduras","2026-02-13","La Costeña",28.98,171
+"Lechuga v7","7500000000484","Verduras","2025-01-01","McCormick",8.71,190
+"Tomate Rojo v8","7500000000485","Verduras","2027-05-20","Local",16.09,34
+"Tomate Verde v8","7500000000486","Verduras","2025-02-20","Del Monte",6.96,441
+"Chile Serrano v8","7500000000487","Verduras","2026-04-08","Herdez",27.56,13
+"Chile Habanero v8","7500000000488","Verduras","2026-11-26","La Costeña",10.10,260
+"Cebolla Blanca v8","7500000000489","Verduras","2027-10-08","McCormick",8.49,333
+"Cebolla Morada v8","7500000000490","Verduras","2026-08-12","Local",18.06,120
+"Papa Blanca v8","7500000000491","Verduras","2026-04-24","Del Monte",24.02,61
+"Papa Cambray v8","7500000000492","Verduras","2028-01-03","Herdez",31.03,273
+"Zanahoria v8","7500000000493","Verduras","2028-01-03","La Costeña",24.62,363
+"Brocoli v8","7500000000494","Verduras","2027-02-27","McCormick",20.71,325
+"Coliflor v8","7500000000495","Verduras","2026-11-23","Local",21.18,312
+"Lechuga v8","7500000000496","Verduras","2025-08-25","Del Monte",25.50,21
+"Tomate Rojo v9","7500000000497","Verduras","2026-12-19","Herdez",26.03,130
+"Tomate Verde v9","7500000000498","Verduras","2027-09-16","La Costeña",25.83,447
+"Chile Serrano v9","7500000000499","Verduras","2026-12-12","McCormick",12.15,353
+"Chile Habanero v9","7500000000500","Verduras","2027-11-02","Local",32.51,170
+"Pechuga Pollo","7500000000501","Carnes","2025-04-11","Sigma",171.14,235
+"Muslo Pollo","7500000000502","Carnes","2028-09-12","FUD",115.66,260
+"Filete Res","7500000000503","Carnes","2028-01-09","San Rafael",113.37,39
+"Molida Res","7500000000504","Carnes","2026-07-12","Bachoco",150.95,71
+"Chuleta Cerdo","7500000000505","Carnes","2026-12-24","Pilgrim",54.18,59
+"Lomo Cerdo","7500000000506","Carnes","2028-05-06","Sigma",175.80,351
+"Jamon Serrano","7500000000507","Carnes","2028-07-25","FUD",81.77,383
+"Salchicha Frankfurt","7500000000508","Carnes","2026-12-21","San Rafael",148.76,315
+"Chorizo","7500000000509","Carnes","2027-03-02","Bachoco",84.93,172
+"Tocino","7500000000510","Carnes","2028-07-16","Pilgrim",186.18,156
+"Mortadela","7500000000511","Carnes","2026-11-05","Sigma",77.47,176
+"Salami","7500000000512","Carnes","2026-03-12","FUD",102.97,477
+"Pechuga Pollo v2","7500000000513","Carnes","2028-02-28","San Rafael",183.46,36
+"Muslo Pollo v2","7500000000514","Carnes","2025-10-15","Bachoco",134.44,207
+"Filete Res v2","7500000000515","Carnes","2025-04-25","Pilgrim",57.69,227
+"Molida Res v2","7500000000516","Carnes","2026-10-28","Sigma",161.99,149
+"Chuleta Cerdo v2","7500000000517","Carnes","2027-11-15","FUD",82.96,141
+"Lomo Cerdo v2","7500000000518","Carnes","2026-09-26","San Rafael",125.62,260
+"Jamon Serrano v2","7500000000519","Carnes","2027-03-17","Bachoco",64.75,367
+"Salchicha Frankfurt v2","7500000000520","Carnes","2025-06-04","Pilgrim",167.19,491
+"Chorizo v2","7500000000521","Carnes","2027-11-12","Sigma",177.79,30
+"Tocino v2","7500000000522","Carnes","2026-04-16","FUD",72.48,138
+"Mortadela v2","7500000000523","Carnes","2025-04-26","San Rafael",179.19,190
+"Salami v2","7500000000524","Carnes","2026-05-21","Bachoco",198.37,179
+"Pechuga Pollo v3","7500000000525","Carnes","2028-09-05","Pilgrim",148.42,115
+"Muslo Pollo v3","7500000000526","Carnes","2028-01-21","Sigma",159.80,307
+"Filete Res v3","7500000000527","Carnes","2026-03-02","FUD",127.11,227
+"Molida Res v3","7500000000528","Carnes","2028-11-05","San Rafael",162.19,282
+"Chuleta Cerdo v3","7500000000529","Carnes","2025-10-05","Bachoco",74.25,213
+"Lomo Cerdo v3","7500000000530","Carnes","2026-03-07","Pilgrim",183.59,471
+"Jamon Serrano v3","7500000000531","Carnes","2025-03-07","Sigma",123.72,386
+"Salchicha Frankfurt v3","7500000000532","Carnes","2026-04-17","FUD",45.84,261
+"Chorizo v3","7500000000533","Carnes","2027-10-03","San Rafael",133.98,438
+"Tocino v3","7500000000534","Carnes","2025-06-12","Bachoco",41.82,374
+"Mortadela v3","7500000000535","Carnes","2028-08-09","Pilgrim",116.71,53
+"Salami v3","7500000000536","Carnes","2025-02-11","Sigma",177.70,430
+"Pechuga Pollo v4","7500000000537","Carnes","2025-07-12","FUD",113.85,25
+"Muslo Pollo v4","7500000000538","Carnes","2027-05-16","San Rafael",49.61,491
+"Filete Res v4","7500000000539","Carnes","2028-12-15","Bachoco",53.55,487
+"Molida Res v4","7500000000540","Carnes","2027-02-08","Pilgrim",182.61,149
+"Chuleta Cerdo v4","7500000000541","Carnes","2028-09-01","Sigma",174.41,481
+"Lomo Cerdo v4","7500000000542","Carnes","2028-07-16","FUD",59.06,23
+"Jamon Serrano v4","7500000000543","Carnes","2027-01-27","San Rafael",40.42,201
+"Salchicha Frankfurt v4","7500000000544","Carnes","2026-05-19","Bachoco",121.50,464
+"Chorizo v4","7500000000545","Carnes","2028-12-25","Pilgrim",80.62,401
+"Tocino v4","7500000000546","Carnes","2027-07-16","Sigma",158.56,46
+"Mortadela v4","7500000000547","Carnes","2026-07-10","FUD",145.96,46
+"Salami v4","7500000000548","Carnes","2028-02-23","San Rafael",69.29,173
+"Pechuga Pollo v5","7500000000549","Carnes","2025-05-14","Bachoco",88.09,255
+"Muslo Pollo v5","7500000000550","Carnes","2028-03-15","Pilgrim",166.63,378
+"Filete Res v5","7500000000551","Carnes","2025-09-17","Sigma",105.90,55
+"Molida Res v5","7500000000552","Carnes","2025-02-25","FUD",67.98,436
+"Chuleta Cerdo v5","7500000000553","Carnes","2027-05-15","San Rafael",122.49,133
+"Lomo Cerdo v5","7500000000554","Carnes","2028-11-05","Bachoco",158.01,104
+"Jamon Serrano v5","7500000000555","Carnes","2028-02-17","Pilgrim",125.12,347
+"Salchicha Frankfurt v5","7500000000556","Carnes","2027-12-09","Sigma",121.83,333
+"Chorizo v5","7500000000557","Carnes","2028-12-17","FUD",196.96,114
+"Tocino v5","7500000000558","Carnes","2027-09-03","San Rafael",142.97,275
+"Mortadela v5","7500000000559","Carnes","2028-11-21","Bachoco",118.42,20
+"Salami v5","7500000000560","Carnes","2027-09-03","Pilgrim",98.96,191
+"Pechuga Pollo v6","7500000000561","Carnes","2027-10-03","Sigma",59.38,218
+"Muslo Pollo v6","7500000000562","Carnes","2028-09-08","FUD",183.58,471
+"Filete Res v6","7500000000563","Carnes","2028-05-27","San Rafael",155.46,116
+"Molida Res v6","7500000000564","Carnes","2026-01-28","Bachoco",49.58,196
+"Chuleta Cerdo v6","7500000000565","Carnes","2028-06-14","Pilgrim",181.20,69
+"Lomo Cerdo v6","7500000000566","Carnes","2025-08-14","Sigma",102.12,144
+"Jamon Serrano v6","7500000000567","Carnes","2027-03-12","FUD",198.90,133
+"Salchicha Frankfurt v6","7500000000568","Carnes","2028-11-12","San Rafael",139.17,141
+"Chorizo v6","7500000000569","Carnes","2026-05-23","Bachoco",132.60,54
+"Tocino v6","7500000000570","Carnes","2025-10-15","Pilgrim",186.72,215
+"Mortadela v6","7500000000571","Carnes","2026-11-19","Sigma",121.59,15
+"Salami v6","7500000000572","Carnes","2026-02-17","FUD",154.34,215
+"Pechuga Pollo v7","7500000000573","Carnes","2026-10-19","San Rafael",49.32,119
+"Muslo Pollo v7","7500000000574","Carnes","2025-09-06","Bachoco",166.91,243
+"Filete Res v7","7500000000575","Carnes","2025-11-22","Pilgrim",84.66,464
+"Molida Res v7","7500000000576","Carnes","2026-09-23","Sigma",156.59,460
+"Chuleta Cerdo v7","7500000000577","Carnes","2026-05-21","FUD",85.44,371
+"Lomo Cerdo v7","7500000000578","Carnes","2027-12-26","San Rafael",79.57,152
+"Jamon Serrano v7","7500000000579","Carnes","2028-07-16","Bachoco",118.92,411
+"Salchicha Frankfurt v7","7500000000580","Carnes","2028-12-02","Pilgrim",52.56,371
+"Chorizo v7","7500000000581","Carnes","2027-09-04","Sigma",53.49,299
+"Tocino v7","7500000000582","Carnes","2028-09-19","FUD",179.93,339
+"Mortadela v7","7500000000583","Carnes","2027-12-08","San Rafael",182.50,367
+"Salami v7","7500000000584","Carnes","2026-03-21","Bachoco",65.32,429
+"Pechuga Pollo v8","7500000000585","Carnes","2027-10-17","Pilgrim",161.45,417
+"Muslo Pollo v8","7500000000586","Carnes","2027-06-19","Sigma",102.39,336
+"Filete Res v8","7500000000587","Carnes","2025-11-14","FUD",130.67,403
+"Molida Res v8","7500000000588","Carnes","2027-04-13","San Rafael",123.33,80
+"Chuleta Cerdo v8","7500000000589","Carnes","2028-05-21","Bachoco",109.59,285
+"Lomo Cerdo v8","7500000000590","Carnes","2028-03-14","Pilgrim",101.43,192
+"Jamon Serrano v8","7500000000591","Carnes","2028-01-20","Sigma",105.82,232
+"Salchicha Frankfurt v8","7500000000592","Carnes","2028-03-10","FUD",136.80,33
+"Chorizo v8","7500000000593","Carnes","2028-07-17","San Rafael",102.32,468
+"Tocino v8","7500000000594","Carnes","2026-07-19","Bachoco",178.85,97
+"Mortadela v8","7500000000595","Carnes","2027-12-03","Pilgrim",83.41,451
+"Salami v8","7500000000596","Carnes","2027-04-16","Sigma",50.66,26
+"Pechuga Pollo v9","7500000000597","Carnes","2027-12-25","FUD",58.64,310
+"Muslo Pollo v9","7500000000598","Carnes","2026-12-18","San Rafael",74.39,31
+"Filete Res v9","7500000000599","Carnes","2028-08-25","Bachoco",46.56,127
+"Molida Res v9","7500000000600","Carnes","2028-03-24","Pilgrim",148.80,257
+"Pan Blanco","7500000000601","Panaderia","2027-01-25","Bimbo",33.70,264
+"Pan Integral","7500000000602","Panaderia","2027-08-04","Marinela",32.30,164
+"Pan Centeno","7500000000603","Panaderia","2027-08-04","Wonder",11.52,399
+"Bolillo","7500000000604","Panaderia","2026-01-08","Silueta",30.82,151
+"Telera","7500000000605","Panaderia","2025-10-14","Pan Ideal",19.05,335
+"Baguette","7500000000606","Panaderia","2025-10-27","Bimbo",38.02,52
+"Galleta Maria","7500000000607","Panaderia","2028-01-13","Marinela",15.69,98
+"Galleta Chocolate","7500000000608","Panaderia","2028-02-01","Wonder",44.30,61
+"Galleta Avena","7500000000609","Panaderia","2025-06-21","Silueta",9.64,447
+"Dona Azucar","7500000000610","Panaderia","2025-09-19","Pan Ideal",29.44,245
+"Cuernito","7500000000611","Panaderia","2028-07-22","Bimbo",43.33,293
+"Concha","7500000000612","Panaderia","2025-06-13","Marinela",38.28,263
+"Pan Blanco v2","7500000000613","Panaderia","2026-05-01","Wonder",11.43,345
+"Pan Integral v2","7500000000614","Panaderia","2025-01-01","Silueta",18.69,148
+"Pan Centeno v2","7500000000615","Panaderia","2028-07-24","Pan Ideal",36.79,133
+"Bolillo v2","7500000000616","Panaderia","2025-08-15","Bimbo",25.30,99
+"Telera v2","7500000000617","Panaderia","2027-01-04","Marinela",17.40,133
+"Baguette v2","7500000000618","Panaderia","2026-08-23","Wonder",21.99,209
+"Galleta Maria v2","7500000000619","Panaderia","2025-06-15","Silueta",32.30,259
+"Galleta Chocolate v2","7500000000620","Panaderia","2028-09-13","Pan Ideal",25.53,326
+"Galleta Avena v2","7500000000621","Panaderia","2027-11-15","Bimbo",44.34,20
+"Dona Azucar v2","7500000000622","Panaderia","2025-09-19","Marinela",28.74,208
+"Cuernito v2","7500000000623","Panaderia","2025-05-21","Wonder",44.43,292
+"Concha v2","7500000000624","Panaderia","2027-07-08","Silueta",14.27,398
+"Pan Blanco v3","7500000000625","Panaderia","2027-02-15","Pan Ideal",28.09,184
+"Pan Integral v3","7500000000626","Panaderia","2026-02-28","Bimbo",40.86,472
+"Pan Centeno v3","7500000000627","Panaderia","2026-11-12","Marinela",43.14,388
+"Bolillo v3","7500000000628","Panaderia","2025-08-24","Wonder",34.16,45
+"Telera v3","7500000000629","Panaderia","2027-10-22","Silueta",27.31,281
+"Baguette v3","7500000000630","Panaderia","2028-03-16","Pan Ideal",26.01,401
+"Galleta Maria v3","7500000000631","Panaderia","2025-11-28","Bimbo",25.43,193
+"Galleta Chocolate v3","7500000000632","Panaderia","2026-10-14","Marinela",36.92,204
+"Galleta Avena v3","7500000000633","Panaderia","2026-12-01","Wonder",42.15,393
+"Dona Azucar v3","7500000000634","Panaderia","2028-08-20","Silueta",22.06,132
+"Cuernito v3","7500000000635","Panaderia","2026-10-08","Pan Ideal",42.18,289
+"Concha v3","7500000000636","Panaderia","2027-02-22","Bimbo",33.47,475
+"Pan Blanco v4","7500000000637","Panaderia","2026-01-27","Marinela",15.82,308
+"Pan Integral v4","7500000000638","Panaderia","2026-10-28","Wonder",24.07,257
+"Pan Centeno v4","7500000000639","Panaderia","2026-09-24","Silueta",21.66,456
+"Bolillo v4","7500000000640","Panaderia","2027-05-01","Pan Ideal",29.06,229
+"Telera v4","7500000000641","Panaderia","2028-11-04","Bimbo",40.85,54
+"Baguette v4","7500000000642","Panaderia","2027-11-22","Marinela",31.42,37
+"Galleta Maria v4","7500000000643","Panaderia","2026-04-24","Wonder",17.34,422
+"Galleta Chocolate v4","7500000000644","Panaderia","2027-05-15","Silueta",29.55,144
+"Galleta Avena v4","7500000000645","Panaderia","2028-04-01","Pan Ideal",41.96,485
+"Dona Azucar v4","7500000000646","Panaderia","2026-05-06","Bimbo",36.65,143
+"Cuernito v4","7500000000647","Panaderia","2026-01-13","Marinela",10.21,328
+"Concha v4","7500000000648","Panaderia","2025-08-28","Wonder",42.02,106
+"Pan Blanco v5","7500000000649","Panaderia","2026-09-15","Silueta",12.72,81
+"Pan Integral v5","7500000000650","Panaderia","2027-05-11","Pan Ideal",15.83,165
+"Pan Centeno v5","7500000000651","Panaderia","2026-06-14","Bimbo",17.57,191
+"Bolillo v5","7500000000652","Panaderia","2027-01-06","Marinela",14.90,335
+"Telera v5","7500000000653","Panaderia","2027-12-13","Wonder",29.62,373
+"Baguette v5","7500000000654","Panaderia","2025-04-28","Silueta",38.70,10
+"Galleta Maria v5","7500000000655","Panaderia","2028-11-19","Pan Ideal",11.67,32
+"Galleta Chocolate v5","7500000000656","Panaderia","2028-11-25","Bimbo",34.51,339
+"Galleta Avena v5","7500000000657","Panaderia","2028-10-21","Marinela",32.76,54
+"Dona Azucar v5","7500000000658","Panaderia","2026-05-11","Wonder",16.07,152
+"Cuernito v5","7500000000659","Panaderia","2027-09-02","Silueta",25.11,489
+"Concha v5","7500000000660","Panaderia","2027-08-11","Pan Ideal",17.99,465
+"Pan Blanco v6","7500000000661","Panaderia","2028-07-01","Bimbo",36.27,114
+"Pan Integral v6","7500000000662","Panaderia","2026-02-16","Marinela",12.13,351
+"Pan Centeno v6","7500000000663","Panaderia","2025-10-05","Wonder",18.25,396
+"Bolillo v6","7500000000664","Panaderia","2028-09-27","Silueta",32.54,115
+"Telera v6","7500000000665","Panaderia","2026-01-28","Pan Ideal",13.34,200
+"Baguette v6","7500000000666","Panaderia","2027-10-28","Bimbo",28.87,463
+"Galleta Maria v6","7500000000667","Panaderia","2027-08-23","Marinela",41.57,197
+"Galleta Chocolate v6","7500000000668","Panaderia","2025-11-08","Wonder",13.41,214
+"Galleta Avena v6","7500000000669","Panaderia","2025-12-19","Silueta",27.30,451
+"Dona Azucar v6","7500000000670","Panaderia","2028-06-23","Pan Ideal",8.86,236
+"Cuernito v6","7500000000671","Panaderia","2027-07-24","Bimbo",38.18,283
+"Concha v6","7500000000672","Panaderia","2027-05-22","Marinela",30.69,320
+"Pan Blanco v7","7500000000673","Panaderia","2028-11-18","Wonder",10.59,304
+"Pan Integral v7","7500000000674","Panaderia","2027-05-11","Silueta",26.47,264
+"Pan Centeno v7","7500000000675","Panaderia","2028-06-09","Pan Ideal",39.67,25
+"Bolillo v7","7500000000676","Panaderia","2026-09-03","Bimbo",21.37,217
+"Telera v7","7500000000677","Panaderia","2027-04-06","Marinela",14.12,126
+"Baguette v7","7500000000678","Panaderia","2028-01-08","Wonder",9.38,348
+"Galleta Maria v7","7500000000679","Panaderia","2027-09-24","Silueta",18.51,221
+"Galleta Chocolate v7","7500000000680","Panaderia","2025-01-14","Pan Ideal",20.64,20
+"Galleta Avena v7","7500000000681","Panaderia","2025-03-23","Bimbo",20.90,260
+"Dona Azucar v7","7500000000682","Panaderia","2026-07-23","Marinela",19.56,428
+"Cuernito v7","7500000000683","Panaderia","2028-04-15","Wonder",43.26,145
+"Concha v7","7500000000684","Panaderia","2025-11-19","Silueta",20.23,149
+"Pan Blanco v8","7500000000685","Panaderia","2027-09-27","Pan Ideal",32.78,306
+"Pan Integral v8","7500000000686","Panaderia","2028-02-15","Bimbo",30.20,181
+"Pan Centeno v8","7500000000687","Panaderia","2028-12-21","Marinela",23.58,470
+"Bolillo v8","7500000000688","Panaderia","2026-02-23","Wonder",43.58,94
+"Telera v8","7500000000689","Panaderia","2028-08-11","Silueta",8.18,499
+"Baguette v8","7500000000690","Panaderia","2026-05-05","Pan Ideal",8.10,294
+"Galleta Maria v8","7500000000691","Panaderia","2026-05-08","Bimbo",31.75,179
+"Galleta Chocolate v8","7500000000692","Panaderia","2028-12-22","Marinela",14.68,490
+"Galleta Avena v8","7500000000693","Panaderia","2026-01-16","Wonder",29.26,318
+"Dona Azucar v8","7500000000694","Panaderia","2025-09-03","Silueta",19.86,13
+"Cuernito v8","7500000000695","Panaderia","2025-02-25","Pan Ideal",22.07,334
+"Concha v8","7500000000696","Panaderia","2027-08-20","Bimbo",38.27,20
+"Pan Blanco v9","7500000000697","Panaderia","2028-02-18","Marinela",34.50,147
+"Pan Integral v9","7500000000698","Panaderia","2027-02-24","Wonder",39.96,143
+"Pan Centeno v9","7500000000699","Panaderia","2025-03-12","Silueta",25.78,460
+"Bolillo v9","7500000000700","Panaderia","2026-10-18","Pan Ideal",32.42,373
+"Detergente Polvo","7500000000701","Limpieza","2025-04-20","Fabuloso",68.19,430
+"Detergente Liquido","7500000000702","Limpieza","2027-08-15","Pinol",19.61,145
+"Suavizante","7500000000703","Limpieza","2028-02-08","Ajax",49.12,206
+"Cloro","7500000000704","Limpieza","2027-07-05","Clorox",38.62,184
+"Limpiador Multiusos","7500000000705","Limpieza","2028-05-22","Ariel",43.08,89
+"Limpiavidrios","7500000000706","Limpieza","2028-03-12","Fabuloso",71.03,303
+"Jabon Trastes","7500000000707","Limpieza","2028-10-02","Pinol",23.07,305
+"Esponja Fibra","7500000000708","Limpieza","2028-01-28","Ajax",79.93,36
+"Cubeta","7500000000709","Limpieza","2027-03-12","Clorox",45.09,435
+"Escoba","7500000000710","Limpieza","2025-03-20","Ariel",27.05,159
+"Trapeador","7500000000711","Limpieza","2025-08-09","Fabuloso",23.85,420
+"Bolsa Basura","7500000000712","Limpieza","2028-05-25","Pinol",58.36,21
+"Detergente Polvo v2","7500000000713","Limpieza","2025-11-04","Ajax",13.52,401
+"Detergente Liquido v2","7500000000714","Limpieza","2027-11-26","Clorox",43.96,445
+"Suavizante v2","7500000000715","Limpieza","2026-08-21","Ariel",53.55,141
+"Cloro v2","7500000000716","Limpieza","2025-01-16","Fabuloso",43.52,88
+"Limpiador Multiusos v2","7500000000717","Limpieza","2028-01-03","Pinol",55.57,65
+"Limpiavidrios v2","7500000000718","Limpieza","2026-03-11","Ajax",29.37,238
+"Jabon Trastes v2","7500000000719","Limpieza","2026-04-15","Clorox",34.46,200
+"Esponja Fibra v2","7500000000720","Limpieza","2027-07-21","Ariel",39.82,248
+"Cubeta v2","7500000000721","Limpieza","2025-08-06","Fabuloso",27.74,146
+"Escoba v2","7500000000722","Limpieza","2026-02-13","Pinol",35.09,143
+"Trapeador v2","7500000000723","Limpieza","2028-10-18","Ajax",11.20,235
+"Bolsa Basura v2","7500000000724","Limpieza","2026-03-23","Clorox",79.71,285
+"Detergente Polvo v3","7500000000725","Limpieza","2025-01-27","Ariel",68.35,235
+"Detergente Liquido v3","7500000000726","Limpieza","2026-04-11","Fabuloso",46.22,478
+"Suavizante v3","7500000000727","Limpieza","2028-01-18","Pinol",14.12,476
+"Cloro v3","7500000000728","Limpieza","2026-01-13","Ajax",36.88,449
+"Limpiador Multiusos v3","7500000000729","Limpieza","2028-10-13","Clorox",46.01,330
+"Limpiavidrios v3","7500000000730","Limpieza","2025-02-04","Ariel",59.86,209
+"Jabon Trastes v3","7500000000731","Limpieza","2026-02-08","Fabuloso",33.36,234
+"Esponja Fibra v3","7500000000732","Limpieza","2025-10-15","Pinol",49.21,60
+"Cubeta v3","7500000000733","Limpieza","2028-02-16","Ajax",24.33,56
+"Escoba v3","7500000000734","Limpieza","2028-12-17","Clorox",60.11,197
+"Trapeador v3","7500000000735","Limpieza","2026-11-10","Ariel",40.96,226
+"Bolsa Basura v3","7500000000736","Limpieza","2025-06-25","Fabuloso",87.12,129
+"Detergente Polvo v4","7500000000737","Limpieza","2026-03-23","Pinol",32.95,260
+"Detergente Liquido v4","7500000000738","Limpieza","2026-03-13","Ajax",68.68,270
+"Suavizante v4","7500000000739","Limpieza","2028-07-23","Clorox",54.25,277
+"Cloro v4","7500000000740","Limpieza","2026-11-26","Ariel",62.38,489
+"Limpiador Multiusos v4","7500000000741","Limpieza","2027-06-18","Fabuloso",33.49,115
+"Limpiavidrios v4","7500000000742","Limpieza","2025-07-09","Pinol",56.58,13
+"Jabon Trastes v4","7500000000743","Limpieza","2027-05-07","Ajax",33.83,190
+"Esponja Fibra v4","7500000000744","Limpieza","2027-07-14","Clorox",83.92,261
+"Cubeta v4","7500000000745","Limpieza","2025-07-19","Ariel",55.02,126
+"Escoba v4","7500000000746","Limpieza","2027-04-18","Fabuloso",66.70,312
+"Trapeador v4","7500000000747","Limpieza","2025-09-27","Pinol",57.49,315
+"Bolsa Basura v4","7500000000748","Limpieza","2025-01-16","Ajax",35.34,417
+"Detergente Polvo v5","7500000000749","Limpieza","2028-11-26","Clorox",10.81,124
+"Detergente Liquido v5","7500000000750","Limpieza","2026-05-28","Ariel",16.63,251
+"Suavizante v5","7500000000751","Limpieza","2028-09-15","Fabuloso",32.64,277
+"Cloro v5","7500000000752","Limpieza","2028-03-04","Pinol",18.14,50
+"Limpiador Multiusos v5","7500000000753","Limpieza","2027-11-15","Ajax",21.96,273
+"Limpiavidrios v5","7500000000754","Limpieza","2026-06-06","Clorox",75.25,29
+"Jabon Trastes v5","7500000000755","Limpieza","2027-11-09","Ariel",38.62,176
+"Esponja Fibra v5","7500000000756","Limpieza","2027-03-12","Fabuloso",64.69,408
+"Cubeta v5","7500000000757","Limpieza","2026-02-23","Pinol",84.00,394
+"Escoba v5","7500000000758","Limpieza","2027-07-11","Ajax",63.65,41
+"Trapeador v5","7500000000759","Limpieza","2028-09-12","Clorox",56.81,451
+"Bolsa Basura v5","7500000000760","Limpieza","2028-06-28","Ariel",77.16,142
+"Detergente Polvo v6","7500000000761","Limpieza","2025-09-13","Fabuloso",51.09,247
+"Detergente Liquido v6","7500000000762","Limpieza","2028-06-03","Pinol",62.51,459
+"Suavizante v6","7500000000763","Limpieza","2026-09-06","Ajax",47.16,221
+"Cloro v6","7500000000764","Limpieza","2027-12-17","Clorox",15.89,376
+"Limpiador Multiusos v6","7500000000765","Limpieza","2027-03-06","Ariel",62.06,19
+"Limpiavidrios v6","7500000000766","Limpieza","2025-11-25","Fabuloso",66.23,36
+"Jabon Trastes v6","7500000000767","Limpieza","2026-04-11","Pinol",63.61,45
+"Esponja Fibra v6","7500000000768","Limpieza","2027-01-01","Ajax",11.80,363
+"Cubeta v6","7500000000769","Limpieza","2027-07-11","Clorox",14.78,379
+"Escoba v6","7500000000770","Limpieza","2025-07-23","Ariel",88.90,321
+"Trapeador v6","7500000000771","Limpieza","2026-12-27","Fabuloso",37.13,206
+"Bolsa Basura v6","7500000000772","Limpieza","2027-12-05","Pinol",50.99,141
+"Detergente Polvo v7","7500000000773","Limpieza","2025-07-11","Ajax",50.52,160
+"Detergente Liquido v7","7500000000774","Limpieza","2025-05-10","Clorox",65.02,241
+"Suavizante v7","7500000000775","Limpieza","2026-07-18","Ariel",48.87,45
+"Cloro v7","7500000000776","Limpieza","2025-07-02","Fabuloso",11.84,16
+"Limpiador Multiusos v7","7500000000777","Limpieza","2025-12-09","Pinol",22.36,135
+"Limpiavidrios v7","7500000000778","Limpieza","2028-03-07","Ajax",26.07,248
+"Jabon Trastes v7","7500000000779","Limpieza","2026-06-17","Clorox",53.15,268
+"Esponja Fibra v7","7500000000780","Limpieza","2025-06-11","Ariel",45.98,413
+"Cubeta v7","7500000000781","Limpieza","2028-04-03","Fabuloso",53.95,446
+"Escoba v7","7500000000782","Limpieza","2027-01-07","Pinol",40.08,147
+"Trapeador v7","7500000000783","Limpieza","2028-09-06","Ajax",12.07,140
+"Bolsa Basura v7","7500000000784","Limpieza","2028-04-02","Clorox",28.51,443
+"Detergente Polvo v8","7500000000785","Limpieza","2025-04-08","Ariel",67.51,286
+"Detergente Liquido v8","7500000000786","Limpieza","2028-12-24","Fabuloso",25.24,235
+"Suavizante v8","7500000000787","Limpieza","2025-04-20","Pinol",78.17,355
+"Cloro v8","7500000000788","Limpieza","2027-12-09","Ajax",73.75,378
+"Limpiador Multiusos v8","7500000000789","Limpieza","2028-11-27","Clorox",12.23,218
+"Limpiavidrios v8","7500000000790","Limpieza","2025-07-22","Ariel",88.30,363
+"Jabon Trastes v8","7500000000791","Limpieza","2026-01-15","Fabuloso",11.28,273
+"Esponja Fibra v8","7500000000792","Limpieza","2028-04-04","Pinol",16.70,461
+"Cubeta v8","7500000000793","Limpieza","2028-10-17","Ajax",23.89,252
+"Escoba v8","7500000000794","Limpieza","2025-08-08","Clorox",53.13,33
+"Trapeador v8","7500000000795","Limpieza","2026-05-04","Ariel",63.29,416
+"Bolsa Basura v8","7500000000796","Limpieza","2025-11-15","Fabuloso",37.16,364
+"Detergente Polvo v9","7500000000797","Limpieza","2025-06-19","Pinol",45.49,335
+"Detergente Liquido v9","7500000000798","Limpieza","2026-02-03","Ajax",23.00,237
+"Suavizante v9","7500000000799","Limpieza","2028-05-01","Clorox",16.00,272
+"Cloro v9","7500000000800","Limpieza","2028-11-26","Ariel",89.10,381
+"Shampoo Normal","7500000000801","Higiene","2025-06-06","Colgate",40.04,30
+"Shampoo Anticaspa","7500000000802","Higiene","2028-03-25","Dove",23.93,113
+"Acondicionador","7500000000803","Higiene","2025-07-10","Pantene",118.93,223
+"Jabon Barra","7500000000804","Higiene","2025-03-28","Gillette",105.92,301
+"Jabon Liquido","7500000000805","Higiene","2025-03-25","Johnsons",35.26,406
+"Pasta Dental","7500000000806","Higiene","2025-06-01","Colgate",49.92,331
+"Cepillo Dientes","7500000000807","Higiene","2028-01-10","Dove",98.24,136
+"Hilo Dental","7500000000808","Higiene","2027-07-12","Pantene",99.20,142
+"Desodorante","7500000000809","Higiene","2025-06-24","Gillette",31.92,473
+"Rasuradora","7500000000810","Higiene","2025-03-07","Johnsons",90.49,167
+"Crema Rasurar","7500000000811","Higiene","2028-11-12","Colgate",62.51,348
+"Papel Higienico","7500000000812","Higiene","2025-11-27","Dove",100.38,133
+"Shampoo Normal v2","7500000000813","Higiene","2026-10-22","Pantene",24.01,315
+"Shampoo Anticaspa v2","7500000000814","Higiene","2028-05-27","Gillette",63.02,24
+"Acondicionador v2","7500000000815","Higiene","2025-09-10","Johnsons",24.69,289
+"Jabon Barra v2","7500000000816","Higiene","2025-10-18","Colgate",115.35,235
+"Jabon Liquido v2","7500000000817","Higiene","2028-07-26","Dove",114.71,172
+"Pasta Dental v2","7500000000818","Higiene","2026-05-13","Pantene",94.80,308
+"Cepillo Dientes v2","7500000000819","Higiene","2027-05-12","Gillette",94.88,331
+"Hilo Dental v2","7500000000820","Higiene","2027-05-04","Johnsons",74.08,300
+"Desodorante v2","7500000000821","Higiene","2027-11-26","Colgate",65.35,329
+"Rasuradora v2","7500000000822","Higiene","2025-11-08","Dove",31.21,313
+"Crema Rasurar v2","7500000000823","Higiene","2027-04-28","Pantene",106.91,479
+"Papel Higienico v2","7500000000824","Higiene","2026-08-25","Gillette",68.97,211
+"Shampoo Normal v3","7500000000825","Higiene","2028-10-28","Johnsons",40.62,43
+"Shampoo Anticaspa v3","7500000000826","Higiene","2027-10-16","Colgate",105.21,496
+"Acondicionador v3","7500000000827","Higiene","2025-02-10","Dove",70.42,462
+"Jabon Barra v3","7500000000828","Higiene","2028-07-06","Pantene",101.90,263
+"Jabon Liquido v3","7500000000829","Higiene","2028-09-15","Gillette",87.60,192
+"Pasta Dental v3","7500000000830","Higiene","2025-05-16","Johnsons",45.55,170
+"Cepillo Dientes v3","7500000000831","Higiene","2027-10-26","Colgate",42.76,440
+"Hilo Dental v3","7500000000832","Higiene","2027-04-04","Dove",99.53,403
+"Desodorante v3","7500000000833","Higiene","2027-06-10","Pantene",30.79,372
+"Rasuradora v3","7500000000834","Higiene","2026-01-22","Gillette",93.76,241
+"Crema Rasurar v3","7500000000835","Higiene","2025-04-27","Johnsons",40.86,96
+"Papel Higienico v3","7500000000836","Higiene","2025-03-18","Colgate",84.09,456
+"Shampoo Normal v4","7500000000837","Higiene","2028-04-25","Dove",81.34,432
+"Shampoo Anticaspa v4","7500000000838","Higiene","2026-12-14","Pantene",20.15,218
+"Acondicionador v4","7500000000839","Higiene","2026-12-20","Gillette",48.31,111
+"Jabon Barra v4","7500000000840","Higiene","2027-08-14","Johnsons",63.28,152
+"Jabon Liquido v4","7500000000841","Higiene","2025-06-08","Colgate",40.85,67
+"Pasta Dental v4","7500000000842","Higiene","2027-09-14","Dove",65.69,203
+"Cepillo Dientes v4","7500000000843","Higiene","2026-08-26","Pantene",58.80,209
+"Hilo Dental v4","7500000000844","Higiene","2028-01-16","Gillette",40.99,14
+"Desodorante v4","7500000000845","Higiene","2026-01-18","Johnsons",43.65,223
+"Rasuradora v4","7500000000846","Higiene","2025-08-02","Colgate",92.70,470
+"Crema Rasurar v4","7500000000847","Higiene","2027-11-24","Dove",59.96,276
+"Papel Higienico v4","7500000000848","Higiene","2028-05-12","Pantene",99.36,159
+"Shampoo Normal v5","7500000000849","Higiene","2026-03-19","Gillette",70.01,35
+"Shampoo Anticaspa v5","7500000000850","Higiene","2028-12-13","Johnsons",89.64,328
+"Acondicionador v5","7500000000851","Higiene","2025-02-24","Colgate",99.71,86
+"Jabon Barra v5","7500000000852","Higiene","2027-02-22","Dove",70.44,64
+"Jabon Liquido v5","7500000000853","Higiene","2028-03-03","Pantene",70.50,460
+"Pasta Dental v5","7500000000854","Higiene","2025-01-24","Gillette",88.37,493
+"Cepillo Dientes v5","7500000000855","Higiene","2025-04-02","Johnsons",29.40,295
+"Hilo Dental v5","7500000000856","Higiene","2026-07-19","Colgate",22.01,40
+"Desodorante v5","7500000000857","Higiene","2026-09-10","Dove",49.83,415
+"Rasuradora v5","7500000000858","Higiene","2025-08-01","Pantene",75.50,188
+"Crema Rasurar v5","7500000000859","Higiene","2026-05-10","Gillette",62.46,115
+"Papel Higienico v5","7500000000860","Higiene","2027-03-05","Johnsons",84.40,400
+"Shampoo Normal v6","7500000000861","Higiene","2025-11-23","Colgate",79.91,284
+"Shampoo Anticaspa v6","7500000000862","Higiene","2028-07-23","Dove",62.68,266
+"Acondicionador v6","7500000000863","Higiene","2028-08-18","Pantene",69.46,422
+"Jabon Barra v6","7500000000864","Higiene","2027-02-03","Gillette",93.46,160
+"Jabon Liquido v6","7500000000865","Higiene","2026-06-22","Johnsons",82.68,420
+"Pasta Dental v6","7500000000866","Higiene","2025-10-08","Colgate",37.54,322
+"Cepillo Dientes v6","7500000000867","Higiene","2027-01-06","Dove",56.03,236
+"Hilo Dental v6","7500000000868","Higiene","2026-11-21","Pantene",67.52,55
+"Desodorante v6","7500000000869","Higiene","2028-05-28","Gillette",75.66,76
+"Rasuradora v6","7500000000870","Higiene","2027-04-13","Johnsons",19.16,63
+"Crema Rasurar v6","7500000000871","Higiene","2027-08-21","Colgate",26.85,265
+"Papel Higienico v6","7500000000872","Higiene","2025-07-06","Dove",30.74,362
+"Shampoo Normal v7","7500000000873","Higiene","2025-01-20","Pantene",79.72,343
+"Shampoo Anticaspa v7","7500000000874","Higiene","2027-01-06","Gillette",68.43,165
+"Acondicionador v7","7500000000875","Higiene","2027-09-07","Johnsons",47.15,190
+"Jabon Barra v7","7500000000876","Higiene","2026-10-08","Colgate",96.71,279
+"Jabon Liquido v7","7500000000877","Higiene","2028-10-21","Dove",51.13,453
+"Pasta Dental v7","7500000000878","Higiene","2026-11-23","Pantene",111.49,288
+"Cepillo Dientes v7","7500000000879","Higiene","2025-10-24","Gillette",98.95,279
+"Hilo Dental v7","7500000000880","Higiene","2025-05-01","Johnsons",87.25,355
+"Desodorante v7","7500000000881","Higiene","2026-07-10","Colgate",75.01,343
+"Rasuradora v7","7500000000882","Higiene","2028-06-27","Dove",92.98,374
+"Crema Rasurar v7","7500000000883","Higiene","2026-05-14","Pantene",102.05,455
+"Papel Higienico v7","7500000000884","Higiene","2027-04-20","Gillette",78.99,167
+"Shampoo Normal v8","7500000000885","Higiene","2026-04-13","Johnsons",90.44,30
+"Shampoo Anticaspa v8","7500000000886","Higiene","2026-03-02","Colgate",88.32,485
+"Acondicionador v8","7500000000887","Higiene","2028-08-26","Dove",85.03,26
+"Jabon Barra v8","7500000000888","Higiene","2026-05-10","Pantene",86.54,314
+"Jabon Liquido v8","7500000000889","Higiene","2028-03-25","Gillette",117.86,201
+"Pasta Dental v8","7500000000890","Higiene","2026-12-10","Johnsons",86.75,361
+"Cepillo Dientes v8","7500000000891","Higiene","2026-01-24","Colgate",58.40,242
+"Hilo Dental v8","7500000000892","Higiene","2028-06-04","Dove",111.29,439
+"Desodorante v8","7500000000893","Higiene","2028-08-09","Pantene",89.54,449
+"Rasuradora v8","7500000000894","Higiene","2028-04-22","Gillette",39.36,131
+"Crema Rasurar v8","7500000000895","Higiene","2027-04-13","Johnsons",78.66,47
+"Papel Higienico v8","7500000000896","Higiene","2027-07-10","Colgate",52.46,40
+"Shampoo Normal v9","7500000000897","Higiene","2025-07-17","Dove",45.01,51
+"Shampoo Anticaspa v9","7500000000898","Higiene","2028-11-16","Pantene",42.22,389
+"Acondicionador v9","7500000000899","Higiene","2025-08-24","Gillette",49.03,498
+"Jabon Barra v9","7500000000900","Higiene","2027-04-26","Johnsons",102.40,325
+"Pizza Jamon","7500000000901","Congelados","2025-04-17","Del Fuerte",53.04,48
+"Pizza Pepperoni","7500000000902","Congelados","2027-09-27","Birds Eye",102.92,237
+"Nuggets Pollo","7500000000903","Congelados","2025-11-01","Iglo",119.76,240
+"Hamburguesa Res","7500000000904","Congelados","2028-04-16","Findus",31.49,33
+"Bastones Papa","7500000000905","Congelados","2027-06-02","McCain",54.92,346
+"Aros Cebolla","7500000000906","Congelados","2027-09-23","Del Fuerte",39.70,259
+"Lasagna Carne","7500000000907","Congelados","2027-04-28","Birds Eye",122.87,361
+"Lasagna Pollo","7500000000908","Congelados","2025-01-02","Iglo",122.80,68
+"Burrito Frijol","7500000000909","Congelados","2026-07-18","Findus",141.36,156
+"Enchilada Verde","7500000000910","Congelados","2026-12-25","McCain",42.11,405
+"Tamales Rajas","7500000000911","Congelados","2028-02-26","Del Fuerte",128.72,384
+"Helado Vainilla","7500000000912","Congelados","2028-01-04","Birds Eye",69.72,40
+"Pizza Jamon v2","7500000000913","Congelados","2025-10-05","Iglo",135.93,393
+"Pizza Pepperoni v2","7500000000914","Congelados","2028-11-21","Findus",110.83,76
+"Nuggets Pollo v2","7500000000915","Congelados","2025-07-12","McCain",128.73,359
+"Hamburguesa Res v2","7500000000916","Congelados","2028-06-05","Del Fuerte",104.48,219
+"Bastones Papa v2","7500000000917","Congelados","2025-05-25","Birds Eye",51.89,179
+"Aros Cebolla v2","7500000000918","Congelados","2028-06-22","Iglo",119.40,453
+"Lasagna Carne v2","7500000000919","Congelados","2026-10-26","Findus",52.70,110
+"Lasagna Pollo v2","7500000000920","Congelados","2027-11-26","McCain",112.28,188
+"Burrito Frijol v2","7500000000921","Congelados","2025-03-20","Del Fuerte",46.41,355
+"Enchilada Verde v2","7500000000922","Congelados","2025-03-02","Birds Eye",136.19,107
+"Tamales Rajas v2","7500000000923","Congelados","2025-04-05","Iglo",61.62,236
+"Helado Vainilla v2","7500000000924","Congelados","2028-12-23","Findus",40.29,339
+"Pizza Jamon v3","7500000000925","Congelados","2028-07-03","McCain",91.03,200
+"Pizza Pepperoni v3","7500000000926","Congelados","2027-02-26","Del Fuerte",111.26,461
+"Nuggets Pollo v3","7500000000927","Congelados","2027-08-13","Birds Eye",94.04,455
+"Hamburguesa Res v3","7500000000928","Congelados","2025-04-22","Iglo",114.67,10
+"Bastones Papa v3","7500000000929","Congelados","2027-11-25","Findus",83.90,488
+"Aros Cebolla v3","7500000000930","Congelados","2028-02-02","McCain",83.78,157
+"Lasagna Carne v3","7500000000931","Congelados","2028-07-08","Del Fuerte",70.08,482
+"Lasagna Pollo v3","7500000000932","Congelados","2026-03-02","Birds Eye",69.38,132
+"Burrito Frijol v3","7500000000933","Congelados","2028-01-02","Iglo",106.91,295
+"Enchilada Verde v3","7500000000934","Congelados","2027-07-25","Findus",139.28,106
+"Tamales Rajas v3","7500000000935","Congelados","2025-11-11","McCain",35.25,48
+"Helado Vainilla v3","7500000000936","Congelados","2026-12-10","Del Fuerte",39.22,137
+"Pizza Jamon v4","7500000000937","Congelados","2025-10-06","Birds Eye",71.15,388
+"Pizza Pepperoni v4","7500000000938","Congelados","2026-08-09","Iglo",137.53,210
+"Nuggets Pollo v4","7500000000939","Congelados","2026-02-27","Findus",125.05,335
+"Hamburguesa Res v4","7500000000940","Congelados","2027-08-28","McCain",120.96,349
+"Bastones Papa v4","7500000000941","Congelados","2028-07-11","Del Fuerte",100.60,96
+"Aros Cebolla v4","7500000000942","Congelados","2026-10-24","Birds Eye",88.69,355
+"Lasagna Carne v4","7500000000943","Congelados","2025-06-26","Iglo",104.13,372
+"Lasagna Pollo v4","7500000000944","Congelados","2027-09-24","Findus",102.74,123
+"Burrito Frijol v4","7500000000945","Congelados","2027-06-02","McCain",43.64,488
+"Enchilada Verde v4","7500000000946","Congelados","2025-10-06","Del Fuerte",52.24,289
+"Tamales Rajas v4","7500000000947","Congelados","2027-03-01","Birds Eye",106.61,486
+"Helado Vainilla v4","7500000000948","Congelados","2028-05-27","Iglo",98.94,449
+"Pizza Jamon v5","7500000000949","Congelados","2027-03-28","Findus",134.01,366
+"Pizza Pepperoni v5","7500000000950","Congelados","2028-11-03","McCain",70.47,256
+"Nuggets Pollo v5","7500000000951","Congelados","2026-07-10","Del Fuerte",136.95,467
+"Hamburguesa Res v5","7500000000952","Congelados","2026-12-09","Birds Eye",32.84,23
+"Bastones Papa v5","7500000000953","Congelados","2025-06-23","Iglo",144.86,153
+"Aros Cebolla v5","7500000000954","Congelados","2025-01-22","Findus",92.36,50
+"Lasagna Carne v5","7500000000955","Congelados","2028-12-15","McCain",122.37,99
+"Lasagna Pollo v5","7500000000956","Congelados","2028-08-10","Del Fuerte",59.78,347
+"Burrito Frijol v5","7500000000957","Congelados","2028-09-05","Birds Eye",56.43,19
+"Enchilada Verde v5","7500000000958","Congelados","2025-08-15","Iglo",48.62,201
+"Tamales Rajas v5","7500000000959","Congelados","2026-01-02","Findus",105.05,49
+"Helado Vainilla v5","7500000000960","Congelados","2026-05-17","McCain",43.62,475
+"Pizza Jamon v6","7500000000961","Congelados","2028-12-25","Del Fuerte",117.39,284
+"Pizza Pepperoni v6","7500000000962","Congelados","2027-11-07","Birds Eye",123.35,218
+"Nuggets Pollo v6","7500000000963","Congelados","2027-09-03","Iglo",89.29,235
+"Hamburguesa Res v6","7500000000964","Congelados","2027-01-02","Findus",102.26,150
+"Bastones Papa v6","7500000000965","Congelados","2027-04-26","McCain",73.87,483
+"Aros Cebolla v6","7500000000966","Congelados","2025-12-11","Del Fuerte",132.41,332
+"Lasagna Carne v6","7500000000967","Congelados","2025-07-23","Birds Eye",66.70,205
+"Lasagna Pollo v6","7500000000968","Congelados","2027-10-10","Iglo",120.92,384
+"Burrito Frijol v6","7500000000969","Congelados","2026-11-13","Findus",87.12,275
+"Enchilada Verde v6","7500000000970","Congelados","2026-07-25","McCain",97.41,116
+"Tamales Rajas v6","7500000000971","Congelados","2025-06-26","Del Fuerte",94.74,198
+"Helado Vainilla v6","7500000000972","Congelados","2026-01-24","Birds Eye",48.70,17
+"Pizza Jamon v7","7500000000973","Congelados","2028-08-17","Iglo",82.46,435
+"Pizza Pepperoni v7","7500000000974","Congelados","2025-02-16","Findus",57.21,485
+"Nuggets Pollo v7","7500000000975","Congelados","2026-01-08","McCain",111.32,106
+"Hamburguesa Res v7","7500000000976","Congelados","2026-09-20","Del Fuerte",54.97,16
+"Bastones Papa v7","7500000000977","Congelados","2026-05-08","Birds Eye",88.05,94
+"Aros Cebolla v7","7500000000978","Congelados","2027-06-04","Iglo",40.91,477
+"Lasagna Carne v7","7500000000979","Congelados","2028-11-08","Findus",137.02,38
+"Lasagna Pollo v7","7500000000980","Congelados","2026-11-24","McCain",80.46,89
+"Burrito Frijol v7","7500000000981","Congelados","2026-01-28","Del Fuerte",42.11,147
+"Enchilada Verde v7","7500000000982","Congelados","2028-04-16","Birds Eye",109.70,197
+"Tamales Rajas v7","7500000000983","Congelados","2026-09-01","Iglo",83.76,253
+"Helado Vainilla v7","7500000000984","Congelados","2027-12-04","Findus",136.61,427
+"Pizza Jamon v8","7500000000985","Congelados","2026-04-03","McCain",36.04,251
+"Pizza Pepperoni v8","7500000000986","Congelados","2027-01-04","Del Fuerte",83.66,418
+"Nuggets Pollo v8","7500000000987","Congelados","2026-12-04","Birds Eye",137.55,485
+"Hamburguesa Res v8","7500000000988","Congelados","2028-08-17","Iglo",68.21,13
+"Bastones Papa v8","7500000000989","Congelados","2026-07-22","Findus",54.08,324
+"Aros Cebolla v8","7500000000990","Congelados","2025-10-09","McCain",69.33,246
+"Lasagna Carne v8","7500000000991","Congelados","2025-07-09","Del Fuerte",131.54,84
+"Lasagna Pollo v8","7500000000992","Congelados","2028-10-20","Birds Eye",145.50,195
+"Burrito Frijol v8","7500000000993","Congelados","2028-06-16","Iglo",38.19,444
+"Enchilada Verde v8","7500000000994","Congelados","2028-04-19","Findus",67.10,290
+"Tamales Rajas v8","7500000000995","Congelados","2026-03-21","McCain",36.18,378
+"Helado Vainilla v8","7500000000996","Congelados","2028-01-08","Del Fuerte",125.46,91
+"Pizza Jamon v9","7500000000997","Congelados","2026-05-12","Birds Eye",80.63,433
+"Pizza Pepperoni v9","7500000000998","Congelados","2027-03-12","Iglo",76.55,418
+"Nuggets Pollo v9","7500000000999","Congelados","2026-11-17","Findus",67.32,243
+"Hamburguesa Res v9","7500000001000","Congelados","2028-02-05","McCain",138.67,368
