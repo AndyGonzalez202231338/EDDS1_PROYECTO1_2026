@@ -18,7 +18,7 @@ set(SOURCES
     src/CSVLoader.cpp
     src/Benchmark.cpp
     src/Menu.cpp
-    src/main.cpp
+    src/Server.cpp
 )
 
 add_executable(supermercado ${SOURCES})

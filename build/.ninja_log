@@ -1,0 +1,14 @@
+# ninja log v5
+2	782	1776038531756518661	CMakeFiles/supermercado.dir/src/LinkedList.cpp.o	aa7788d1aea9bb9a
+2	890	1776038531861520200	CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o	34f58fd99f127301
+11	3071	1776038534051552205	CMakeFiles/supermercado.dir/src/Catalog.cpp.o	d28b2ca3a6c45ade
+1	1532	1776038532504529608	CMakeFiles/supermercado.dir/src/Logger.cpp.o	31cb978b919d4989
+17	2883	1776038533862549448	CMakeFiles/supermercado.dir/src/Benchmark.cpp.o	c3d07d5deb6d2be9
+1	1800	1776038532768533470	CMakeFiles/supermercado.dir/src/Product.cpp.o	407d751a8b36ad72
+5	2030	1776038533002536892	CMakeFiles/supermercado.dir/src/AVLTree.cpp.o	e427c8f1f7dae1e8
+14	2522	1776038533496544104	CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o	7cea3b43dea54916
+891	21753	1776038552673819204	CMakeFiles/supermercado.dir/src/Server.cpp.o	55b32f6c884f70d5
+10	2678	1776038533655546426	CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o	d9c5cf4ea93f43a5
+5	2863	1776038533843549170	CMakeFiles/supermercado.dir/src/BTree.cpp.o	619d4e9b49afb966
+797	3626	1776038534605560279	CMakeFiles/supermercado.dir/src/Menu.cpp.o	ee00cb66a15fa7a9
+21755	22582	1776038553537831371	supermercado	60a6bb1e97fa9893

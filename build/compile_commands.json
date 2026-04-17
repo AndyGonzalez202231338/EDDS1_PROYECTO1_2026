@@ -56,7 +56,7 @@
 },
 {
   "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
-  "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado.dir/src/main.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/main.cpp\"",
-  "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/main.cpp"
+  "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado.dir/src/Server.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Server.cpp\"",
+  "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Server.cpp"
 }
 ]
