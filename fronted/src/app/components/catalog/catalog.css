@@ -1,0 +1,9 @@
+.badge.bg-primary-subtle {
+  background-color: #cfe2ff !important;
+  color: #084298 !important;
+  font-weight: 400;
+}
+
+.table > :not(caption) > * > th {
+  white-space: nowrap;
+}

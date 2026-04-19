@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
 
-set(SOURCES
+# Fuentes comunes a ambos ejecutables (sin main ni server)
+set(COMMON_SOURCES
     src/Product.cpp
     src/Logger.cpp
     src/LinkedList.cpp
@@ -17,16 +18,28 @@ set(SOURCES
     src/Catalog.cpp
     src/CSVLoader.cpp
     src/Benchmark.cpp
+)
+
+# Ejecutable 1: menú de consola interactivo 
+add_executable(supermercado
+    ${COMMON_SOURCES}
     src/Menu.cpp
     src/main.cpp
 )
-
-add_executable(supermercado ${SOURCES})
 target_include_directories(supermercado PRIVATE include)
 
-# Crear carpeta output/ en el directorio de build al compilar
-add_custom_command(TARGET supermercado POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory
-        ${CMAKE_CURRENT_BINARY_DIR}/output
-    COMMENT "Creando directorio output/"
+# Ejecutable 2: servidor HTTP para Angular
+add_executable(supermercado_server
+    ${COMMON_SOURCES}
+    src/Server.cpp
 )
+target_include_directories(supermercado_server PRIVATE include)
+
+# Crear carpeta resultados/ al compilar ambos targets
+foreach(TARGET supermercado supermercado_server)
+    add_custom_command(TARGET ${TARGET} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E make_directory
+            ${CMAKE_CURRENT_BINARY_DIR}/../resultados
+        COMMENT "Creando directorio resultados/"
+    )
+endforeach()
