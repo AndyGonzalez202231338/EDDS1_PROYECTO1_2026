@@ -66,6 +66,9 @@ public:
      */
     void run();
 
+    const BenchmarkResult* getResults()    const { return _results;      }
+    int                    getResultCount() const { return _resultCount;   }
+
     /*
      * reportResults
      * Imprime las tres tablas comparativas en stdout.

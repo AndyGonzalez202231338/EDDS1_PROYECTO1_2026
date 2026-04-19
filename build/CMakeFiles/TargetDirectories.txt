@@ -1,3 +1,4 @@
 /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles/supermercado.dir
+/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles/supermercado_server.dir
 /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles/edit_cache.dir
 /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build/CMakeFiles/rebuild_cache.dir

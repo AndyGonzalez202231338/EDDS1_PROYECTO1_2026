@@ -27,6 +27,17 @@ export interface LoadResult {
   errors: number;
 }
 
+export interface DotFile {
+  name: string;
+  url: string;
+}
+
+export interface DotResult {
+  ok: boolean;
+  label: string;
+  files: DotFile[];
+}
+
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   private base = '/api';
@@ -74,13 +85,27 @@ export class ApiService {
     );
   }
 
-  // CSV y DOT
+  // CSV
   loadCSV(path: string): Observable<LoadResult> {
     return this.http.post<LoadResult>(`${this.base}/load`, { path });
   }
 
-  generateDot(label: string): Observable<any> {
-    return this.http.post(`${this.base}/dot`, { label });
+  uploadCSV(content: string): Observable<LoadResult> {
+    return this.http.post<LoadResult>(`${this.base}/upload`, { content });
+  }
+
+  // DOT / árboles
+  generateDot(label: string): Observable<DotResult> {
+    return this.http.post<DotResult>(`${this.base}/dot`, { label });
+  }
+
+  // Errores
+  getErrors(): Observable<{ log: string }> {
+    return this.http.get<{ log: string }>(`${this.base}/errors`);
+  }
+
+  clearErrors(): Observable<any> {
+    return this.http.delete(`${this.base}/errors`);
   }
 
   // Benchmark

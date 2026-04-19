@@ -1,0 +1,69 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "SupermercadoEDD",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "supermercado::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-supermercado-Debug-3780e3e41ae3a64a3f6a.json",
+					"name" : "supermercado",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "supermercado_server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-supermercado_server-Debug-2779e33a4da4b8aeef7d.json",
+					"name" : "supermercado_server",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/andy/Escritorio/Ingener\u00eda/QuintoSemestre/Estructura de datos/Proyecto1/build",
+		"source" : "/home/andy/Escritorio/Ingener\u00eda/QuintoSemestre/Estructura de datos/Proyecto1"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
