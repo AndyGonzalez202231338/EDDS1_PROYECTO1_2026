@@ -32,64 +32,53 @@ void Catalog::endBulkLoad() {
 
 // addProduct — insercion atomica en las 5 estructuras
 bool Catalog::addProduct(const Product& p) {
-    if (!p.isValid()) {
-        _logger.logError("addProduct: producto invalido barcode=" + p.barcode);
-        return false;
-    }
-
-    // Verificar duplicado por barcode en la lista (O(n))
-    if (_list.searchSequential(p.barcode) != nullptr) {
+    if (!p.isValid()) return false;
+    if (_hash.search(p.barcode) != nullptr) {
         _logger.logDuplicate(p.barcode);
         return false;
     }
 
-    // Insertar en cada estructura en orden.
-    // Si alguna falla, rollback de las anteriores.
-    bool inList    = false;
-    bool inSorted  = false;
-    bool inAVL     = false;
-    bool inBTree   = false;
-    bool inBPlus   = false;
+    bool inList=false, inSorted=false, inAVL=false;
+    bool inBTree=false, inBPlus=false, inHash=false;
 
     try {
-        _list.insertFront(p);       inList   = true;
+        _list.insertFront(p); inList = true;
 
-        // Modo bulk: insertFront O(1); sortInPlace al final en endBulkLoad.
-        // Modo normal: insertSorted O(n) para mantener orden inmediatamente.
         if (_bulkLoading) {
             _sortedList.insertFront(p);
         } else {
             _sortedList.insertSorted(p);
         }
         inSorted = true;
-        _avl.insert(p);             inAVL    = true;
-        _btree.insert(p);           inBTree  = true;
-        _bplus.insert(p);           inBPlus  = true;
+
+        _avl.insert(p);   inAVL   = true;
+        _btree.insert(p); inBTree = true;
+        _bplus.insert(p); inBPlus = true;
+        _hash.insert(p);  inHash  = true;
     } catch (...) {
-        _logger.logError("addProduct: excepcion al insertar barcode=" + p.barcode);
-        rollback(p, inList, inSorted, inAVL, inBTree, inBPlus);
+        rollback(p, inList, inSorted, inAVL, inBTree, inBPlus, inHash);
+        _logger.logError("rollback barcode=" + p.barcode);
         return false;
     }
-
     return true;
 }
 
-// removeProduct — eliminacion en las 5 estructuras
 bool Catalog::removeProduct(const std::string& barcode) {
-    // Verificar que el producto existe antes de intentar eliminar
-    Product* existing = _list.searchSequential(barcode);
+    // Ahora la existencia por barcode se valida en HashTable
+    Product* existing = _hash.search(barcode);
     if (existing == nullptr) return false;
 
-    // Guardar nombre y datos antes de eliminar para propagar a las demas estructuras
     std::string name     = existing->name;
     std::string date     = existing->expiry_date;
     std::string category = existing->category;
 
-    _list.remove(barcode);
-    _sortedList.remove(name);
-    _avl.remove(name);
-    _btree.remove(date);
+    // Mantienes consistencia eliminando de todas las estructuras
+    _hash.remove(barcode);
     _bplus.remove(category);
+    _btree.remove(date);
+    _avl.remove(name);
+    _sortedList.remove(name);
+    _list.remove(barcode);
 
     return true;
 }
@@ -103,7 +92,7 @@ Product* Catalog::findByName(const std::string& name) {
 }
 
 Product* Catalog::findByBarcode(const std::string& barcode) {
-    return _list.searchSequential(barcode);
+    return _hash.search(barcode);
 }
 
 void Catalog::findByCategory(const std::string& category, Product** results, int& count) const {
@@ -239,7 +228,10 @@ BTree&            Catalog::getBTree()      { return _btree;      }
 BPlusTree&        Catalog::getBPlus()      { return _bplus;      }
 Logger&           Catalog::getLogger()     { return _logger;     }
 
-void Catalog::rollback(const Product& p,bool insertedList, bool insertedSorted, bool insertedAVL, bool insertedBTree, bool insertedBPlus) {
+void Catalog::rollback(const Product& p, bool insertedList, bool insertedSorted, bool insertedAVL,
+                       bool insertedBTree, bool insertedBPlus, bool insertedHash) {
+    // Reversa real del orden de inserción
+    if (insertedHash)   _hash.remove(p.barcode);
     if (insertedBPlus)  _bplus.remove(p.category);
     if (insertedBTree)  _btree.remove(p.expiry_date);
     if (insertedAVL)    _avl.remove(p.name);

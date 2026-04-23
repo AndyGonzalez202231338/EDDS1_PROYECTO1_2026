@@ -1334,6 +1334,7 @@ CMakeFiles/supermercado.dir/src/Catalog.cpp.o: ../src/Catalog.cpp \
   ../include/BTree.h \
   ../include/BPlusTree.h \
   ../include/Logger.h \
+  ../include/HashTable.h \
   ../include/CSVLoader.h \
   /usr/include/c++/11/iostream \
   /usr/include/c++/11/chrono \
@@ -2819,6 +2820,8 @@ CMakeFiles/supermercado.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/pstl/glue_algorithm_defs.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
+
+../include/HashTable.h:
 
 /usr/include/c++/11/bits/memoryfwd.h:
 

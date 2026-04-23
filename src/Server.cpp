@@ -2,6 +2,7 @@
 #include "json.hpp"
 #include "Catalog.h"
 #include "Benchmark.h"
+#include "BranchManager.h"
 #include <fstream>
 #include <cstdlib>
 
@@ -39,8 +40,22 @@ static json productToJson(const Product& p) {
 int main() {
     system("mkdir -p ../resultados");
     Catalog catalog("../resultados/errors.log");
-
+    BranchManager bm;
     httplib::Server svr;
+
+    // Endpoints de sucursales
+    svr.Get("/api/branches", [&](const httplib::Request&, httplib::Response& res) {
+        // serializar bm.getAllBranches() a JSON
+    });
+
+    svr.Post("/api/transfer", [&](const httplib::Request& req, httplib::Response& res) {
+        auto body = json::parse(req.body);
+        bool ok = bm.transferProduct(
+            body["barcode"], body["originId"],
+            body["destId"],  body["criteria"] == "time"
+        );
+        res.set_content(json{{"ok", ok}}.dump(), "application/json");
+    });
 
     svr.Options(".*", [](const httplib::Request&, httplib::Response& res) {
         res.set_header("Access-Control-Allow-Origin",  "*");

@@ -41,14 +41,14 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "supermercado::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-supermercado-Debug-3780e3e41ae3a64a3f6a.json",
+					"jsonFile" : "target-supermercado-Debug-f241d5aa2ee0e718276f.json",
 					"name" : "supermercado",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "supermercado_server::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-supermercado_server-Debug-2779e33a4da4b8aeef7d.json",
+					"jsonFile" : "target-supermercado_server-Debug-e488fd5b2cba774a8715.json",
 					"name" : "supermercado_server",
 					"projectIndex" : 0
 				}

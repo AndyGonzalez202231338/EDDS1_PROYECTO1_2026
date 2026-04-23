@@ -1,7 +1,10 @@
-    #ifndef PRODUCT_H
+#ifndef PRODUCT_H
     #define PRODUCT_H
 
     #include <string>
+
+
+    enum class ProductStatus { AVAILABLE, IN_TRANSIT, DEPLETED };
 
     /*
     * Product
@@ -16,6 +19,8 @@
         std::string brand;        
         double      price;        // precio unitario, debe ser > 0
         int         stock;        // unidades disponibles, debe ser >= 0
+        ProductStatus status = ProductStatus::AVAILABLE;
+        int         branchId = -1;
 
         Product();
         
@@ -48,6 +53,9 @@
         * retorna true si this.name < other.name lexicograficamente.
         */
         bool operator<(const Product& other) const;
+
+        // Getter correcto como método de instancia
+        const std::string& getBarcode() const;
     };
 
-    #endif
+#endif

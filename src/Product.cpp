@@ -50,3 +50,7 @@ bool Product::operator==(const Product& other) const {
 bool Product::operator<(const Product& other) const {
     return name < other.name;
 }
+
+const std::string& Product::getBarcode() const {
+    return barcode;
+}

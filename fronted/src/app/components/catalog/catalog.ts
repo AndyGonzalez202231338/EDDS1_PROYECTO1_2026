@@ -15,20 +15,20 @@ export class Catalog implements OnInit {
 
   protected Math = Math;
 
-  // ── Productos ──────────────────────────────────────────────────────────────
+  // Productos 
   products = signal<Product[]>([]);
   loading = signal(false);
   error = signal('');
   success = signal('');
   apiOnline = signal<boolean | null>(null);
 
-  // ── Búsqueda ───────────────────────────────────────────────────────────────
+  // Búsqueda 
   searchMode: SearchMode = 'name';
   searchQuery = '';
   dateFrom = '';
   dateTo = '';
 
-  // ── Paginación ─────────────────────────────────────────────────────────────
+  // Paginación 
   readonly pageSize = 10;
   currentPage = signal(1);
   totalPages = computed(() => Math.max(1, Math.ceil(this.products().length / this.pageSize)));
@@ -38,15 +38,15 @@ export class Catalog implements OnInit {
   });
   pages = computed(() => Array.from({ length: this.totalPages() }, (_, i) => i + 1));
 
-  // ── Modales ────────────────────────────────────────────────────────────────
+  // Modales 
   showAddModal = signal(false);
-  newProduct: Product = { name: '', barcode: '', category: '', expiry_date: '', brand: '', price: 0, stock: 0 };
+  newProduct: Product = { name: '', barcode: '', category: '', expiry_date: '', brand: '', price: 0, stock: 0, status: 'AVAILABLE', branchId: 0 };
 
   showLoadCsvModal = signal(false);
   selectedFileName = signal('');
   csvContent = '';
 
-  // ── DOT / Árboles ─────────────────────────────────────────────────────────
+  // DOT / Árboles
   dotLabel = 'snapshot';
   dotFiles = signal<DotFile[]>([]);
   dotLabelResult = signal('');
@@ -59,7 +59,7 @@ export class Catalog implements OnInit {
     return name;
   }
 
-  // ── Consola de errores ─────────────────────────────────────────────────────
+  // Consola de errores 
   errorLog = signal('');
   showErrorLog = signal(false);
   errorLogLoading = signal(false);
@@ -145,7 +145,7 @@ export class Catalog implements OnInit {
   }
 
   openAddModal() {
-    this.newProduct = { name: '', barcode: '', category: '', expiry_date: '', brand: '', price: 0, stock: 0 };
+    this.newProduct = { name: '', barcode: '', category: '', expiry_date: '', brand: '', price: 0, stock: 0, status: 'AVAILABLE', branchId: 0 };
     this.error.set('');
     this.showAddModal.set(true);
   }

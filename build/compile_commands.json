@@ -51,6 +51,26 @@
 },
 {
   "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
+  "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado.dir/src/HashTable.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/HashTable.cpp\"",
+  "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/HashTable.cpp"
+},
+{
+  "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
+  "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado.dir/src/Graph.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Graph.cpp\"",
+  "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Graph.cpp"
+},
+{
+  "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
+  "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado.dir/src/Branch.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Branch.cpp\"",
+  "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Branch.cpp"
+},
+{
+  "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
+  "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado.dir/src/BranchManager.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BranchManager.cpp\"",
+  "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BranchManager.cpp"
+},
+{
+  "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
   "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado.dir/src/Menu.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Menu.cpp\"",
   "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Menu.cpp"
 },
@@ -108,6 +128,26 @@
   "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
   "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado_server.dir/src/Benchmark.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Benchmark.cpp\"",
   "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Benchmark.cpp"
+},
+{
+  "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
+  "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado_server.dir/src/HashTable.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/HashTable.cpp\"",
+  "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/HashTable.cpp"
+},
+{
+  "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
+  "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado_server.dir/src/Graph.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Graph.cpp\"",
+  "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Graph.cpp"
+},
+{
+  "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
+  "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado_server.dir/src/Branch.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Branch.cpp\"",
+  "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Branch.cpp"
+},
+{
+  "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
+  "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado_server.dir/src/BranchManager.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BranchManager.cpp\"",
+  "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BranchManager.cpp"
 },
 {
   "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",

@@ -8,6 +8,7 @@
 #include "BTree.h"
 #include "BPlusTree.h"
 #include "Logger.h"
+#include "HashTable.h"
 #include <string>
 #include <fstream>
 
@@ -168,6 +169,7 @@ private:
     AVLTree          _avl;         // arbol AVL por nombre
     BTree            _btree;       // arbol B por fecha de caducidad
     BPlusTree        _bplus;       // arbol B+ por categoria
+    HashTable        _hash;        // tabla hash por codigo de barra
     Logger           _logger;      // registro de errores
     bool             _bulkLoading; // true durante carga masiva de CSV
 
@@ -176,7 +178,7 @@ private:
      * Precondicion: p fue insertado en alguna estructura.
      * Postcondicion: p eliminado de todas las estructuras donde estaba.
      */ 
-    void rollback(const Product& p, bool insertedList, bool insertedSorted, bool insertedAVL, bool insertedBTree, bool insertedBPlus);
+    void rollback(const Product& p, bool insertedList, bool insertedSorted, bool insertedAVL, bool insertedBTree, bool insertedBPlus, bool insertedHash);
 };
 
 #endif // CATALOG_H
