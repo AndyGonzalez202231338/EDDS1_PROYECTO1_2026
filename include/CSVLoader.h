@@ -3,6 +3,7 @@
 
 #include "Product.h"
 #include "Logger.h"
+#include "BranchManager.h"
 #include <string>
 
 class Catalog;
@@ -77,6 +78,10 @@ private:
 
     // Valida que str represente un numero entero
     static bool isInt(const std::string& str);
+
+    bool loadBranches(const std::string& path, BranchManager& bm);
+    bool loadConnections(const std::string& path, BranchManager& bm);
+    bool loadProductsWithBranch(const std::string& path, BranchManager& bm);
 };
 
 #endif

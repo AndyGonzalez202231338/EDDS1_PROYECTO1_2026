@@ -1340,6 +1340,7 @@ CMakeFiles/supermercado.dir/src/Catalog.cpp.o
  /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include/BTree.h
  /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include/BPlusTree.h
  /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include/Logger.h
+ /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include/HashTable.h
  /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include/CSVLoader.h
  /usr/include/c++/11/iostream
  /usr/include/c++/11/chrono

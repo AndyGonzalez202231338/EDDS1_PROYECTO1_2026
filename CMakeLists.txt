@@ -18,6 +18,10 @@ set(COMMON_SOURCES
     src/Catalog.cpp
     src/CSVLoader.cpp
     src/Benchmark.cpp
+    src/HashTable.cpp
+    src/Graph.cpp
+    src/Branch.cpp
+    src/BranchManager.cpp
 )
 
 # Ejecutable 1: menú de consola interactivo 

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { TransferRequest, TransferResult } from '../models/transfer.model';
+import { Branch } from '../models/branch.model';
 
 export interface Product {
   name: string;
@@ -10,6 +12,8 @@ export interface Product {
   brand: string;
   price: number;
   stock: number;
+  status: 'AVAILABLE' | 'IN_TRANSIT' | 'DEPLETED';
+  branchId: number;
 }
 
 export interface BenchmarkResult {
