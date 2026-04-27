@@ -1,0 +1,41 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/supermercado_server.dir/src/AVLTree.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/AVLTree.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/BPlusTree.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/BPlusTree.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/BTree.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/BTree.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/Benchmark.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/Benchmark.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/Branch.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/Branch.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/BranchManager.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/BranchManager.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/CSVLoader.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/CSVLoader.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/Catalog.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/Catalog.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/Graph.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/Graph.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/HashTable.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/HashTable.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/InventoryService.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/InventoryService.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/LinkedList.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/LinkedList.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/Logger.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/Logger.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/Product.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/Product.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/Server.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/Server.cpp.o.d"
+  "CMakeFiles/supermercado_server.dir/src/SortedLinkedList.cpp.o"
+  "CMakeFiles/supermercado_server.dir/src/SortedLinkedList.cpp.o.d"
+  "supermercado_server"
+  "supermercado_server.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/supermercado_server.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

@@ -1,0 +1,234 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">Importar Datos CSV - Fase 2</h3>
+    </div>
+    <div class="card-body">
+      <!-- Messages -->
+      <div *ngIf="messages.length > 0" class="mb-4">
+        <div
+          *ngFor="let msg of messages"
+          [class]="'alert alert-' + (msg.type === 'success' ? 'success' : msg.type === 'error' ? 'danger' : 'info')"
+        >
+          {{ msg.text }}
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form>
+        <div class="row">
+          <!-- Sucursales -->
+          <div class="col-md-6 mb-4">
+            <div class="card border-info">
+              <div class="card-header bg-info text-white">
+                <h5 class="mb-0">1. Cargar Sucursales</h5>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label for="branchesFile" class="form-label">Seleccionar archivo CSV:</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      [value]="branchesFile?.name || 'Ningún archivo seleccionado'"
+                      disabled
+                    />
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      (click)="uploadBranchesFile(branchesInput)"
+                      [disabled]="loading"
+                    >
+                      <i class="bi bi-folder-open"></i> Explorar
+                    </button>
+                  </div>
+                  <input
+                    #branchesInput
+                    type="file"
+                    accept=".csv"
+                    (change)="onBranchesFileSelected($event)"
+                    hidden
+                  />
+                </div>
+                <small class="text-muted d-block mb-3">
+                  Formato: ID, Nombre, Ubicacion, TiempoIngreso, TiempoPreparacion, IntervaloDespacho
+                </small>
+                <button
+                  type="button"
+                  class="btn btn-info w-100"
+                  (click)="loadBranches()"
+                  [disabled]="loading || !branchesFile"
+                >
+                  <span *ngIf="!loading">Cargar Sucursales</span>
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+                  <span *ngIf="loading">Cargando...</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conexiones -->
+          <div class="col-md-6 mb-4">
+            <div class="card border-warning">
+              <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0">2. Cargar Conexiones</h5>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label for="connectionsFile" class="form-label">Seleccionar archivo CSV:</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      [value]="connectionsFile?.name || 'Ningún archivo seleccionado'"
+                      disabled
+                    />
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      (click)="uploadConnectionsFile(connectionsInput)"
+                      [disabled]="loading"
+                    >
+                      <i class="bi bi-folder-open"></i> Explorar
+                    </button>
+                  </div>
+                  <input
+                    #connectionsInput
+                    type="file"
+                    accept=".csv"
+                    (change)="onConnectionsFileSelected($event)"
+                    hidden
+                  />
+                </div>
+                <small class="text-muted d-block mb-3">
+                  Formato: Origen, Destino, Distancia, Tiempo
+                </small>
+                <button
+                  type="button"
+                  class="btn btn-warning w-100"
+                  (click)="loadConnections()"
+                  [disabled]="loading || !connectionsFile"
+                >
+                  <span *ngIf="!loading">Cargar Conexiones</span>
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+                  <span *ngIf="loading">Cargando...</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Productos -->
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="card border-success">
+              <div class="card-header bg-success text-white">
+                <h5 class="mb-0">3. Cargar Productos</h5>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label for="productsFile" class="form-label">Seleccionar archivo CSV:</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      [value]="productsFile?.name || 'Ningún archivo seleccionado'"
+                      disabled
+                    />
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      (click)="uploadProductsFile(productsInput)"
+                      [disabled]="loading"
+                    >
+                      <i class="bi bi-folder-open"></i> Explorar
+                    </button>
+                  </div>
+                  <input
+                    #productsInput
+                    type="file"
+                    accept=".csv"
+                    (change)="onProductsFileSelected($event)"
+                    hidden
+                  />
+                </div>
+                <small class="text-muted d-block mb-3">
+                  Formato: Nombre, CodigoBarra, Categoria, FechaCaducidad, Marca, Precio, Stock, SucursalID
+                </small>
+                <button
+                  type="button"
+                  class="btn btn-success w-100"
+                  (click)="loadProducts()"
+                  [disabled]="loading || !productsFile"
+                >
+                  <span *ngIf="!loading">Cargar Productos</span>
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+                  <span *ngIf="loading">Cargando...</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="col-md-6 mb-4">
+            <div class="card border-secondary">
+              <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0">Acciones Rápidas</h5>
+              </div>
+              <div class="card-body d-flex flex-column gap-3">
+                <button
+                  type="button"
+                  class="btn btn-dark w-100"
+                  (click)="loadAll()"
+                  [disabled]="loading"
+                >
+                  <span *ngIf="!loading">Cargar Todo</span>
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+                  <span *ngIf="loading">Cargando...</span>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary w-100"
+                  (click)="clearMessages()"
+                >
+                  Limpiar Mensajes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- Error Log Console -->
+      <div class="mt-4">
+        <div class="card border-danger">
+          <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">📋 Consola de Errores</h5>
+            <div>
+              <button
+                class="btn btn-sm btn-outline-light me-2"
+                (click)="toggleErrorLog()"
+              >
+                {{ showErrorLog ? '▼ Ocultar' : '▶ Mostrar' }}
+              </button>
+              <button
+                class="btn btn-sm btn-outline-light"
+                (click)="clearErrorLog()"
+              >
+                ✕ Limpiar
+              </button>
+            </div>
+          </div>
+          <div *ngIf="showErrorLog" class="card-body">
+            <div class="error-console">
+              <pre *ngIf="errorLog && errorLog.length > 0; else noErrors" [innerText]="errorLog"></pre>
+              <ng-template #noErrors>
+                <p class="text-muted mb-0">No hay errores registrados. ✓</p>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,325 @@
+<div class="products-page">
+
+  <!-- Page Header -->
+  <div class="mb-4">
+    <h2 class="page-title mb-1">
+      <i class="bi bi-box-seam me-2 text-primary"></i>Productos
+    </h2>
+    <p class="text-muted mb-0 small">Gestión de inventario por sucursal</p>
+  </div>
+
+  <!-- Branch Selector -->
+  <app-branch-selector></app-branch-selector>
+
+  <!-- Warning: no branch selected -->
+  @if (!branchId) {
+    <div class="alert alert-warning d-flex align-items-center gap-2" role="alert">
+      <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+      <div>
+        Debes seleccionar una sucursal antes de gestionar productos.
+        <a routerLink="/branches" class="alert-link ms-1">Ir a Sucursales →</a>
+      </div>
+    </div>
+  }
+
+  <!-- Feedback messages -->
+  @if (message) {
+    <div class="alert alert-success alert-dismissible d-flex align-items-center gap-2" role="alert">
+      <i class="bi bi-check-circle-fill"></i>
+      <span>{{ message }}</span>
+      <button type="button" class="btn-close ms-auto" (click)="message = ''"></button>
+    </div>
+  }
+  @if (error) {
+    <div class="alert alert-danger alert-dismissible d-flex align-items-center gap-2" role="alert">
+      <i class="bi bi-x-circle-fill"></i>
+      <span>{{ error }}</span>
+      <button type="button" class="btn-close ms-auto" (click)="error = ''"></button>
+    </div>
+  }
+
+  <!-- Tabs -->
+  <ul class="nav nav-tabs mb-4" role="tablist">
+    <li class="nav-item">
+      <button class="nav-link d-flex align-items-center gap-2"
+              [class.active]="tab === 'list'" (click)="switchTab('list')">
+        <i class="bi bi-list-ul"></i>Ver todos
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link d-flex align-items-center gap-2"
+              [class.active]="tab === 'add'" (click)="switchTab('add')">
+        <i class="bi bi-plus-circle"></i>Agregar
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link d-flex align-items-center gap-2"
+              [class.active]="tab === 'search'" (click)="switchTab('search')">
+        <i class="bi bi-search"></i>Buscar
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link d-flex align-items-center gap-2"
+              [class.active]="tab === 'delete'" (click)="switchTab('delete')">
+        <i class="bi bi-trash3"></i>Eliminar
+      </button>
+    </li>
+  </ul>
+
+  <!-- Tab: Ver todos los productos -->
+  @if (tab === 'list') {
+    <div class="card border-0 shadow-sm">
+      <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+        <h5 class="mb-0 fw-semibold">
+          <i class="bi bi-list-ul text-primary me-2"></i>Inventario de la Sucursal
+          @if (!loadingProducts) {
+            <span class="badge bg-secondary ms-2">{{ filteredProducts.length }}</span>
+          }
+        </h5>
+        <div class="d-flex gap-2 align-items-center">
+          @if (branchId) {
+            <input class="form-control form-control-sm" style="max-width:220px"
+                   placeholder="Filtrar por nombre, código..."
+                   [(ngModel)]="filterText" [ngModelOptions]="{standalone: true}" />
+            <button class="btn btn-sm btn-outline-primary" (click)="loadProducts()"
+                    [disabled]="loadingProducts">
+              <i class="bi bi-arrow-clockwise"></i>
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="card-body p-0">
+        @if (!branchId) {
+          <div class="text-center py-5 text-muted">
+            <i class="bi bi-shop fs-1 d-block mb-2"></i>
+            Selecciona una sucursal para ver sus productos.
+          </div>
+        } @else if (loadingProducts) {
+          <div class="text-center py-5">
+            <div class="spinner-border text-primary mb-3" role="status"></div>
+            <p class="text-muted">Cargando productos...</p>
+          </div>
+        } @else if (filteredProducts.length === 0) {
+          <div class="text-center py-5 text-muted">
+            <i class="bi bi-box-seam fs-1 d-block mb-2"></i>
+            @if (filterText) {
+              No hay resultados para "<strong>{{ filterText }}</strong>".
+            } @else {
+              Esta sucursal no tiene productos registrados.
+            }
+          </div>
+        } @else {
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th class="ps-4">Nombre</th>
+                  <th>Código</th>
+                  <th>Categoría</th>
+                  <th>Marca</th>
+                  <th>Vencimiento</th>
+                  <th class="text-end">Precio</th>
+                  <th class="text-center pe-4">Stock</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (p of filteredProducts; track p.barcode) {
+                  <tr>
+                    <td class="ps-4 fw-semibold">{{ p.name }}</td>
+                    <td><code class="small">{{ p.barcode }}</code></td>
+                    <td><span class="badge bg-light text-dark border">{{ p.category }}</span></td>
+                    <td>{{ p.brand }}</td>
+                    <td class="text-muted small">{{ p.expiry_date }}</td>
+                    <td class="text-end fw-bold text-success">$ {{ p.price | number:'1.2-2' }}</td>
+                    <td class="text-center pe-4">
+                      <span class="badge"
+                            [class.bg-success]="p.stock > 10"
+                            [class.bg-warning]="p.stock > 0 && p.stock <= 10"
+                            [class.bg-danger]="p.stock === 0">
+                        {{ p.stock }}
+                      </span>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      </div>
+
+      @if (filteredProducts.length > 0 && !loadingProducts) {
+        <div class="card-footer bg-white text-muted small py-2 px-4">
+          {{ filteredProducts.length }} producto{{ filteredProducts.length !== 1 ? 's' : '' }}
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Tab: Agregar Producto -->
+  @if (tab === 'add') {
+    <div class="card border-0 shadow-sm">
+      <div class="card-header bg-white py-3">
+        <h5 class="mb-0 fw-semibold">
+          <i class="bi bi-plus-circle text-primary me-2"></i>Agregar Producto
+        </h5>
+      </div>
+      <div class="card-body p-4">
+        <form [formGroup]="addForm" (ngSubmit)="addProduct()">
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Nombre <span class="text-danger">*</span></label>
+              <input class="form-control" placeholder="Ej. Leche Entera" formControlName="name"
+                     [class.is-invalid]="addForm.get('name')?.invalid && addForm.get('name')?.touched" />
+              <div class="invalid-feedback">Nombre requerido</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Código de Barras <span class="text-danger">*</span></label>
+              <input class="form-control" placeholder="Ej. 7501055300915" formControlName="barcode"
+                     [class.is-invalid]="addForm.get('barcode')?.invalid && addForm.get('barcode')?.touched" />
+              <div class="invalid-feedback">Código de barras requerido</div>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Categoría <span class="text-danger">*</span></label>
+              <input class="form-control" placeholder="Ej. Lácteos" formControlName="category"
+                     [class.is-invalid]="addForm.get('category')?.invalid && addForm.get('category')?.touched" />
+              <div class="invalid-feedback">Categoría requerida</div>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Fecha de Vencimiento <span class="text-danger">*</span></label>
+              <input class="form-control" type="date" formControlName="expiry_date"
+                     [class.is-invalid]="addForm.get('expiry_date')?.invalid && addForm.get('expiry_date')?.touched" />
+              <div class="invalid-feedback">Fecha requerida</div>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Marca <span class="text-danger">*</span></label>
+              <input class="form-control" placeholder="Ej. Alpina" formControlName="brand"
+                     [class.is-invalid]="addForm.get('brand')?.invalid && addForm.get('brand')?.touched" />
+              <div class="invalid-feedback">Marca requerida</div>
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label fw-semibold">Precio <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input class="form-control" type="number" min="0.01" step="0.01"
+                       formControlName="price"
+                       [class.is-invalid]="addForm.get('price')?.invalid && addForm.get('price')?.touched" />
+                <div class="invalid-feedback">Precio inválido</div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label fw-semibold">Stock <span class="text-danger">*</span></label>
+              <input class="form-control" type="number" min="0" formControlName="stock"
+                     [class.is-invalid]="addForm.get('stock')?.invalid && addForm.get('stock')?.touched" />
+              <div class="invalid-feedback">Stock inválido</div>
+            </div>
+
+          </div>
+
+          <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top">
+            <button type="button" class="btn btn-outline-secondary"
+                    (click)="addForm.reset({ price: 0, stock: 0 })">
+              Limpiar
+            </button>
+            <button type="submit" class="btn btn-primary"
+                    [disabled]="!branchId || addForm.invalid">
+              <i class="bi bi-plus-lg me-1"></i>Agregar Producto
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+
+  <!-- Tab: Buscar Producto -->
+  @if (tab === 'search') {
+    <div class="card border-0 shadow-sm">
+      <div class="card-header bg-white py-3">
+        <h5 class="mb-0 fw-semibold">
+          <i class="bi bi-search text-primary me-2"></i>Buscar Producto por Código
+        </h5>
+      </div>
+      <div class="card-body p-4">
+        <form [formGroup]="searchForm" (ngSubmit)="findProduct()" class="d-flex gap-2">
+          <input class="form-control" placeholder="Ingresa el código de barras"
+                 formControlName="barcode" style="max-width: 400px" />
+          <button type="submit" class="btn btn-primary"
+                  [disabled]="!branchId || searchForm.invalid">
+            <i class="bi bi-search me-1"></i>Buscar
+          </button>
+        </form>
+
+        @if (foundProduct) {
+          <div class="card mt-4 border-start border-4 border-primary shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title mb-3">
+                <i class="bi bi-box-seam text-primary me-2"></i>{{ foundProduct.name }}
+              </h5>
+              <div class="row g-2 text-sm">
+                <div class="col-sm-6 col-md-3">
+                  <span class="text-muted d-block small">Código</span>
+                  <code>{{ foundProduct.barcode }}</code>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <span class="text-muted d-block small">Categoría</span>
+                  <span class="badge bg-light text-dark border">{{ foundProduct.category }}</span>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <span class="text-muted d-block small">Marca</span>
+                  <strong>{{ foundProduct.brand }}</strong>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <span class="text-muted d-block small">Vencimiento</span>
+                  {{ foundProduct.expiry_date }}
+                </div>
+                <div class="col-sm-6 col-md-3 mt-2">
+                  <span class="text-muted d-block small">Precio</span>
+                  <span class="fw-bold text-success">$ {{ foundProduct.price }}</span>
+                </div>
+                <div class="col-sm-6 col-md-3 mt-2">
+                  <span class="text-muted d-block small">Stock</span>
+                  <span class="badge" [class.bg-success]="foundProduct.stock > 0"
+                        [class.bg-danger]="foundProduct.stock === 0">
+                    {{ foundProduct.stock }} unidades
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Tab: Eliminar Producto -->
+  @if (tab === 'delete') {
+    <div class="card border-0 shadow-sm">
+      <div class="card-header bg-white py-3">
+        <h5 class="mb-0 fw-semibold">
+          <i class="bi bi-trash3 text-danger me-2"></i>Eliminar Producto por Código
+        </h5>
+      </div>
+      <div class="card-body p-4">
+        <p class="text-muted small mb-3">
+          Ingresa el código de barras del producto que deseas eliminar de la sucursal activa.
+        </p>
+        <form [formGroup]="deleteForm" (ngSubmit)="deleteProduct()" class="d-flex gap-2">
+          <input class="form-control" placeholder="Código de barras"
+                 formControlName="barcode" style="max-width: 400px" />
+          <button type="submit" class="btn btn-danger"
+                  [disabled]="!branchId || deleteForm.invalid">
+            <i class="bi bi-trash3 me-1"></i>Eliminar
+          </button>
+        </form>
+      </div>
+    </div>
+  }
+
+</div>

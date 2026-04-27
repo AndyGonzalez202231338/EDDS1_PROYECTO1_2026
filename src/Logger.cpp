@@ -109,3 +109,23 @@ std::string Logger::timestamp() const {
     std::strftime(buf, sizeof(buf), "[%Y-%m-%d %H:%M:%S]", tm);
     return std::string(buf);
 }
+
+/**
+ * getLogContent
+ * Lee y retorna el contenido del archivo de log.
+ * Complejidad: O(n) donde n = tamaño del archivo
+ */
+std::string Logger::getLogContent() const {
+    std::ifstream file(_path);
+    if (!file.is_open()) {
+        return "";
+    }
+
+    std::string content;
+    std::string line;
+    while (std::getline(file, line)) {
+        content += line + "\n";
+    }
+    file.close();
+    return content;
+}

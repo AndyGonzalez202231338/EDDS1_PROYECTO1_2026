@@ -1,1 +1,223 @@
-<p>network-graph works!</p>
+<div class="graph-page">
+
+  <!-- Header -->
+  <div class="mb-4">
+    <h2 class="page-title mb-1">
+      <i class="bi bi-diagram-3 me-2 text-primary"></i>Grafo de Sucursales
+    </h2>
+    <p class="text-muted small mb-0">Conecta sucursales y calcula rutas óptimas con Dijkstra</p>
+  </div>
+
+  <!-- Sucursales disponibles -->
+  @if (branches.length > 0) {
+    <div class="alert alert-light border d-flex align-items-center gap-2 mb-4 py-2">
+      <i class="bi bi-info-circle text-primary"></i>
+      <span class="small">
+        <strong>Sucursales disponibles:</strong>
+        @for (b of branches; track b.id; let last = $last) {
+          <span class="badge bg-secondary me-1">{{ b.id }} – {{ b.nombre }}</span>
+        }
+      </span>
+    </div>
+  }
+
+  <!-- Mensajes globales -->
+  @if (message) {
+    <div class="alert alert-success alert-dismissible d-flex align-items-center gap-2">
+      <i class="bi bi-check-circle-fill"></i>
+      <span>{{ message }}</span>
+      <button type="button" class="btn-close ms-auto" (click)="message = ''"></button>
+    </div>
+  }
+  @if (error) {
+    <div class="alert alert-danger alert-dismissible d-flex align-items-center gap-2">
+      <i class="bi bi-x-circle-fill"></i>
+      <span>{{ error }}</span>
+      <button type="button" class="btn-close ms-auto" (click)="error = ''"></button>
+    </div>
+  }
+
+  <!-- Dos columnas -->
+  <div class="row g-4">
+
+    <!-- Columna izquierda: Conectar sucursales -->
+    <div class="col-lg-6">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white py-3 border-bottom">
+          <h5 class="mb-0 fw-semibold">
+            <i class="bi bi-plus-circle text-primary me-2"></i>Crear Conexión
+          </h5>
+        </div>
+        <div class="card-body p-4">
+          <form [formGroup]="edgeForm" (ngSubmit)="connectBranches()">
+
+            <div class="row g-3">
+              <div class="col-6">
+                <label class="form-label fw-semibold">Origen <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" formControlName="originId"
+                       placeholder="ID sucursal"
+                       [class.is-invalid]="edgeForm.get('originId')?.invalid && edgeForm.get('originId')?.touched" />
+                <div class="invalid-feedback">Requerido (≥ 1)</div>
+              </div>
+
+              <div class="col-6">
+                <label class="form-label fw-semibold">Destino <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" formControlName="destId"
+                       placeholder="ID sucursal"
+                       [class.is-invalid]="edgeForm.get('destId')?.invalid && edgeForm.get('destId')?.touched" />
+                <div class="invalid-feedback">Requerido (≥ 1)</div>
+              </div>
+
+              <div class="col-6">
+                <label class="form-label fw-semibold">
+                  <i class="bi bi-clock text-muted me-1"></i>Tiempo
+                </label>
+                <div class="input-group">
+                  <input type="number" class="form-control" formControlName="tiempo"
+                         min="0.1" step="0.1"
+                         [class.is-invalid]="edgeForm.get('tiempo')?.invalid && edgeForm.get('tiempo')?.touched" />
+                  <span class="input-group-text">s</span>
+                  <div class="invalid-feedback">Mínimo 0.1</div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <label class="form-label fw-semibold">
+                  <i class="bi bi-currency-dollar text-muted me-1"></i>Costo
+                </label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control" formControlName="costo"
+                         min="0" step="0.1"
+                         [class.is-invalid]="edgeForm.get('costo')?.invalid && edgeForm.get('costo')?.touched" />
+                  <div class="invalid-feedback">Mínimo 0</div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="bidir"
+                         formControlName="bidirectional" />
+                  <label class="form-check-label" for="bidir">Bidireccional</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-primary" [disabled]="connecting">
+                @if (connecting) {
+                  <span class="spinner-border spinner-border-sm me-2"></span>Conectando...
+                } @else {
+                  <i class="bi bi-arrow-left-right me-2"></i>Conectar Sucursales
+                }
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna derecha: Calcular ruta -->
+    <div class="col-lg-6">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white py-3 border-bottom">
+          <h5 class="mb-0 fw-semibold">
+            <i class="bi bi-signpost-split text-success me-2"></i>Calcular Ruta Óptima
+          </h5>
+        </div>
+        <div class="card-body p-4 d-flex flex-column">
+          <form [formGroup]="pathForm" (ngSubmit)="calcPath()">
+
+            <div class="row g-3">
+              <div class="col-6">
+                <label class="form-label fw-semibold">Desde <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" formControlName="from"
+                       placeholder="ID sucursal"
+                       [class.is-invalid]="pathForm.get('from')?.invalid && pathForm.get('from')?.touched" />
+                <div class="invalid-feedback">Requerido</div>
+              </div>
+
+              <div class="col-6">
+                <label class="form-label fw-semibold">Hasta <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" formControlName="to"
+                       placeholder="ID sucursal"
+                       [class.is-invalid]="pathForm.get('to')?.invalid && pathForm.get('to')?.touched" />
+                <div class="invalid-feedback">Requerido</div>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label fw-semibold">Criterio</label>
+                <div class="d-flex gap-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" id="byTime"
+                           formControlName="criteria" value="time" />
+                    <label class="form-check-label" for="byTime">
+                      <i class="bi bi-clock me-1"></i>Tiempo mínimo
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" id="byCost"
+                           formControlName="criteria" value="cost" />
+                    <label class="form-check-label" for="byCost">
+                      <i class="bi bi-currency-dollar me-1"></i>Costo mínimo
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-success" [disabled]="calculating">
+                @if (calculating) {
+                  <span class="spinner-border spinner-border-sm me-2"></span>Calculando...
+                } @else {
+                  <i class="bi bi-diagram-3 me-2"></i>Calcular Ruta
+                }
+              </button>
+            </div>
+
+          </form>
+
+          <!-- Resultado -->
+          @if (pathResult) {
+            <div class="mt-4 pt-4 border-top flex-grow-1">
+              <h6 class="fw-semibold mb-3 text-success">
+                <i class="bi bi-check-circle-fill me-1"></i>Ruta encontrada
+              </h6>
+
+              <!-- Visualización del camino -->
+              <div class="path-display d-flex flex-wrap align-items-center gap-1 mb-3">
+                @for (id of pathResult.path; track $index; let last = $last) {
+                  <span class="badge bg-primary fs-6 px-3 py-2">
+                    {{ branchName(id) }}
+                  </span>
+                  @if (!last) {
+                    <i class="bi bi-arrow-right text-muted fs-5"></i>
+                  }
+                }
+              </div>
+
+              <!-- Distancia total -->
+              <div class="d-flex align-items-center gap-2 p-3 bg-light rounded-3">
+                <i class="bi bi-rulers text-primary fs-5"></i>
+                <div>
+                  <div class="small text-muted">Distancia total</div>
+                  <strong class="fs-5">{{ pathResult.distance }}</strong>
+                  <span class="text-muted ms-1 small">
+                    {{ pathForm.value.criteria === 'cost' ? 'unidades de costo' : 'segundos' }}
+                  </span>
+                </div>
+                <div class="ms-auto text-muted small">
+                  {{ pathResult.path.length }} nodo{{ pathResult.path.length !== 1 ? 's' : '' }}
+                </div>
+              </div>
+            </div>
+          }
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -153,5 +153,10 @@
   "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
   "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado_server.dir/src/Server.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Server.cpp\"",
   "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Server.cpp"
+},
+{
+  "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
+  "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado_server.dir/src/InventoryService.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/InventoryService.cpp\"",
+  "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/InventoryService.cpp"
 }
 ]

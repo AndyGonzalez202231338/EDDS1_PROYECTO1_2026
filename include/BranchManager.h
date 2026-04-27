@@ -1,36 +1,45 @@
-#ifndef BRANCHMANAGER_H
-#define BRANCHMANAGER_H
+#ifndef BRANCH_MANAGER_H
+#define BRANCH_MANAGER_H
 
+#include <string>
+#include <functional> // <-- agregar
 #include "Branch.h"
-#include "Graph.h"
 
 class BranchManager {
 public:
     BranchManager();
     ~BranchManager();
 
-    // Sucursales
-    bool    addBranch(const Branch& b);
-    Branch* findBranch(int id) const;
-    void    listBranches() const;
+    BranchManager(const BranchManager&) = delete;
+    BranchManager& operator=(const BranchManager&) = delete;
 
-    // Red
-    void addConnection(int orig, int dest, double tiempo, double costo, bool bidirectional);
+    bool addBranch(int id,
+                   const std::string& nombre,
+                   const std::string& ubicacion,
+                   int tiempoIngreso,
+                   int tiempoPreparacion,
+                   int intervaloDespacho);
 
-    // Transferencia
+    bool removeBranch(int id);
+    Branch* findBranch(int id);
+    const Branch* findBranch(int id) const;
+
+    int size() const;
+    bool isEmpty() const;
+    void clear();
+
     bool transferProduct(const std::string& barcode, int originId, int destId, bool byTime);
-
-    // Carga CSV
-    bool loadBranchesCSV(const std::string& path);
-    bool loadConnectionsCSV(const std::string& path);
-    bool loadProductsCSV(const std::string& path);
-
-    Graph& getGraph();
+    void forEach(const std::function<void(const Branch&)>& fn) const;
 
 private:
-    Branch* _branches[100];  // arreglo estático, máx 100 sucursales
-    int     _branchCount;
-    Graph   _graph;
+    struct Node {
+        Branch* branch;
+        Node* next;
+        explicit Node(Branch* b) : branch(b), next(nullptr) {}
+    };
+
+    Node* _head;
+    int _size;
 };
 
-#endif // BRANCHMANAGER_H
+#endif

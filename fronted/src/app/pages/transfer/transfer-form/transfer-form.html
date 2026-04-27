@@ -1,1 +1,11 @@
-<p>transfer-form works!</p>
+<h2>Transferir producto</h2>
+
+<p *ngIf="message" style="color:green">{{ message }}</p>
+<p *ngIf="error" style="color:red">{{ error }}</p>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <input placeholder="barcode" formControlName="barcode" />
+  <input type="number" placeholder="originId" formControlName="originId" />
+  <input type="number" placeholder="destId" formControlName="destId" />
+  <button type="submit" [disabled]="form.invalid">Transferir</button>
+</form>

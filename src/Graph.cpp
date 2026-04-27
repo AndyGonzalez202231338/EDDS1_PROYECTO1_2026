@@ -41,6 +41,46 @@ void Graph::addEdge(int originId, int destId, double tiempo, double costo, bool 
     }
 }
 
+bool Graph::removeEdge(int originId, int destId, bool bidirectional) {
+    auto removeOne = [&](int from, int to) -> bool {
+        GraphNode* node = findNode(from);
+        if (!node) return false;
+        Edge* cur  = node->edges;
+        Edge* prev = nullptr;
+        while (cur) {
+            if (cur->destId == to) {
+                if (prev) prev->next = cur->next;
+                else       node->edges = cur->next;
+                delete cur;
+                return true;
+            }
+            prev = cur;
+            cur  = cur->next;
+        }
+        return false;
+    };
+
+    bool removed = removeOne(originId, destId);
+    if (bidirectional) removeOne(destId, originId);
+    return removed;
+}
+
+void Graph::forEachNeighbor(int branchId,
+                             const std::function<void(int, double, double)>& fn) const {
+    GraphNode* node = findNode(branchId);
+    if (!node) return;
+    for (Edge* e = node->edges; e; e = e->next)
+        fn(e->destId, e->tiempo, e->costo);
+}
+
+double Graph::edgeWeight(int fromId, int toId, bool useCost) const {
+    GraphNode* node = findNode(fromId);
+    if (!node) return -1.0;
+    for (Edge* e = node->edges; e; e = e->next)
+        if (e->destId == toId) return useCost ? e->costo : e->tiempo;
+    return -1.0;
+}
+
 GraphNode* Graph::findNode(int id) const {
     GraphNode* cur = _nodes;
     while (cur) {

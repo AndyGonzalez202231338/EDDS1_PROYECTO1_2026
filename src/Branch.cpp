@@ -1,35 +1,104 @@
 #include "Branch.h"
 
-Branch::Branch(int id, const std::string& name, const std::string& location,
-               int t_ingreso, int t_traspaso, int t_despacho)
-    : id(id), name(name), location(location),
-      t_ingreso(t_ingreso), t_traspaso(t_traspaso), t_despacho(t_despacho),
-      _catalog("errors_branch_" + std::to_string(id) + ".log") {}
+Branch::Branch()
+    : _id(-1), _nombre(""), _ubicacion(""),
+      _tiempoIngreso(0), _tiempoPreparacion(0), _intervaloDespacho(0) {}
 
-Catalog& Branch::getCatalog() { return _catalog; }
+Branch::Branch(int id,
+               const std::string& nombre,
+               const std::string& ubicacion,
+               int tiempoIngreso,
+               int tiempoPreparacion,
+               int intervaloDespacho)
+    : _id(id), _nombre(nombre), _ubicacion(ubicacion),
+      _tiempoIngreso(tiempoIngreso),
+      _tiempoPreparacion(tiempoPreparacion),
+      _intervaloDespacho(intervaloDespacho) {}
 
-bool Branch::addProduct(const Product& p) { return _catalog.addProduct(p); }
+int Branch::getId() const { return _id; }
+const std::string& Branch::getNombre() const { return _nombre; }
+const std::string& Branch::getUbicacion() const { return _ubicacion; }
+int Branch::getTiempoIngreso() const { return _tiempoIngreso; }
+int Branch::getTiempoPreparacion() const { return _tiempoPreparacion; }
+int Branch::getIntervaloDespacho() const { return _intervaloDespacho; }
 
-bool Branch::removeProduct(const std::string& barcode) { return _catalog.removeProduct(barcode); }
+bool Branch::insertProduct(const Product& p) {
+    if (!p.isValid()) return false;
+    if (_hash.search(p.barcode) != nullptr) return false; // duplicado en sucursal
 
-Product* Branch::findByBarcode(const std::string& barcode) { return _catalog.findByBarcode(barcode); }
+    Product local = p;
+    local.branchId = _id; // importante para distribución
 
-void Branch::receiveProduct(Product* p)  { _colaIngreso.enqueue(p); }
+    bool inList=false, inSorted=false, inAVL=false;
+    bool inBTree=false, inBPlus=false, inHash=false;
 
-void Branch::prepareTransfer(Product* p) { _colaTraspaso.enqueue(p); }
-
-void Branch::dispatchProduct() {
-    if (!_colaTraspaso.isEmpty())
-        _colaSalida.enqueue(_colaTraspaso.dequeue());
+    try {
+        _list.insertFront(local);        inList = true;
+        _sortedList.insertSorted(local); inSorted = true;
+        _avl.insert(local);              inAVL = true;
+        _btree.insert(local);            inBTree = true;
+        _bplus.insert(local);            inBPlus = true;
+        _hash.insert(local);             inHash = true;
+    } catch (...) {
+        rollbackInsert(local, inList, inSorted, inAVL, inBTree, inBPlus, inHash);
+        return false;
+    }
+    return true;
 }
 
-Product* Branch::getNextDispatch() {
-    if (_colaSalida.isEmpty()) return nullptr;
-    return _colaSalida.dequeue();
+bool Branch::removeProduct(const std::string& barcode) {
+    Product* existing = _hash.search(barcode);
+    if (existing == nullptr) return false;
+
+    const std::string name = existing->name;
+    const std::string date = existing->expiry_date;
+    const std::string category = existing->category;
+
+    _hash.remove(barcode);
+    _bplus.remove(category);
+    _btree.remove(date);
+    _avl.remove(name);
+    _sortedList.remove(name);
+    _list.remove(barcode);
+
+    return true;
 }
 
-void Branch::pushRollback(const TransferRecord& r) { _rollbackStack.push(r); }
+Product* Branch::searchByBarcode(const std::string& barcode) {
+    return _hash.search(barcode);
+}
 
-TransferRecord Branch::popRollback() { return _rollbackStack.pop(); }
+Product* Branch::searchByName(const std::string& name) {
+    return _avl.search(name);
+}
 
-bool Branch::hasRollback() const { return !_rollbackStack.isEmpty(); }
+void Branch::searchByCategory(const std::string& category, Product** results, int& count, int maxResults) const {
+    _bplus.searchCategory(category, results, count, maxResults);
+}
+
+void Branch::searchByDateRange(const std::string& d1, const std::string& d2, Product** results, int& count, int maxResults) const {
+    _btree.rangeSearch(d1, d2, results, count, maxResults);
+}
+
+bool Branch::isInventoryEmpty() const {
+    return _hash.isEmpty();
+}
+
+void Branch::getProducts(const std::function<void(const Product&)>& fn) const {
+    const ListNode* node = _list.getHead();
+    while (node != nullptr) {
+        fn(node->data);
+        node = node->next;
+    }
+}
+
+void Branch::rollbackInsert(const Product& p,
+                            bool inList, bool inSorted, bool inAVL,
+                            bool inBTree, bool inBPlus, bool inHash) {
+    if (inHash)   _hash.remove(p.barcode);
+    if (inBPlus)  _bplus.remove(p.category);
+    if (inBTree)  _btree.remove(p.expiry_date);
+    if (inAVL)    _avl.remove(p.name);
+    if (inSorted) _sortedList.remove(p.name);
+    if (inList)   _list.remove(p.barcode);
+}

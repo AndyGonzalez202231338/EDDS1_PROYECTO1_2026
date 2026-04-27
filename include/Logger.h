@@ -82,6 +82,15 @@ public:
      */
     bool isOpen() const;
 
+    /*
+     * getLogContent
+     * Lee y retorna el contenido actual del archivo de log.
+     * Precondicion: ninguna.
+     * Postcondicion: retorna string con contenido del archivo; string vacio si no puede leer.
+     * Complejidad: O(n) donde n = tamaño del archivo
+     */
+    std::string getLogContent() const;
+
 private:
     std::string  _path;   // ruta del archivo de log
     std::ofstream _stream; // flujo de escritura

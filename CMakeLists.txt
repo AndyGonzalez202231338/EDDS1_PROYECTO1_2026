@@ -33,9 +33,15 @@ add_executable(supermercado
 target_include_directories(supermercado PRIVATE include)
 
 # Ejecutable 2: servidor HTTP para Angular
+set(INVENTORY_SERVICE_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/InventoryService.cpp")
+if(NOT EXISTS "${INVENTORY_SERVICE_SRC}")
+    message(FATAL_ERROR "Falta archivo requerido: ${INVENTORY_SERVICE_SRC}")
+endif()
+
 add_executable(supermercado_server
     ${COMMON_SOURCES}
     src/Server.cpp
+    src/InventoryService.cpp
 )
 target_include_directories(supermercado_server PRIVATE include)
 
