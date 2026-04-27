@@ -1,0 +1,25 @@
+.error-console {
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  max-height: 400px;
+  overflow-y: auto;
+  line-height: 1.6;
+}
+
+.error-console pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.error-console pre {
+  color: #ce9178;
+}
+
+.border-danger {
+  border-left: 4px solid #dc3545 !important;
+}

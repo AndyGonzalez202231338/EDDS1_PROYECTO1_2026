@@ -1,1 +1,251 @@
-<p>branch-list works!</p>
+<div class="branches-page">
+
+  <!-- Page Header -->
+  <div class="page-header d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="page-title mb-1">
+        <i class="bi bi-shop me-2 text-primary"></i>Sucursales
+      </h2>
+      <p class="text-muted mb-0 small">Gestión de sucursales del sistema</p>
+    </div>
+    <button class="btn btn-primary d-flex align-items-center gap-2" (click)="toggleForm()">
+      <i class="bi" [class.bi-plus-lg]="!showForm" [class.bi-x-lg]="showForm"></i>
+      {{ showForm ? 'Cancelar' : 'Nueva Sucursal' }}
+    </button>
+  </div>
+
+  <!-- Alert -->
+  @if (message) {
+    <div class="alert d-flex align-items-center gap-2 alert-dismissible"
+         [class.alert-success]="messageType === 'success'"
+         [class.alert-danger]="messageType === 'danger'"
+         role="alert">
+      <i class="bi flex-shrink-0"
+         [class.bi-check-circle-fill]="messageType === 'success'"
+         [class.bi-exclamation-triangle-fill]="messageType === 'danger'"></i>
+      <span>{{ message }}</span>
+      <button type="button" class="btn-close ms-auto" (click)="clearMessage()"></button>
+    </div>
+  }
+
+  <!-- Create Form -->
+  @if (showForm) {
+    <div class="card card-form mb-4 border-0 shadow-sm">
+      <div class="card-header bg-primary text-white py-3">
+        <h5 class="mb-0 d-flex align-items-center gap-2">
+          <i class="bi bi-plus-circle"></i>Crear Nueva Sucursal
+        </h5>
+      </div>
+      <div class="card-body p-4">
+        <form [formGroup]="form" (ngSubmit)="onCreate()" novalidate>
+          <div class="row g-3">
+
+            <!-- ID -->
+            <div class="col-md-2">
+              <label class="form-label fw-semibold">ID <span class="text-danger">*</span></label>
+              <input type="number" class="form-control" formControlName="id" placeholder="1"
+                     [class.is-invalid]="isInvalid('id')" />
+              @if (isInvalid('id')) {
+                <div class="invalid-feedback">ID requerido (mínimo 1)</div>
+              }
+            </div>
+
+            <!-- Nombre -->
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Nombre <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" formControlName="nombre"
+                     placeholder="Ej. Sucursal Centro"
+                     [class.is-invalid]="isInvalid('nombre')" />
+              @if (isInvalid('nombre')) {
+                <div class="invalid-feedback">Nombre requerido</div>
+              }
+            </div>
+
+            <!-- Ubicación -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Ubicación <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" formControlName="ubicacion"
+                     placeholder="Ej. Calle Principal 123"
+                     [class.is-invalid]="isInvalid('ubicacion')" />
+              @if (isInvalid('ubicacion')) {
+                <div class="invalid-feedback">Ubicación requerida</div>
+              }
+            </div>
+
+            <!-- Tiempo Ingreso -->
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">
+                <i class="bi bi-clock-history text-secondary me-1"></i>Tiempo de Ingreso
+                <small class="text-muted fw-normal">(seg)</small>
+              </label>
+              <input type="number" class="form-control" formControlName="tiempoIngreso" min="1"
+                     [class.is-invalid]="isInvalid('tiempoIngreso')" />
+              @if (isInvalid('tiempoIngreso')) {
+                <div class="invalid-feedback">Valor mínimo: 1</div>
+              }
+            </div>
+
+            <!-- Tiempo Preparación -->
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">
+                <i class="bi bi-gear text-secondary me-1"></i>Tiempo de Preparación
+                <small class="text-muted fw-normal">(seg)</small>
+              </label>
+              <input type="number" class="form-control" formControlName="tiempoPreparacion" min="1"
+                     [class.is-invalid]="isInvalid('tiempoPreparacion')" />
+              @if (isInvalid('tiempoPreparacion')) {
+                <div class="invalid-feedback">Valor mínimo: 1</div>
+              }
+            </div>
+
+            <!-- Intervalo Despacho -->
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">
+                <i class="bi bi-truck text-secondary me-1"></i>Intervalo de Despacho
+                <small class="text-muted fw-normal">(seg)</small>
+              </label>
+              <input type="number" class="form-control" formControlName="intervaloDespacho" min="1"
+                     [class.is-invalid]="isInvalid('intervaloDespacho')" />
+              @if (isInvalid('intervaloDespacho')) {
+                <div class="invalid-feedback">Valor mínimo: 1</div>
+              }
+            </div>
+
+          </div>
+
+          <!-- Form Actions -->
+          <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top">
+            <button type="button" class="btn btn-outline-secondary" (click)="toggleForm()">
+              Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary d-flex align-items-center gap-2"
+                    [disabled]="saving">
+              @if (saving) {
+                <span class="spinner-border spinner-border-sm"></span>Guardando...
+              } @else {
+                <i class="bi bi-check-lg"></i>Crear Sucursal
+              }
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+
+  <!-- Branch Table -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+      <h5 class="mb-0 fw-semibold">
+        Lista de Sucursales
+        @if (!loading) {
+          <span class="badge bg-secondary ms-2">{{ branches.length }}</span>
+        }
+      </h5>
+      @if (loading) {
+        <div class="d-flex align-items-center gap-2 text-muted small">
+          <span class="spinner-border spinner-border-sm"></span>
+          Cargando...
+        </div>
+      }
+    </div>
+
+    <div class="card-body p-0">
+      @if (loading) {
+        <div class="text-center py-5">
+          <div class="spinner-border text-primary mb-3" role="status">
+            <span class="visually-hidden">Cargando...</span>
+          </div>
+          <p class="text-muted">Cargando sucursales...</p>
+        </div>
+      } @else if (branches.length === 0) {
+        <div class="empty-state text-center py-5">
+          <i class="bi bi-shop text-muted" style="font-size: 3rem;"></i>
+          <h5 class="mt-3 text-muted">No hay sucursales registradas</h5>
+          <p class="text-muted small">Haz clic en "Nueva Sucursal" para crear la primera.</p>
+        </div>
+      } @else {
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th class="ps-4" style="width: 70px">ID</th>
+                <th>Nombre</th>
+                <th>Ubicación</th>
+                <th class="text-center">Ing. (s)</th>
+                <th class="text-center">Prep. (s)</th>
+                <th class="text-center">Despa. (s)</th>
+                <th class="text-end pe-4">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (b of branches; track b.id) {
+                <tr [class.table-primary]="selectedId === b.id" class="branch-row">
+                  <td class="ps-4">
+                    <span class="badge bg-secondary">{{ b.id }}</span>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="branch-icon">
+                        <i class="bi bi-shop text-primary"></i>
+                      </div>
+                      <div>
+                        <span class="fw-semibold">{{ b.nombre }}</span>
+                        @if (selectedId === b.id) {
+                          <span class="badge bg-primary ms-2 small">Activa</span>
+                        }
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <i class="bi bi-geo-alt text-muted me-1"></i>
+                    <span class="text-muted">{{ b.ubicacion }}</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="badge bg-light text-dark border">{{ b.tiempoIngreso }}</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="badge bg-light text-dark border">{{ b.tiempoPreparacion }}</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="badge bg-light text-dark border">{{ b.intervaloDespacho }}</span>
+                  </td>
+                  <td class="text-end pe-4">
+                    <div class="d-flex justify-content-end gap-2">
+                      <button class="btn btn-sm btn-outline-primary"
+                              (click)="selectBranch(b.id)"
+                              [disabled]="selectedId === b.id"
+                              title="Seleccionar como activa">
+                        <i class="bi bi-check2-circle me-1"></i>
+                        {{ selectedId === b.id ? 'Activa' : 'Seleccionar' }}
+                      </button>
+                      <button class="btn btn-sm btn-outline-danger"
+                              (click)="onDelete(b)"
+                              [disabled]="deletingId === b.id"
+                              title="Eliminar sucursal">
+                        @if (deletingId === b.id) {
+                          <span class="spinner-border spinner-border-sm"></span>
+                        } @else {
+                          <i class="bi bi-trash3"></i>
+                        }
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </div>
+
+    @if (branches.length > 0 && !loading) {
+      <div class="card-footer bg-white text-muted small py-2 px-4">
+        {{ branches.length }} sucursal{{ branches.length !== 1 ? 'es' : '' }} registrada{{ branches.length !== 1 ? 's' : '' }}
+        @if (selectedId !== null) {
+          · Activa: <strong>{{ selectedId }}</strong>
+        }
+      </div>
+    }
+  </div>
+
+</div>

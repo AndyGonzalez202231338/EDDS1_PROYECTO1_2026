@@ -2,6 +2,7 @@
 #define GRAPH_H
 
 #include <fstream>
+#include <functional>
 /** Representa una arista en el grafo. 
  * Cada arista conecta dos sucursales (nodos) y tiene un tiempo de tránsito y un costo asociado.
  * El grafo se implementa como una lista de adyacencia, donde cada nodo tiene una lista de aristas 
@@ -30,6 +31,14 @@ public:
 
     void addBranch(int id);
     void addEdge(int originId, int destId, double tiempo, double costo, bool bidirectional);
+    bool removeEdge(int originId, int destId, bool bidirectional = false);
+
+    // Itera sobre vecinos del nodo: fn(destId, tiempo, costo)
+    void forEachNeighbor(int branchId,
+                         const std::function<void(int, double, double)>& fn) const;
+
+    // Peso de una arista directa; -1.0 si no existe
+    double edgeWeight(int fromId, int toId, bool useCost) const;
 
     // Dijkstra retorna la ruta óptima como arreglo de IDs
     void dijkstraByTime(int origin, int dest, int* path, int& pathLen) const;

@@ -1,0 +1,13 @@
+.graph-page {
+  max-width: 1100px;
+}
+
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.path-display {
+  min-height: 48px;
+}

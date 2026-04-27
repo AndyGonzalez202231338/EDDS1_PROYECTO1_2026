@@ -4,6 +4,7 @@
 #include "Product.h"
 #include "Logger.h"
 #include "BranchManager.h"
+#include "Graph.h"
 #include <string>
 
 class Catalog;
@@ -62,6 +63,36 @@ public:
      */
     static bool validateFields(const std::string fields[7]);
 
+    /*
+     * loadBranches
+     * Carga sucursales desde un archivo CSV con 6 campos:
+     *   "ID","Nombre","Ubicacion","TiempoIngreso","TiempoPreparacion","IntervaloDespacho"
+     * Precondicion: path no vacio; bm y logger inicializados.
+     * Postcondicion: sucursales validas insertadas en bm; errores registrados en logger.
+     * Complejidad: O(n) donde n = numero de lineas del archivo.
+     */
+    static bool loadBranches(const std::string& path, BranchManager& bm, Logger& logger);
+
+    /*
+     * loadConnections
+     * Carga conexiones entre sucursales desde un archivo CSV con 4 campos:
+     *   "OrigenID","DestinoID","Tiempo","Costo"
+     * Precondicion: path no vacio; bm, graph y logger inicializados.
+     * Postcondicion: conexiones validas insertadas en graph; errores registrados en logger.
+     * Complejidad: O(n) donde n = numero de lineas del archivo.
+     */
+    static bool loadConnections(const std::string& path, BranchManager& bm, Graph& graph, Logger& logger);
+
+    /*
+     * loadProducts
+     * Carga productos con asignacion a sucursales desde un archivo CSV con 8 campos:
+     *   "SucursalID","Nombre","CodigoBarra","Categoria","FechaCaducidad","Marca","Precio","Stock"
+     * Precondicion: path no vacio; bm y logger inicializados.
+     * Postcondicion: productos validos insertados en sucursales; errores registrados en logger.
+     * Complejidad: O(n) donde n = numero de lineas del archivo.
+     */
+    static bool loadProducts(const std::string& path, BranchManager& bm, Logger& logger);
+
 private:
     // Elimina comillas y espacios al inicio y final de un campo
     static std::string trimField(const std::string& field);
@@ -69,6 +100,10 @@ private:
     // Divide una linea CSV por comas respetando comillas dobles
     // Retorna el numero de campos encontrados (maximo 7)
     static int splitLine(const std::string& line, std::string fields[7]);
+
+    // Divide una linea CSV con numero variable de campos (maximo maxFields)
+    // Retorna el numero de campos encontrados
+    static int splitLineN(const std::string& line, std::string* fields, int maxFields);
 
     // Valida que date tenga el formato YYYY-MM-DD con valores de mes y dia validos
     static bool isValidDate(const std::string& date);
@@ -78,10 +113,6 @@ private:
 
     // Valida que str represente un numero entero
     static bool isInt(const std::string& str);
-
-    bool loadBranches(const std::string& path, BranchManager& bm);
-    bool loadConnections(const std::string& path, BranchManager& bm);
-    bool loadProductsWithBranch(const std::string& path, BranchManager& bm);
 };
 
 #endif

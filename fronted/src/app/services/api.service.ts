@@ -89,6 +89,37 @@ export class ApiService {
     );
   }
 
+  // CSV Loading
+  loadBranchesCSV(path: string): Observable<any> {
+    return this.http.post(`${this.base}/csv/branches`, { path });
+  }
+
+  loadConnectionsCSV(path: string): Observable<any> {
+    return this.http.post(`${this.base}/csv/connections`, { path });
+  }
+
+  loadProductsCSV(path: string): Observable<any> {
+    return this.http.post(`${this.base}/csv/products`, { path });
+  }
+
+  // CSV Content Loading (for file uploads)
+  loadBranchesCSVContent(content: string): Observable<any> {
+    return this.http.post(`${this.base}/csv/branches-content`, { content });
+  }
+
+  loadConnectionsCSVContent(content: string): Observable<any> {
+    return this.http.post(`${this.base}/csv/connections-content`, { content });
+  }
+
+  loadProductsCSVContent(content: string): Observable<any> {
+    return this.http.post(`${this.base}/csv/products-content`, { content });
+  }
+
+  // Get CSV errors log
+  getCSVErrors(): Observable<any> {
+    return this.http.get(`${this.base}/csv/errors`);
+  }
+
   // CSV
   loadCSV(path: string): Observable<LoadResult> {
     return this.http.post<LoadResult>(`${this.base}/load`, { path });

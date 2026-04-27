@@ -1,0 +1,40 @@
+.branches-page {
+  max-width: 1100px;
+}
+
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.card-form {
+  border-top: 3px solid var(--bs-primary) !important;
+}
+
+.branch-row td {
+  vertical-align: middle;
+}
+
+.branch-icon {
+  width: 32px;
+  height: 32px;
+  background: #e8f0fe;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.empty-state i {
+  opacity: 0.3;
+}
+
+thead th {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6c757d;
+}

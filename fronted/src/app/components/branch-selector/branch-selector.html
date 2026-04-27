@@ -1,0 +1,45 @@
+<div class="branch-context-bar d-flex align-items-center gap-3 p-3 mb-4 rounded-3 border">
+
+  <i class="bi bi-shop fs-5" [class.text-primary]="activeBranch" [class.text-muted]="!activeBranch"></i>
+
+  @if (loading) {
+    <span class="spinner-border spinner-border-sm text-primary" role="status"></span>
+    <span class="text-muted small">Cargando sucursales...</span>
+  } @else if (activeBranch) {
+    <div class="d-flex align-items-center gap-2 flex-grow-1">
+      <span class="text-muted small">Sucursal activa:</span>
+      <span class="badge bg-primary fs-6 px-3 py-2">
+        <i class="bi bi-check-circle me-1"></i>{{ activeBranch.nombre }}
+      </span>
+      <span class="text-muted small">· {{ activeBranch.ubicacion }}</span>
+    </div>
+
+    @if (branches.length > 1) {
+      <div class="dropdown">
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                data-bs-toggle="dropdown">
+          Cambiar
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+          @for (b of branches; track b.id) {
+            <li>
+              <button class="dropdown-item d-flex align-items-center gap-2"
+                      [class.active]="b.id === activeBranch.id"
+                      (click)="select(b.id)">
+                <i class="bi bi-check2 me-1" [class.invisible]="b.id !== activeBranch.id"></i>
+                <span>{{ b.nombre }}</span>
+                <small class="text-muted ms-auto">{{ b.ubicacion }}</small>
+              </button>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+  } @else {
+    <span class="text-muted small flex-grow-1">Sin sucursal seleccionada</span>
+    <a routerLink="/branches" class="btn btn-sm btn-outline-primary">
+      <i class="bi bi-arrow-right me-1"></i>Seleccionar sucursal
+    </a>
+  }
+
+</div>

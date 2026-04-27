@@ -129,12 +129,26 @@ supermercado/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/build
 .PHONY : supermercado/fast
 
+#=============================================================================
+# Target rules for targets named supermercado_server
+
+# Build rule for target.
+supermercado_server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 supermercado_server
+.PHONY : supermercado_server
+
+# fast build rule for target.
+supermercado_server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/build
+.PHONY : supermercado_server/fast
+
 src/AVLTree.o: src/AVLTree.cpp.o
 .PHONY : src/AVLTree.o
 
 # target to build an object file
 src/AVLTree.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/AVLTree.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/AVLTree.cpp.o
 .PHONY : src/AVLTree.cpp.o
 
 src/AVLTree.i: src/AVLTree.cpp.i
@@ -143,6 +157,7 @@ src/AVLTree.i: src/AVLTree.cpp.i
 # target to preprocess a source file
 src/AVLTree.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/AVLTree.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/AVLTree.cpp.i
 .PHONY : src/AVLTree.cpp.i
 
 src/AVLTree.s: src/AVLTree.cpp.s
@@ -151,6 +166,7 @@ src/AVLTree.s: src/AVLTree.cpp.s
 # target to generate assembly for a file
 src/AVLTree.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/AVLTree.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/AVLTree.cpp.s
 .PHONY : src/AVLTree.cpp.s
 
 src/BPlusTree.o: src/BPlusTree.cpp.o
@@ -159,6 +175,7 @@ src/BPlusTree.o: src/BPlusTree.cpp.o
 # target to build an object file
 src/BPlusTree.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/BPlusTree.cpp.o
 .PHONY : src/BPlusTree.cpp.o
 
 src/BPlusTree.i: src/BPlusTree.cpp.i
@@ -167,6 +184,7 @@ src/BPlusTree.i: src/BPlusTree.cpp.i
 # target to preprocess a source file
 src/BPlusTree.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/BPlusTree.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/BPlusTree.cpp.i
 .PHONY : src/BPlusTree.cpp.i
 
 src/BPlusTree.s: src/BPlusTree.cpp.s
@@ -175,6 +193,7 @@ src/BPlusTree.s: src/BPlusTree.cpp.s
 # target to generate assembly for a file
 src/BPlusTree.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/BPlusTree.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/BPlusTree.cpp.s
 .PHONY : src/BPlusTree.cpp.s
 
 src/BTree.o: src/BTree.cpp.o
@@ -183,6 +202,7 @@ src/BTree.o: src/BTree.cpp.o
 # target to build an object file
 src/BTree.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/BTree.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/BTree.cpp.o
 .PHONY : src/BTree.cpp.o
 
 src/BTree.i: src/BTree.cpp.i
@@ -191,6 +211,7 @@ src/BTree.i: src/BTree.cpp.i
 # target to preprocess a source file
 src/BTree.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/BTree.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/BTree.cpp.i
 .PHONY : src/BTree.cpp.i
 
 src/BTree.s: src/BTree.cpp.s
@@ -199,6 +220,7 @@ src/BTree.s: src/BTree.cpp.s
 # target to generate assembly for a file
 src/BTree.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/BTree.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/BTree.cpp.s
 .PHONY : src/BTree.cpp.s
 
 src/Benchmark.o: src/Benchmark.cpp.o
@@ -207,6 +229,7 @@ src/Benchmark.o: src/Benchmark.cpp.o
 # target to build an object file
 src/Benchmark.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Benchmark.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Benchmark.cpp.o
 .PHONY : src/Benchmark.cpp.o
 
 src/Benchmark.i: src/Benchmark.cpp.i
@@ -215,6 +238,7 @@ src/Benchmark.i: src/Benchmark.cpp.i
 # target to preprocess a source file
 src/Benchmark.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Benchmark.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Benchmark.cpp.i
 .PHONY : src/Benchmark.cpp.i
 
 src/Benchmark.s: src/Benchmark.cpp.s
@@ -223,7 +247,62 @@ src/Benchmark.s: src/Benchmark.cpp.s
 # target to generate assembly for a file
 src/Benchmark.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Benchmark.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Benchmark.cpp.s
 .PHONY : src/Benchmark.cpp.s
+
+src/Branch.o: src/Branch.cpp.o
+.PHONY : src/Branch.o
+
+# target to build an object file
+src/Branch.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Branch.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Branch.cpp.o
+.PHONY : src/Branch.cpp.o
+
+src/Branch.i: src/Branch.cpp.i
+.PHONY : src/Branch.i
+
+# target to preprocess a source file
+src/Branch.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Branch.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Branch.cpp.i
+.PHONY : src/Branch.cpp.i
+
+src/Branch.s: src/Branch.cpp.s
+.PHONY : src/Branch.s
+
+# target to generate assembly for a file
+src/Branch.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Branch.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Branch.cpp.s
+.PHONY : src/Branch.cpp.s
+
+src/BranchManager.o: src/BranchManager.cpp.o
+.PHONY : src/BranchManager.o
+
+# target to build an object file
+src/BranchManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/BranchManager.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/BranchManager.cpp.o
+.PHONY : src/BranchManager.cpp.o
+
+src/BranchManager.i: src/BranchManager.cpp.i
+.PHONY : src/BranchManager.i
+
+# target to preprocess a source file
+src/BranchManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/BranchManager.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/BranchManager.cpp.i
+.PHONY : src/BranchManager.cpp.i
+
+src/BranchManager.s: src/BranchManager.cpp.s
+.PHONY : src/BranchManager.s
+
+# target to generate assembly for a file
+src/BranchManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/BranchManager.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/BranchManager.cpp.s
+.PHONY : src/BranchManager.cpp.s
 
 src/CSVLoader.o: src/CSVLoader.cpp.o
 .PHONY : src/CSVLoader.o
@@ -231,6 +310,7 @@ src/CSVLoader.o: src/CSVLoader.cpp.o
 # target to build an object file
 src/CSVLoader.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/CSVLoader.cpp.o
 .PHONY : src/CSVLoader.cpp.o
 
 src/CSVLoader.i: src/CSVLoader.cpp.i
@@ -239,6 +319,7 @@ src/CSVLoader.i: src/CSVLoader.cpp.i
 # target to preprocess a source file
 src/CSVLoader.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/CSVLoader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/CSVLoader.cpp.i
 .PHONY : src/CSVLoader.cpp.i
 
 src/CSVLoader.s: src/CSVLoader.cpp.s
@@ -247,6 +328,7 @@ src/CSVLoader.s: src/CSVLoader.cpp.s
 # target to generate assembly for a file
 src/CSVLoader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/CSVLoader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/CSVLoader.cpp.s
 .PHONY : src/CSVLoader.cpp.s
 
 src/Catalog.o: src/Catalog.cpp.o
@@ -255,6 +337,7 @@ src/Catalog.o: src/Catalog.cpp.o
 # target to build an object file
 src/Catalog.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Catalog.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Catalog.cpp.o
 .PHONY : src/Catalog.cpp.o
 
 src/Catalog.i: src/Catalog.cpp.i
@@ -263,6 +346,7 @@ src/Catalog.i: src/Catalog.cpp.i
 # target to preprocess a source file
 src/Catalog.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Catalog.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Catalog.cpp.i
 .PHONY : src/Catalog.cpp.i
 
 src/Catalog.s: src/Catalog.cpp.s
@@ -271,7 +355,86 @@ src/Catalog.s: src/Catalog.cpp.s
 # target to generate assembly for a file
 src/Catalog.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Catalog.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Catalog.cpp.s
 .PHONY : src/Catalog.cpp.s
+
+src/Graph.o: src/Graph.cpp.o
+.PHONY : src/Graph.o
+
+# target to build an object file
+src/Graph.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Graph.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Graph.cpp.o
+.PHONY : src/Graph.cpp.o
+
+src/Graph.i: src/Graph.cpp.i
+.PHONY : src/Graph.i
+
+# target to preprocess a source file
+src/Graph.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Graph.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Graph.cpp.i
+.PHONY : src/Graph.cpp.i
+
+src/Graph.s: src/Graph.cpp.s
+.PHONY : src/Graph.s
+
+# target to generate assembly for a file
+src/Graph.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Graph.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Graph.cpp.s
+.PHONY : src/Graph.cpp.s
+
+src/HashTable.o: src/HashTable.cpp.o
+.PHONY : src/HashTable.o
+
+# target to build an object file
+src/HashTable.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/HashTable.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/HashTable.cpp.o
+.PHONY : src/HashTable.cpp.o
+
+src/HashTable.i: src/HashTable.cpp.i
+.PHONY : src/HashTable.i
+
+# target to preprocess a source file
+src/HashTable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/HashTable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/HashTable.cpp.i
+.PHONY : src/HashTable.cpp.i
+
+src/HashTable.s: src/HashTable.cpp.s
+.PHONY : src/HashTable.s
+
+# target to generate assembly for a file
+src/HashTable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/HashTable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/HashTable.cpp.s
+.PHONY : src/HashTable.cpp.s
+
+src/InventoryService.o: src/InventoryService.cpp.o
+.PHONY : src/InventoryService.o
+
+# target to build an object file
+src/InventoryService.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/InventoryService.cpp.o
+.PHONY : src/InventoryService.cpp.o
+
+src/InventoryService.i: src/InventoryService.cpp.i
+.PHONY : src/InventoryService.i
+
+# target to preprocess a source file
+src/InventoryService.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/InventoryService.cpp.i
+.PHONY : src/InventoryService.cpp.i
+
+src/InventoryService.s: src/InventoryService.cpp.s
+.PHONY : src/InventoryService.s
+
+# target to generate assembly for a file
+src/InventoryService.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/InventoryService.cpp.s
+.PHONY : src/InventoryService.cpp.s
 
 src/LinkedList.o: src/LinkedList.cpp.o
 .PHONY : src/LinkedList.o
@@ -279,6 +442,7 @@ src/LinkedList.o: src/LinkedList.cpp.o
 # target to build an object file
 src/LinkedList.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/LinkedList.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/LinkedList.cpp.o
 .PHONY : src/LinkedList.cpp.o
 
 src/LinkedList.i: src/LinkedList.cpp.i
@@ -287,6 +451,7 @@ src/LinkedList.i: src/LinkedList.cpp.i
 # target to preprocess a source file
 src/LinkedList.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/LinkedList.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/LinkedList.cpp.i
 .PHONY : src/LinkedList.cpp.i
 
 src/LinkedList.s: src/LinkedList.cpp.s
@@ -295,6 +460,7 @@ src/LinkedList.s: src/LinkedList.cpp.s
 # target to generate assembly for a file
 src/LinkedList.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/LinkedList.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/LinkedList.cpp.s
 .PHONY : src/LinkedList.cpp.s
 
 src/Logger.o: src/Logger.cpp.o
@@ -303,6 +469,7 @@ src/Logger.o: src/Logger.cpp.o
 # target to build an object file
 src/Logger.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Logger.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Logger.cpp.o
 .PHONY : src/Logger.cpp.o
 
 src/Logger.i: src/Logger.cpp.i
@@ -311,6 +478,7 @@ src/Logger.i: src/Logger.cpp.i
 # target to preprocess a source file
 src/Logger.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Logger.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Logger.cpp.i
 .PHONY : src/Logger.cpp.i
 
 src/Logger.s: src/Logger.cpp.s
@@ -319,6 +487,7 @@ src/Logger.s: src/Logger.cpp.s
 # target to generate assembly for a file
 src/Logger.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Logger.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Logger.cpp.s
 .PHONY : src/Logger.cpp.s
 
 src/Menu.o: src/Menu.cpp.o
@@ -351,6 +520,7 @@ src/Product.o: src/Product.cpp.o
 # target to build an object file
 src/Product.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Product.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Product.cpp.o
 .PHONY : src/Product.cpp.o
 
 src/Product.i: src/Product.cpp.i
@@ -359,6 +529,7 @@ src/Product.i: src/Product.cpp.i
 # target to preprocess a source file
 src/Product.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Product.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Product.cpp.i
 .PHONY : src/Product.cpp.i
 
 src/Product.s: src/Product.cpp.s
@@ -367,7 +538,32 @@ src/Product.s: src/Product.cpp.s
 # target to generate assembly for a file
 src/Product.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/Product.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Product.cpp.s
 .PHONY : src/Product.cpp.s
+
+src/Server.o: src/Server.cpp.o
+.PHONY : src/Server.o
+
+# target to build an object file
+src/Server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Server.cpp.o
+.PHONY : src/Server.cpp.o
+
+src/Server.i: src/Server.cpp.i
+.PHONY : src/Server.i
+
+# target to preprocess a source file
+src/Server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Server.cpp.i
+.PHONY : src/Server.cpp.i
+
+src/Server.s: src/Server.cpp.s
+.PHONY : src/Server.s
+
+# target to generate assembly for a file
+src/Server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/Server.cpp.s
+.PHONY : src/Server.cpp.s
 
 src/SortedLinkedList.o: src/SortedLinkedList.cpp.o
 .PHONY : src/SortedLinkedList.o
@@ -375,6 +571,7 @@ src/SortedLinkedList.o: src/SortedLinkedList.cpp.o
 # target to build an object file
 src/SortedLinkedList.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/SortedLinkedList.cpp.o
 .PHONY : src/SortedLinkedList.cpp.o
 
 src/SortedLinkedList.i: src/SortedLinkedList.cpp.i
@@ -383,6 +580,7 @@ src/SortedLinkedList.i: src/SortedLinkedList.cpp.i
 # target to preprocess a source file
 src/SortedLinkedList.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/SortedLinkedList.cpp.i
 .PHONY : src/SortedLinkedList.cpp.i
 
 src/SortedLinkedList.s: src/SortedLinkedList.cpp.s
@@ -391,6 +589,7 @@ src/SortedLinkedList.s: src/SortedLinkedList.cpp.s
 # target to generate assembly for a file
 src/SortedLinkedList.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado.dir/build.make CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/supermercado_server.dir/build.make CMakeFiles/supermercado_server.dir/src/SortedLinkedList.cpp.s
 .PHONY : src/SortedLinkedList.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -426,6 +625,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... supermercado"
+	@echo "... supermercado_server"
 	@echo "... src/AVLTree.o"
 	@echo "... src/AVLTree.i"
 	@echo "... src/AVLTree.s"
@@ -438,12 +638,27 @@ help:
 	@echo "... src/Benchmark.o"
 	@echo "... src/Benchmark.i"
 	@echo "... src/Benchmark.s"
+	@echo "... src/Branch.o"
+	@echo "... src/Branch.i"
+	@echo "... src/Branch.s"
+	@echo "... src/BranchManager.o"
+	@echo "... src/BranchManager.i"
+	@echo "... src/BranchManager.s"
 	@echo "... src/CSVLoader.o"
 	@echo "... src/CSVLoader.i"
 	@echo "... src/CSVLoader.s"
 	@echo "... src/Catalog.o"
 	@echo "... src/Catalog.i"
 	@echo "... src/Catalog.s"
+	@echo "... src/Graph.o"
+	@echo "... src/Graph.i"
+	@echo "... src/Graph.s"
+	@echo "... src/HashTable.o"
+	@echo "... src/HashTable.i"
+	@echo "... src/HashTable.s"
+	@echo "... src/InventoryService.o"
+	@echo "... src/InventoryService.i"
+	@echo "... src/InventoryService.s"
 	@echo "... src/LinkedList.o"
 	@echo "... src/LinkedList.i"
 	@echo "... src/LinkedList.s"
@@ -456,6 +671,9 @@ help:
 	@echo "... src/Product.o"
 	@echo "... src/Product.i"
 	@echo "... src/Product.s"
+	@echo "... src/Server.o"
+	@echo "... src/Server.i"
+	@echo "... src/Server.s"
 	@echo "... src/SortedLinkedList.o"
 	@echo "... src/SortedLinkedList.i"
 	@echo "... src/SortedLinkedList.s"
