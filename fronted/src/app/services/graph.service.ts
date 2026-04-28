@@ -8,6 +8,11 @@ export interface PathResult {
   path: number[];
 }
 
+export interface GraphDotResponse {
+  dot: string;
+  svg: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class GraphService {
   constructor(private http: HttpClient) {}
@@ -18,5 +23,9 @@ export class GraphService {
 
   getPath(from: number, to: number, criteria: 'time' | 'cost' = 'time'): Observable<PathResult> {
     return this.http.get<PathResult>(`/api/graph/path?from=${from}&to=${to}&criteria=${criteria}`);
+  }
+
+  getGraphDot(): Observable<GraphDotResponse> {
+    return this.http.get<GraphDotResponse>('/api/graph/dot');
   }
 }

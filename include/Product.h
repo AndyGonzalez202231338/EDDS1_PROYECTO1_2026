@@ -4,7 +4,7 @@
     #include <string>
 
 
-    enum class ProductStatus { AVAILABLE, IN_TRANSIT, DEPLETED };
+    enum class ProductStatus { AVAILABLE, IN_TRANSIT, DEPLETED, EN_PREPARACION, EN_ESPERA };
 
     /*
     * Product

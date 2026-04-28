@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GraphService, PathResult } from '../../../services/graph.service';
 import { BranchService } from '../../../services/branch.service';
 import { Branch } from '../../../models/branch.model';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-network-graph',
@@ -13,13 +14,17 @@ import { Branch } from '../../../models/branch.model';
   styleUrl: './network-graph.css',
 })
 export class NetworkGraph implements OnInit {
+  @ViewChild('graphContainer', { static: false }) graphContainer?: ElementRef;
+
   branches: Branch[] = [];
   pathResult: PathResult | null = null;
+  graphSvg: SafeHtml | null = null;
 
   message = '';
   error = '';
   connecting = false;
   calculating = false;
+  loadingGraph = false;
 
   edgeForm: FormGroup;
   pathForm: FormGroup;
@@ -27,7 +32,9 @@ export class NetworkGraph implements OnInit {
   constructor(
     private fb: FormBuilder,
     private graphService: GraphService,
-    private branchService: BranchService
+    private branchService: BranchService,
+    private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef
   ) {
     this.edgeForm = this.fb.group({
       originId:      [null, [Validators.required, Validators.min(1)]],
@@ -46,7 +53,35 @@ export class NetworkGraph implements OnInit {
 
   ngOnInit(): void {
     this.branchService.getBranches().subscribe({
-      next: (data) => (this.branches = data),
+      next: (data) => {
+        this.branches = data;
+        this.cdr.markForCheck();
+      },
+    });
+    this.loadGraph();
+  }
+
+  loadGraph(): void {
+    this.loadingGraph = true;
+    this.graphSvg = null;
+    this.cdr.markForCheck();
+    this.graphService.getGraphDot().subscribe({
+      next: (res) => {
+        if (res.svg) {
+          const processed = res.svg
+            .replace(/(<svg[^>]*)\swidth="[^"]*pt"/, '$1 width="100%"')
+            .replace(/(<svg[^>]*)\sheight="[^"]*pt"/, '$1 height="auto"');
+          this.graphSvg = this.sanitizer.bypassSecurityTrustHtml(processed);
+        }
+        this.loadingGraph = false;
+        this.cdr.markForCheck();
+      },
+      error: (err) => {
+        console.error('Error loading graph:', err);
+        this.error = 'Error al cargar el grafo';
+        this.loadingGraph = false;
+        this.cdr.markForCheck();
+      },
     });
   }
 
@@ -64,10 +99,14 @@ export class NetworkGraph implements OnInit {
       next: () => {
         this.message = `Conexión ${this.edgeForm.value.originId} ↔ ${this.edgeForm.value.destId} creada`;
         this.connecting = false;
+        this.edgeForm.reset({ bidirectional: true });
+        this.cdr.markForCheck();
+        this.loadGraph();
       },
       error: (err) => {
         this.error = err?.error?.error || 'Error al crear la conexión';
         this.connecting = false;
+        this.cdr.markForCheck();
       },
     });
   }
@@ -83,10 +122,12 @@ export class NetworkGraph implements OnInit {
       next: (res) => {
         this.pathResult = res;
         this.calculating = false;
+        this.cdr.markForCheck();
       },
       error: (err) => {
         this.error = err?.error?.error || 'No hay ruta entre esas sucursales';
         this.calculating = false;
+        this.cdr.markForCheck();
       },
     });
   }

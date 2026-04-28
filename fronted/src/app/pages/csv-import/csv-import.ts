@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
@@ -20,7 +20,7 @@ export class CsvImportComponent {
   errorLog = '';
   showErrorLog = false;
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private cdr: ChangeDetectorRef) {}
 
   clearMessages() {
     this.messages = [];
@@ -31,24 +31,21 @@ export class CsvImportComponent {
     if (type === 'error') {
       console.error(text);
     }
+    this.cdr.markForCheck();
   }
 
   fetchErrorLog() {
-    this.api.getCSVErrors().subscribe({
+    this.api.getErrors().subscribe({
       next: (resp) => {
-        console.log('Error log response:', resp);
-        if (resp.ok) {
-          this.errorLog = resp.errors || 'No hay errores registrados.';
-          this.showErrorLog = true;
-        } else {
-          this.errorLog = 'Error al obtener los logs: ' + (resp.error || 'Desconocido');
-          this.showErrorLog = true;
-        }
+        this.errorLog = resp.log || '';
+        this.showErrorLog = true;
+        this.cdr.markForCheck();
       },
       error: (err) => {
         console.error('Error fetching log:', err);
         this.errorLog = 'Error de red al obtener logs: ' + err.message;
         this.showErrorLog = true;
+        this.cdr.markForCheck();
       }
     });
   }
@@ -109,9 +106,8 @@ export class CsvImportComponent {
       this.addMessage('error', 'Por favor selecciona un archivo de sucursales');
       return;
     }
-
     this.loading = true;
-    this.readAndLoadFile(this.branchesFile, 'branches');
+    this.clearLogAndLoad(this.branchesFile, 'branches');
   }
 
   loadConnections() {
@@ -119,9 +115,8 @@ export class CsvImportComponent {
       this.addMessage('error', 'Por favor selecciona un archivo de conexiones');
       return;
     }
-
     this.loading = true;
-    this.readAndLoadFile(this.connectionsFile, 'connections');
+    this.clearLogAndLoad(this.connectionsFile, 'connections');
   }
 
   loadProducts() {
@@ -129,9 +124,15 @@ export class CsvImportComponent {
       this.addMessage('error', 'Por favor selecciona un archivo de productos');
       return;
     }
-
     this.loading = true;
-    this.readAndLoadFile(this.productsFile, 'products');
+    this.clearLogAndLoad(this.productsFile, 'products');
+  }
+
+  private clearLogAndLoad(file: File, type: 'branches' | 'connections' | 'products') {
+    this.api.clearErrors().subscribe({
+      next: () => this.readAndLoadFile(file, type),
+      error: () => this.readAndLoadFile(file, type),
+    });
   }
 
   private readAndLoadFile(file: File, type: 'branches' | 'connections' | 'products') {
@@ -153,12 +154,12 @@ export class CsvImportComponent {
         next: (resp) => {
           this.loading = false;
           if (resp.ok) {
-            this.addMessage('success', `${file.name} cargado exitosamente: ${resp.message}`);
+            const errorCount = resp.errors ? ` (${resp.errors} errores)` : '';
+            this.addMessage('success', `${file.name} cargado exitosamente${errorCount}`);
           } else {
             this.addMessage('error', `Error al cargar ${file.name}: ${resp.error || 'Error desconocido'}`);
           }
-          // Obtener logs después de cargar
-          setTimeout(() => this.fetchErrorLog(), 500);
+          setTimeout(() => this.fetchErrorLog(), 300);
         },
         error: (err) => {
           this.loading = false;
@@ -183,10 +184,23 @@ export class CsvImportComponent {
       return;
     }
     this.addMessage('info', 'Iniciando carga de datos...');
-    this.loadBranches();
-    setTimeout(() => this.loadConnections(), 1500);
-    setTimeout(() => this.loadProducts(), 3000);
-    setTimeout(() => this.fetchErrorLog(), 4000);
+    // Limpiar log una sola vez al inicio y luego cargar secuencialmente
+    this.api.clearErrors().subscribe({
+      next: () => {
+        this.errorLog = '';
+        this.showErrorLog = false;
+        this.readAndLoadFile(this.branchesFile!, 'branches');
+        setTimeout(() => this.readAndLoadFile(this.connectionsFile!, 'connections'), 1500);
+        setTimeout(() => this.readAndLoadFile(this.productsFile!, 'products'), 3000);
+        setTimeout(() => this.fetchErrorLog(), 4000);
+      },
+      error: () => {
+        this.readAndLoadFile(this.branchesFile!, 'branches');
+        setTimeout(() => this.readAndLoadFile(this.connectionsFile!, 'connections'), 1500);
+        setTimeout(() => this.readAndLoadFile(this.productsFile!, 'products'), 3000);
+        setTimeout(() => this.fetchErrorLog(), 4000);
+      }
+    });
   }
 
   toggleErrorLog() {
@@ -194,9 +208,9 @@ export class CsvImportComponent {
   }
 
   clearErrorLog() {
+    this.api.clearErrors().subscribe();
     this.errorLog = '';
     this.showErrorLog = false;
+    this.cdr.markForCheck();
   }
 }
-
-

@@ -57,6 +57,8 @@ public:
      */
     void logMalformed(int lineNumber, const std::string& line);
 
+    void logInfo(const std::string& msg);
+
     /*
      * flush
      * Vacia el buffer del stream a disco.

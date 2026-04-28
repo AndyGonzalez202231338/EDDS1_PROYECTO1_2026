@@ -12,7 +12,7 @@
 
 # =============================================================================
 # Project: SupermercadoEDD
-# Configurations: Debug
+# Configurations: Release
 # =============================================================================
 
 #############################################
@@ -24,7 +24,7 @@ ninja_required_version = 1.5
 #############################################
 # Set configuration variable for custom commands.
 
-CONFIGURATION = Debug
+CONFIGURATION = Release
 # =============================================================================
 # Include auxiliary files.
 
@@ -49,114 +49,121 @@ cmake_ninja_workdir = /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura
 
 build cmake_object_order_depends_target_supermercado: phony || CMakeFiles/supermercado.dir
 
-build CMakeFiles/supermercado.dir/src/Product.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Product.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/Product.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Product.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/Product.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/Logger.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Logger.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/Logger.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Logger.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/Logger.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/LinkedList.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/LinkedList.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/LinkedList.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/LinkedList.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/LinkedList.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/SortedLinkedList.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/SortedLinkedList.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/AVLTree.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/AVLTree.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/AVLTree.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/AVLTree.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/AVLTree.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/BTree.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/BTree.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/BTree.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/BTree.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/BTree.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/BPlusTree.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/BPlusTree.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/Catalog.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Catalog.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/Catalog.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Catalog.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/Catalog.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/CSVLoader.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/CSVLoader.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/Benchmark.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Benchmark.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/Benchmark.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Benchmark.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/Benchmark.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/HashTable.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/HashTable.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/HashTable.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/HashTable.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/HashTable.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/Graph.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Graph.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/Graph.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Graph.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/Graph.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/Branch.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Branch.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/Branch.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Branch.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/Branch.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/BranchManager.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/BranchManager.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/BranchManager.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/BranchManager.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/BranchManager.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/Menu.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Menu.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/TransferService.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/TransferService.cpp || cmake_object_order_depends_target_supermercado
+  DEP_FILE = CMakeFiles/supermercado.dir/src/TransferService.cpp.o.d
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
+  INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
+  OBJECT_DIR = CMakeFiles/supermercado.dir
+  OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
+
+build CMakeFiles/supermercado.dir/src/Menu.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Menu.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/Menu.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
 
-build CMakeFiles/supermercado.dir/src/main.cpp.o: CXX_COMPILER__supermercado_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/main.cpp || cmake_object_order_depends_target_supermercado
+build CMakeFiles/supermercado.dir/src/main.cpp.o: CXX_COMPILER__supermercado_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/main.cpp || cmake_object_order_depends_target_supermercado
   DEP_FILE = CMakeFiles/supermercado.dir/src/main.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado.dir/src
@@ -169,8 +176,8 @@ build CMakeFiles/supermercado.dir/src/main.cpp.o: CXX_COMPILER__supermercado_Deb
 #############################################
 # Link the executable supermercado
 
-build supermercado: CXX_EXECUTABLE_LINKER__supermercado_Debug CMakeFiles/supermercado.dir/src/Product.cpp.o CMakeFiles/supermercado.dir/src/Logger.cpp.o CMakeFiles/supermercado.dir/src/LinkedList.cpp.o CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o CMakeFiles/supermercado.dir/src/AVLTree.cpp.o CMakeFiles/supermercado.dir/src/BTree.cpp.o CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o CMakeFiles/supermercado.dir/src/Catalog.cpp.o CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o CMakeFiles/supermercado.dir/src/Benchmark.cpp.o CMakeFiles/supermercado.dir/src/HashTable.cpp.o CMakeFiles/supermercado.dir/src/Graph.cpp.o CMakeFiles/supermercado.dir/src/Branch.cpp.o CMakeFiles/supermercado.dir/src/BranchManager.cpp.o CMakeFiles/supermercado.dir/src/Menu.cpp.o CMakeFiles/supermercado.dir/src/main.cpp.o
-  FLAGS = -Wall -Wextra -Wpedantic -g
+build supermercado: CXX_EXECUTABLE_LINKER__supermercado_Release CMakeFiles/supermercado.dir/src/Product.cpp.o CMakeFiles/supermercado.dir/src/Logger.cpp.o CMakeFiles/supermercado.dir/src/LinkedList.cpp.o CMakeFiles/supermercado.dir/src/SortedLinkedList.cpp.o CMakeFiles/supermercado.dir/src/AVLTree.cpp.o CMakeFiles/supermercado.dir/src/BTree.cpp.o CMakeFiles/supermercado.dir/src/BPlusTree.cpp.o CMakeFiles/supermercado.dir/src/Catalog.cpp.o CMakeFiles/supermercado.dir/src/CSVLoader.cpp.o CMakeFiles/supermercado.dir/src/Benchmark.cpp.o CMakeFiles/supermercado.dir/src/HashTable.cpp.o CMakeFiles/supermercado.dir/src/Graph.cpp.o CMakeFiles/supermercado.dir/src/Branch.cpp.o CMakeFiles/supermercado.dir/src/BranchManager.cpp.o CMakeFiles/supermercado.dir/src/TransferService.cpp.o CMakeFiles/supermercado.dir/src/Menu.cpp.o CMakeFiles/supermercado.dir/src/main.cpp.o
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG
   OBJECT_DIR = CMakeFiles/supermercado.dir
   POST_BUILD = cd "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build" && /usr/bin/cmake -E make_directory /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura\ de\ datos/Proyecto1/build/../resultados
   PRE_LINK = :
@@ -186,114 +193,121 @@ build supermercado: CXX_EXECUTABLE_LINKER__supermercado_Debug CMakeFiles/superme
 
 build cmake_object_order_depends_target_supermercado_server: phony || CMakeFiles/supermercado_server.dir
 
-build CMakeFiles/supermercado_server.dir/src/Product.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Product.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/Product.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Product.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/Product.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/Logger.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Logger.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/Logger.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Logger.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/Logger.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/LinkedList.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/LinkedList.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/LinkedList.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/LinkedList.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/LinkedList.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/SortedLinkedList.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/SortedLinkedList.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/SortedLinkedList.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/SortedLinkedList.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/SortedLinkedList.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/AVLTree.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/AVLTree.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/AVLTree.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/AVLTree.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/AVLTree.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/BTree.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/BTree.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/BTree.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/BTree.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/BTree.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/BPlusTree.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/BPlusTree.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/BPlusTree.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/BPlusTree.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/BPlusTree.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/Catalog.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Catalog.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/Catalog.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Catalog.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/Catalog.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/CSVLoader.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/CSVLoader.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/CSVLoader.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/CSVLoader.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/CSVLoader.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/Benchmark.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Benchmark.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/Benchmark.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Benchmark.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/Benchmark.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/HashTable.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/HashTable.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/HashTable.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/HashTable.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/HashTable.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/Graph.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Graph.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/Graph.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Graph.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/Graph.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/Branch.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Branch.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/Branch.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Branch.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/Branch.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/BranchManager.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/BranchManager.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/BranchManager.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/BranchManager.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/BranchManager.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/Server.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Server.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/TransferService.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/TransferService.cpp || cmake_object_order_depends_target_supermercado_server
+  DEP_FILE = CMakeFiles/supermercado_server.dir/src/TransferService.cpp.o.d
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
+  INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
+  OBJECT_DIR = CMakeFiles/supermercado_server.dir
+  OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
+
+build CMakeFiles/supermercado_server.dir/src/Server.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/Server.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/Server.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
 
-build CMakeFiles/supermercado_server.dir/src/InventoryService.cpp.o: CXX_COMPILER__supermercado_server_Debug /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/InventoryService.cpp || cmake_object_order_depends_target_supermercado_server
+build CMakeFiles/supermercado_server.dir/src/InventoryService.cpp.o: CXX_COMPILER__supermercado_server_Release /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura$ de$ datos/Proyecto1/src/InventoryService.cpp || cmake_object_order_depends_target_supermercado_server
   DEP_FILE = CMakeFiles/supermercado_server.dir/src/InventoryService.cpp.o.d
-  FLAGS = -Wall -Wextra -Wpedantic -g -std=gnu++17
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG -std=gnu++17
   INCLUDES = -I"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include"
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   OBJECT_FILE_DIR = CMakeFiles/supermercado_server.dir/src
@@ -306,8 +320,8 @@ build CMakeFiles/supermercado_server.dir/src/InventoryService.cpp.o: CXX_COMPILE
 #############################################
 # Link the executable supermercado_server
 
-build supermercado_server: CXX_EXECUTABLE_LINKER__supermercado_server_Debug CMakeFiles/supermercado_server.dir/src/Product.cpp.o CMakeFiles/supermercado_server.dir/src/Logger.cpp.o CMakeFiles/supermercado_server.dir/src/LinkedList.cpp.o CMakeFiles/supermercado_server.dir/src/SortedLinkedList.cpp.o CMakeFiles/supermercado_server.dir/src/AVLTree.cpp.o CMakeFiles/supermercado_server.dir/src/BTree.cpp.o CMakeFiles/supermercado_server.dir/src/BPlusTree.cpp.o CMakeFiles/supermercado_server.dir/src/Catalog.cpp.o CMakeFiles/supermercado_server.dir/src/CSVLoader.cpp.o CMakeFiles/supermercado_server.dir/src/Benchmark.cpp.o CMakeFiles/supermercado_server.dir/src/HashTable.cpp.o CMakeFiles/supermercado_server.dir/src/Graph.cpp.o CMakeFiles/supermercado_server.dir/src/Branch.cpp.o CMakeFiles/supermercado_server.dir/src/BranchManager.cpp.o CMakeFiles/supermercado_server.dir/src/Server.cpp.o CMakeFiles/supermercado_server.dir/src/InventoryService.cpp.o
-  FLAGS = -Wall -Wextra -Wpedantic -g
+build supermercado_server: CXX_EXECUTABLE_LINKER__supermercado_server_Release CMakeFiles/supermercado_server.dir/src/Product.cpp.o CMakeFiles/supermercado_server.dir/src/Logger.cpp.o CMakeFiles/supermercado_server.dir/src/LinkedList.cpp.o CMakeFiles/supermercado_server.dir/src/SortedLinkedList.cpp.o CMakeFiles/supermercado_server.dir/src/AVLTree.cpp.o CMakeFiles/supermercado_server.dir/src/BTree.cpp.o CMakeFiles/supermercado_server.dir/src/BPlusTree.cpp.o CMakeFiles/supermercado_server.dir/src/Catalog.cpp.o CMakeFiles/supermercado_server.dir/src/CSVLoader.cpp.o CMakeFiles/supermercado_server.dir/src/Benchmark.cpp.o CMakeFiles/supermercado_server.dir/src/HashTable.cpp.o CMakeFiles/supermercado_server.dir/src/Graph.cpp.o CMakeFiles/supermercado_server.dir/src/Branch.cpp.o CMakeFiles/supermercado_server.dir/src/BranchManager.cpp.o CMakeFiles/supermercado_server.dir/src/TransferService.cpp.o CMakeFiles/supermercado_server.dir/src/Server.cpp.o CMakeFiles/supermercado_server.dir/src/InventoryService.cpp.o
+  FLAGS = -Wall -Wextra -Wpedantic -O3 -DNDEBUG
   OBJECT_DIR = CMakeFiles/supermercado_server.dir
   POST_BUILD = cd "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build" && /usr/bin/cmake -E make_directory /home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura\ de\ datos/Proyecto1/build/../resultados
   PRE_LINK = :

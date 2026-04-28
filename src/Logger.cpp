@@ -57,6 +57,12 @@ void Logger::logDuplicate(const std::string& barcode) {
  * Formato: [YYYY-MM-DD HH:MM:SS] MALFORMED line <N>: <contenido>
  * Complejidad: O(1)
  */
+void Logger::logInfo(const std::string& msg) {
+    std::cout << "\033[96m[INFO]\033[0m " << msg << "\n";
+    if (!_stream.is_open()) return;
+    _stream << timestamp() << " INFO: " << msg << "\n";
+}
+
 void Logger::logMalformed(int lineNumber, const std::string& line) {
     if (!_stream.is_open()) return;
     // Consola: magenta para lineas malformadas

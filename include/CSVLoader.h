@@ -71,7 +71,7 @@ public:
      * Postcondicion: sucursales validas insertadas en bm; errores registrados en logger.
      * Complejidad: O(n) donde n = numero de lineas del archivo.
      */
-    static bool loadBranches(const std::string& path, BranchManager& bm, Logger& logger);
+    static bool loadBranches(const std::string& path, BranchManager& bm, Graph& graph, Logger& logger);
 
     /*
      * loadConnections
