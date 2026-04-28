@@ -22,6 +22,7 @@ set(COMMON_SOURCES
     src/Graph.cpp
     src/Branch.cpp
     src/BranchManager.cpp
+    src/TransferService.cpp
 )
 
 # Ejecutable 1: menú de consola interactivo 

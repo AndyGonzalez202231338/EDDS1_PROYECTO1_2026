@@ -26,19 +26,35 @@ void Graph::addBranch(int id) {
     ++_count;
 }
 
-void Graph::addEdge(int originId, int destId, double tiempo, double costo, bool bidirectional) {
+bool Graph::hasEdge(int fromId, int toId) const {
+    GraphNode* node = findNode(fromId);
+    if (!node) return false;
+    for (Edge* e = node->edges; e; e = e->next)
+        if (e->destId == toId) return true;
+    return false;
+}
+
+bool Graph::addEdge(int originId, int destId, double tiempo, double costo, bool bidirectional) {
+    if (originId == destId) return false;
+
+    // Auto-create nodes if missing (needed for CSV loading order)
     GraphNode* o = findNode(originId);
     if (!o) { addBranch(originId); o = findNode(originId); }
     GraphNode* d = findNode(destId);
     if (!d) { addBranch(destId); d = findNode(destId); }
 
-    Edge* e = new Edge{destId, tiempo, costo, o->edges};
-    o->edges = e;
-
-    if (bidirectional) {
+    bool added = false;
+    if (!hasEdge(originId, destId)) {
+        Edge* e = new Edge{destId, tiempo, costo, o->edges};
+        o->edges = e;
+        added = true;
+    }
+    if (bidirectional && !hasEdge(destId, originId)) {
         Edge* re = new Edge{originId, tiempo, costo, d->edges};
         d->edges = re;
+        added = true;
     }
+    return added;
 }
 
 bool Graph::removeEdge(int originId, int destId, bool bidirectional) {
@@ -157,13 +173,50 @@ void Graph::dijkstraByCost(int origin, int dest, int* path, int& pathLen) const 
     dijkstra(origin, dest, true, path, pathLen);
 }
 
+PathResult Graph::shortestPathByTime(int origin, int dest) const {
+    PathResult result;
+    result.total = 0.0;
+    dijkstra(origin, dest, false, result.path, result.length);
+    for (int i = 0; i < result.length - 1; ++i)
+        result.total += edgeWeight(result.path[i], result.path[i + 1], false);
+    return result;
+}
+
+PathResult Graph::shortestPathByCost(int origin, int dest) const {
+    PathResult result;
+    result.total = 0.0;
+    dijkstra(origin, dest, true, result.path, result.length);
+    for (int i = 0; i < result.length - 1; ++i)
+        result.total += edgeWeight(result.path[i], result.path[i + 1], true);
+    return result;
+}
+
 void Graph::toDot(std::ofstream& out) const {
+    toDot(out, [](int) -> std::string { return ""; });
+}
+
+void Graph::toDot(std::ofstream& out, const std::function<std::string(int)>& nameFor) const {
     out << "digraph G {\n";
+    out << "  rankdir=LR;\n";
+    out << "  node [shape=box, style=filled, fillcolor=lightblue];\n";
+
+    // Node labels
     GraphNode* cur = _nodes;
+    while (cur) {
+        std::string name = nameFor(cur->branchId);
+        out << "  " << cur->branchId;
+        if (!name.empty())
+            out << " [label=\"" << name << " (" << cur->branchId << ")\"]";
+        out << ";\n";
+        cur = cur->nextNode;
+    }
+
+    // Edges
+    cur = _nodes;
     while (cur) {
         for (Edge* e = cur->edges; e; e = e->next) {
             out << "  " << cur->branchId << " -> " << e->destId
-                << " [label=\"t=" << e->tiempo << ",c=" << e->costo << "\"];\n";
+                << " [label=\"t=" << e->tiempo << ", c=" << e->costo << "\"];\n";
         }
         cur = cur->nextNode;
     }

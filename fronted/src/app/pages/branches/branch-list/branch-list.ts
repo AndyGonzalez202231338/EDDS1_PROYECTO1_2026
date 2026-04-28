@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BranchService } from '../../../services/branch.service';
@@ -28,7 +28,8 @@ export class BranchListComponent implements OnInit {
   constructor(
     private branchService: BranchService,
     private state: StateService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private cdr: ChangeDetectorRef
   ) {
     this.form = this.fb.group({
       id: [null, [Validators.required, Validators.min(1)]],
@@ -51,10 +52,12 @@ export class BranchListComponent implements OnInit {
       next: (data) => {
         this.branches = data;
         this.loading = false;
+        this.cdr.markForCheck();
       },
       error: () => {
         this.showMessage('No se pudieron cargar las sucursales', 'danger');
         this.loading = false;
+        this.cdr.markForCheck();
       },
     });
   }
@@ -82,11 +85,13 @@ export class BranchListComponent implements OnInit {
         this.form.reset({ tiempoIngreso: 5, tiempoPreparacion: 10, intervaloDespacho: 15 });
         this.showForm = false;
         this.saving = false;
+        this.cdr.markForCheck();
         this.loadBranches();
       },
       error: (err) => {
         this.showMessage(err?.error?.error || 'Error al crear la sucursal', 'danger');
         this.saving = false;
+        this.cdr.markForCheck();
       },
     });
   }
@@ -102,11 +107,13 @@ export class BranchListComponent implements OnInit {
           this.state.setBranchId(null);
         }
         this.deletingId = null;
+        this.cdr.markForCheck();
         this.loadBranches();
       },
       error: (err) => {
         this.showMessage(err?.error?.error || 'Error al eliminar', 'danger');
         this.deletingId = null;
+        this.cdr.markForCheck();
       },
     });
   }

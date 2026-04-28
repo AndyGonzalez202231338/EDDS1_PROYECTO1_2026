@@ -3,25 +3,26 @@
 
 #include <fstream>
 #include <functional>
-/** Representa una arista en el grafo. 
- * Cada arista conecta dos sucursales (nodos) y tiene un tiempo de tránsito y un costo asociado.
- * El grafo se implementa como una lista de adyacencia, donde cada nodo tiene una lista de aristas 
- * que representan las conexiones a otras sucursales.
- * La función Dijkstra se implementa para encontrar la ruta óptima entre dos sucursales, 
- * ya sea por tiempo o por costo, utilizando un arreglo para almacenar el camino resultante y su longitud.
-*/
+#include <string>
 
 struct Edge {
     int    destId;
     double tiempo;
     double costo;
-    Edge*  next;   // lista enlazada de aristas adyacentes
+    Edge*  next;
 };
 
 struct GraphNode {
     int    branchId;
-    Edge*  edges;    // cabeza de lista de aristas adyacentes
+    Edge*  edges;
     GraphNode* nextNode;
+};
+
+// Result returned by shortestPath methods
+struct PathResult {
+    int    path[200];
+    int    length;
+    double total;
 };
 
 class Graph {
@@ -30,8 +31,14 @@ public:
     ~Graph();
 
     void addBranch(int id);
-    void addEdge(int originId, int destId, double tiempo, double costo, bool bidirectional);
+
+    // Returns false if origin==dest (loop), edge already exists, or nodes don't exist
+    bool addEdge(int originId, int destId, double tiempo, double costo, bool bidirectional);
+
     bool removeEdge(int originId, int destId, bool bidirectional = false);
+
+    // True if a directed edge from->to exists
+    bool hasEdge(int fromId, int toId) const;
 
     // Itera sobre vecinos del nodo: fn(destId, tiempo, costo)
     void forEachNeighbor(int branchId,
@@ -40,14 +47,22 @@ public:
     // Peso de una arista directa; -1.0 si no existe
     double edgeWeight(int fromId, int toId, bool useCost) const;
 
-    // Dijkstra retorna la ruta óptima como arreglo de IDs
+    // Dijkstra — retorna ruta óptima con distancia total
+    PathResult shortestPathByTime(int origin, int dest) const;
+    PathResult shortestPathByCost(int origin, int dest) const;
+
+    // Legacy wrappers (array output)
     void dijkstraByTime(int origin, int dest, int* path, int& pathLen) const;
     void dijkstraByCost(int origin, int dest, int* path, int& pathLen) const;
 
+    int nodeCount() const { return _count; }
+
+    // DOT export — overload with name lookup for node labels
     void toDot(std::ofstream& out) const;
+    void toDot(std::ofstream& out, const std::function<std::string(int)>& nameFor) const;
 
 private:
-    GraphNode* _nodes;   // lista enlazada de nodos del grafo
+    GraphNode* _nodes;
     int        _count;
 
     GraphNode* findNode(int id) const;

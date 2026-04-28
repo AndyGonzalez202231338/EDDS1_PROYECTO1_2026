@@ -98,10 +98,10 @@ bool CSVLoader::load(const std::string& path, Catalog& catalog, Logger& logger) 
     file.close();
     logger.flush();
 
-    std::cout << "[CSVLoader] Carga completada: "
-              << loaded  << " productos cargados, "
-              << skipped << " omitidos, "
-              << logger.errorCount() << " errores en log.\n";
+    logger.logInfo("[CSVLoader] Carga completada: " +
+        std::to_string(loaded) + " productos cargados, " +
+        std::to_string(skipped) + " omitidos, " +
+        std::to_string(logger.errorCount()) + " errores en log.");
 
     return true;
 }
@@ -336,7 +336,7 @@ int CSVLoader::splitLineN(const std::string& line, std::string* fields, int maxF
  *   - TiempoIngreso, TiempoPreparacion, IntervaloDespacho deben ser enteros positivos
  * Complejidad: O(n) donde n = numero de lineas
  */
-bool CSVLoader::loadBranches(const std::string& path, BranchManager& bm, Logger& logger) {
+bool CSVLoader::loadBranches(const std::string& path, BranchManager& bm, Graph& graph, Logger& logger) {
     std::ifstream file(path);
     if (!file.is_open()) {
         logger.logError("No se pudo abrir archivo de sucursales: " + path);
@@ -416,6 +416,7 @@ bool CSVLoader::loadBranches(const std::string& path, BranchManager& bm, Logger&
         int intervaloDespacho = std::stoi(intervaloDespachoStr);
 
         if (bm.addBranch(id, nombre, ubicacion, tiempoIngreso, tiempoPreparacion, intervaloDespacho)) {
+            graph.addBranch(id);
             ++loaded;
         } else {
             logger.logError("No se pudo insertar sucursal ID=" + idStr);
@@ -428,7 +429,7 @@ bool CSVLoader::loadBranches(const std::string& path, BranchManager& bm, Logger&
     file.close();
     logger.flush();
 
-    std::cout << "[CSVLoader] Sucursales: " << loaded << " cargadas, " << skipped << " omitidas.\n";
+    logger.logInfo("[CSVLoader] Sucursales: " + std::to_string(loaded) + " cargadas, " + std::to_string(skipped) + " omitidas.");
     return true;
 }
 
@@ -533,7 +534,7 @@ bool CSVLoader::loadConnections(const std::string& path, BranchManager& bm, Grap
     file.close();
     logger.flush();
 
-    std::cout << "[CSVLoader] Conexiones: " << loaded << " cargadas, " << skipped << " omitidas.\n";
+    logger.logInfo("[CSVLoader] Conexiones: " + std::to_string(loaded) + " cargadas, " + std::to_string(skipped) + " omitidas.");
     return true;
 }
 
@@ -668,6 +669,6 @@ bool CSVLoader::loadProducts(const std::string& path, BranchManager& bm, Logger&
     file.close();
     logger.flush();
 
-    std::cout << "[CSVLoader] Productos: " << loaded << " cargados, " << skipped << " omitidos.\n";
+    logger.logInfo("[CSVLoader] Productos: " + std::to_string(loaded) + " cargados, " + std::to_string(skipped) + " omitidos.");
     return true;
 }

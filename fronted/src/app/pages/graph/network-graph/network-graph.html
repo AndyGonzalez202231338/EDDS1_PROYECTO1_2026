@@ -37,6 +37,30 @@
     </div>
   }
 
+  <!-- Visualización del Grafo -->
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
+      <h5 class="mb-0 fw-semibold">
+        <i class="bi bi-diagram-3 text-primary me-2"></i>Visualización del Grafo
+      </h5>
+      @if (loadingGraph) {
+        <span class="spinner-border spinner-border-sm text-primary"></span>
+      }
+    </div>
+    <div class="card-body p-4">
+      @if (graphSvg) {
+        <div #graphContainer class="graph-container border rounded p-3" style="background: #f8f9fa;">
+          <div [innerHTML]="graphSvg" class="svg-wrapper"></div>
+        </div>
+      } @else if (!loadingGraph) {
+        <div class="alert alert-info mb-0">
+          <i class="bi bi-info-circle me-2"></i>
+          No hay conexiones en el grafo. Crea una conexión para visualizarlo.
+        </div>
+      }
+    </div>
+  </div>
+
   <!-- Dos columnas -->
   <div class="row g-4">
 

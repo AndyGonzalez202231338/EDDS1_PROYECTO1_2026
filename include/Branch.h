@@ -10,9 +10,14 @@
 #include "BTree.h"
 #include "BPlusTree.h"
 #include "HashTable.h"
+#include "Queue.h"
 
 class Branch {
 public:
+    Queue<Product> queueIngreso;
+    Queue<Product> queuePreparacion;
+    Queue<Product> queueSalida;
+
     Branch();
     Branch(int id,
            const std::string& nombre,

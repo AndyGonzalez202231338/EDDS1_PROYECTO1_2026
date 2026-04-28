@@ -6,6 +6,7 @@
 #include "InventoryService.h"
 #include "Graph.h"
 #include "CSVLoader.h"
+#include "TransferService.h"
 #include <fstream>
 #include <cstdlib>
 #include <iostream>
@@ -48,13 +49,12 @@ static void setCORS(httplib::Response& res) {
 
 int main() {
     system("mkdir -p ../resultados");
-    // Limpiar log de sesion anterior para no mostrar errores obsoletos
-    { std::ofstream cl("../resultados/errors.log", std::ios::trunc); }
     Catalog catalog("../resultados/errors.log");
 
     BranchManager branchManager;
     InventoryService inventory(branchManager);
     Graph graph;
+    TransferService transferService(branchManager, graph);
 
     httplib::Server svr;
 
@@ -100,7 +100,6 @@ int main() {
             res.set_content(R"({"error":"Ya existe una sucursal con ese ID"})", "application/json");
             return;
         }
-        graph.addBranch(id);
         res.status = 201;
         res.set_content(R"({"ok":true})", "application/json");
     });
@@ -117,6 +116,7 @@ int main() {
     });
 
     svr.Post("/api/transfer", [&](const httplib::Request& req, httplib::Response& res) {
+        setCORS(res);
         auto body = json::parse(req.body, nullptr, false);
         if (body.is_discarded()) {
             res.status = 400;
@@ -124,13 +124,42 @@ int main() {
             return;
         }
 
-        bool ok = branchManager.transferProduct(
-            body.value("barcode", ""),
-            body.value("originId", -1),
-            body.value("destId", -1),
-            body.value("criteria", "") == "time"
-        );
-        res.set_content(json{{"ok", ok}}.dump(), "application/json");
+        std::string barcode  = body.value("barcode",  "");
+        int         originId = body.value("originId", -1);
+        int         destId   = body.value("destId",   -1);
+        // Accept "type" (PDF spec) or legacy "criteria"
+        std::string typeVal  = body.value("type", body.value("criteria", "time"));
+        bool        byTime   = (typeVal != "cost");
+
+        if (barcode.empty() || originId <= 0 || destId <= 0) {
+            res.status = 400;
+            res.set_content(R"({"error":"barcode, originId y destId son requeridos"})",
+                            "application/json");
+            return;
+        }
+
+        TransferResult tr = transferService.simulate(barcode, originId, destId, byTime);
+
+        if (!tr.ok) {
+            res.status = 400;
+            res.set_content(json{{"ok", false}, {"error", tr.error}}.dump(),
+                            "application/json");
+            return;
+        }
+
+        json path = json::array();
+        for (int i = 0; i < tr.length; ++i) path.push_back(tr.path[i]);
+
+        json steps = json::array();
+        for (int i = 0; i < tr.stepCount; ++i) steps.push_back(tr.steps[i]);
+
+        json r = {
+            {"ok",        true},
+            {"path",      path},
+            {"totalTime", tr.totalTime},
+            {"steps",     steps}
+        };
+        res.set_content(r.dump(), "application/json");
     });
 
     svr.Options(".*", [](const httplib::Request&, httplib::Response& res) {
@@ -384,7 +413,6 @@ int main() {
 
     // POST /branch/{id}/product
     svr.Post(R"(/branch/(\d+)/product)", [&](const httplib::Request& req, httplib::Response& res) {
-        setCORS(res);
         int branchId = std::stoi(req.matches[1].str());
 
         json body = json::parse(req.body, nullptr, false);
@@ -415,38 +443,10 @@ int main() {
         res.set_content(R"({"ok":true})", "application/json");
     });
 
-    // GET /branch/{id}/products  — listar todos los productos de una sucursal
-    svr.Get(R"(/branch/(\d+)/products)", [&](const httplib::Request& req, httplib::Response& res) {
-        setCORS(res);
-        int branchId = std::stoi(req.matches[1].str());
-        Branch* branch = branchManager.findBranch(branchId);
-        if (!branch) {
-            res.status = 404;
-            res.set_content(R"({"error":"Sucursal no encontrada"})", "application/json");
-            return;
-        }
-        json arr = json::array();
-        branch->getProducts([&](const Product& p) {
-            arr.push_back({
-                {"name",        p.name},
-                {"barcode",     p.barcode},
-                {"category",    p.category},
-                {"expiry_date", p.expiry_date},
-                {"brand",       p.brand},
-                {"price",       p.price},
-                {"stock",       p.stock},
-                {"branchId",    p.branchId}
-            });
-        });
-        res.status = 200;
-        res.set_content(arr.dump(), "application/json");
-    });
-
-    // GET /branch/{id}/product/{barcode}  — busca en HashTable O(1)
+    // GET /branch/{id}/product/{barcode}
     svr.Get(R"(/branch/(\d+)/product/([^/]+))", [&](const httplib::Request& req, httplib::Response& res) {
-        setCORS(res);
         int branchId = std::stoi(req.matches[1].str());
-        std::string barcode = urlDecode(req.matches[2].str());
+        std::string barcode = req.matches[2].str();
 
         std::string error;
         Product* p = inventory.searchByBarcode(branchId, barcode, error);
@@ -478,9 +478,8 @@ int main() {
 
     // DELETE /branch/{id}/product/{barcode}
     svr.Delete(R"(/branch/(\d+)/product/([^/]+))", [&](const httplib::Request& req, httplib::Response& res) {
-        setCORS(res);
         int branchId = std::stoi(req.matches[1].str());
-        std::string barcode = urlDecode(req.matches[2].str());
+        std::string barcode = req.matches[2].str();
 
         std::string error;
         if (!inventory.removeProduct(branchId, barcode, error)) {
@@ -493,290 +492,192 @@ int main() {
         res.set_content(R"({"ok":true})", "application/json");
     });
 
-    // ── Grafo de sucursales ─────────────────────────────────────────────────
-
-    // POST /api/graph/edge  { originId, destId, tiempo, costo, bidirectional? }
-    svr.Post("/api/graph/edge", [&](const httplib::Request& req, httplib::Response& res) {
-        setCORS(res);
-        json body = json::parse(req.body, nullptr, false);
-        if (body.is_discarded()) {
-            res.status = 400;
-            res.set_content(R"({"error":"JSON invalido"})", "application/json");
-            return;
-        }
-        int originId  = body.value("originId",  -1);
-        int destId    = body.value("destId",    -1);
-        double tiempo = body.value("tiempo",    0.0);
-        double costo  = body.value("costo",     0.0);
-        bool   bidir  = body.value("bidirectional", false);
-
-        if (originId <= 0 || destId <= 0 || originId == destId) {
-            res.status = 400;
-            res.set_content(R"({"error":"originId y destId validos requeridos"})", "application/json");
-            return;
-        }
-        if (!branchManager.findBranch(originId) || !branchManager.findBranch(destId)) {
-            res.status = 404;
-            res.set_content(R"({"error":"Una o ambas sucursales no existen"})", "application/json");
-            return;
-        }
-        graph.addEdge(originId, destId, tiempo, costo, bidir);
-        res.set_content(R"({"ok":true})", "application/json");
-    });
-
-    // POST /api/csv/branches - Cargar sucursales desde CSV
-    svr.Post("/api/csv/branches", [&](const httplib::Request& req, httplib::Response& res) {
-        setCORS(res);
-        json body = json::parse(req.body, nullptr, false);
-        if (body.is_discarded()) {
-            res.status = 400;
-            res.set_content(R"({"error":"JSON invalido"})", "application/json");
-            return;
-        }
-        std::string path = body.value("path", "");
-        if (path.empty()) {
-            res.status = 400;
-            res.set_content(R"({"error":"path requerido"})", "application/json");
-            return;
-        }
-        if (CSVLoader::loadBranches(path, branchManager, catalog.getLogger())) {
-            res.set_content(R"({"ok":true,"message":"Sucursales cargadas exitosamente"})", "application/json");
-        } else {
-            res.status = 500;
-            res.set_content(R"({"ok":false,"error":"Error al cargar sucursales"})", "application/json");
-        }
-    });
-
-    // POST /api/csv/connections - Cargar conexiones desde CSV
-    svr.Post("/api/csv/connections", [&](const httplib::Request& req, httplib::Response& res) {
-        setCORS(res);
-        json body = json::parse(req.body, nullptr, false);
-        if (body.is_discarded()) {
-            res.status = 400;
-            res.set_content(R"({"error":"JSON invalido"})", "application/json");
-            return;
-        }
-        std::string path = body.value("path", "");
-        if (path.empty()) {
-            res.status = 400;
-            res.set_content(R"({"error":"path requerido"})", "application/json");
-            return;
-        }
-        if (CSVLoader::loadConnections(path, branchManager, graph, catalog.getLogger())) {
-            res.set_content(R"({"ok":true,"message":"Conexiones cargadas exitosamente"})", "application/json");
-        } else {
-            res.status = 500;
-            res.set_content(R"({"ok":false,"error":"Error al cargar conexiones"})", "application/json");
-        }
-    });
-
-    // POST /api/csv/products - Cargar productos desde CSV con asignación a sucursales
-    svr.Post("/api/csv/products", [&](const httplib::Request& req, httplib::Response& res) {
-        setCORS(res);
-        json body = json::parse(req.body, nullptr, false);
-        if (body.is_discarded()) {
-            res.status = 400;
-            res.set_content(R"({"error":"JSON invalido"})", "application/json");
-            return;
-        }
-        std::string path = body.value("path", "");
-        if (path.empty()) {
-            res.status = 400;
-            res.set_content(R"({"error":"path requerido"})", "application/json");
-            return;
-        }
-        if (CSVLoader::loadProducts(path, branchManager, catalog.getLogger())) {
-            res.set_content(R"({"ok":true,"message":"Productos cargados exitosamente"})", "application/json");
-        } else {
-            res.status = 500;
-            res.set_content(R"({"ok":false,"error":"Error al cargar productos"})", "application/json");
-        }
-    });
-
-    // POST /api/csv/branches-content - Cargar sucursales desde contenido CSV
+    // ========== CSV ENDPOINTS ==========
+    // POST /api/csv/branches-content - Cargar sucursales desde contenido
     svr.Post("/api/csv/branches-content", [&](const httplib::Request& req, httplib::Response& res) {
         setCORS(res);
-
-        // Limpiar archivo de errores
-        std::ofstream clearLog("../resultados/errors.log", std::ios::trunc);
-        clearLog.close();
-
-        json body = json::parse(req.body, nullptr, false);
-        if (body.is_discarded()) {
-            res.status = 400;
-            res.set_content(R"({"error":"JSON invalido"})", "application/json");
-            return;
-        }
+        json body;
+        try { body = json::parse(req.body); } catch (...) { res.status = 400; return; }
         std::string content = body.value("content", "");
         if (content.empty()) {
             res.status = 400;
-            res.set_content(R"({"error":"content requerido"})", "application/json");
+            res.set_content(R"({"error":"Contenido vacio"})", "application/json");
             return;
         }
-
-        // Guardar contenido en archivo temporal
         std::string tmpPath = "../resultados/temp_branches.csv";
-        std::ofstream tmpFile(tmpPath);
-        tmpFile << content;
-        tmpFile.close();
+        std::ofstream tmp(tmpPath);
+        tmp << content;
+        tmp.close();
 
-        if (CSVLoader::loadBranches(tmpPath, branchManager, catalog.getLogger())) {
-            res.set_content(R"({"ok":true,"message":"Sucursales cargadas exitosamente"})", "application/json");
-        } else {
-            res.status = 500;
-            res.set_content(R"({"ok":false,"error":"Error al cargar sucursales"})", "application/json");
-        }
+        bool ok = CSVLoader::loadBranches(tmpPath, branchManager, graph, catalog.getLogger());
+        json r = { {"ok", ok}, {"errors", catalog.getLogger().errorCount()} };
+        res.set_content(r.dump(), "application/json");
     });
 
-    // POST /api/csv/connections-content - Cargar conexiones desde contenido CSV
+    // POST /api/csv/connections-content - Cargar conexiones desde contenido
     svr.Post("/api/csv/connections-content", [&](const httplib::Request& req, httplib::Response& res) {
         setCORS(res);
-        json body = json::parse(req.body, nullptr, false);
-        if (body.is_discarded()) {
-            res.status = 400;
-            res.set_content(R"({"error":"JSON invalido"})", "application/json");
-            return;
-        }
+        json body;
+        try { body = json::parse(req.body); } catch (...) { res.status = 400; return; }
         std::string content = body.value("content", "");
         if (content.empty()) {
             res.status = 400;
-            res.set_content(R"({"error":"content requerido"})", "application/json");
+            res.set_content(R"({"error":"Contenido vacio"})", "application/json");
             return;
         }
-
-        // Guardar contenido en archivo temporal
         std::string tmpPath = "../resultados/temp_connections.csv";
-        std::ofstream tmpFile(tmpPath);
-        tmpFile << content;
-        tmpFile.close();
+        std::ofstream tmp(tmpPath);
+        tmp << content;
+        tmp.close();
 
-        if (CSVLoader::loadConnections(tmpPath, branchManager, graph, catalog.getLogger())) {
-            res.set_content(R"({"ok":true,"message":"Conexiones cargadas exitosamente"})", "application/json");
-        } else {
-            res.status = 500;
-            res.set_content(R"({"ok":false,"error":"Error al cargar conexiones"})", "application/json");
-        }
+        bool ok = CSVLoader::loadConnections(tmpPath, branchManager, graph, catalog.getLogger());
+        json r = { {"ok", ok}, {"errors", catalog.getLogger().errorCount()} };
+        res.set_content(r.dump(), "application/json");
     });
 
-    // POST /api/csv/products-content - Cargar productos desde contenido CSV
+    // POST /api/csv/products-content - Cargar productos desde contenido
     svr.Post("/api/csv/products-content", [&](const httplib::Request& req, httplib::Response& res) {
         setCORS(res);
-        json body = json::parse(req.body, nullptr, false);
-        if (body.is_discarded()) {
-            res.status = 400;
-            res.set_content(R"({"error":"JSON invalido"})", "application/json");
-            return;
-        }
+        json body;
+        try { body = json::parse(req.body); } catch (...) { res.status = 400; return; }
         std::string content = body.value("content", "");
         if (content.empty()) {
             res.status = 400;
-            res.set_content(R"({"error":"content requerido"})", "application/json");
+            res.set_content(R"({"error":"Contenido vacio"})", "application/json");
             return;
         }
-
-        // Guardar contenido en archivo temporal
         std::string tmpPath = "../resultados/temp_products.csv";
-        std::ofstream tmpFile(tmpPath);
-        tmpFile << content;
-        tmpFile.close();
+        std::ofstream tmp(tmpPath);
+        tmp << content;
+        tmp.close();
 
-        if (CSVLoader::loadProducts(tmpPath, branchManager, catalog.getLogger())) {
-            res.set_content(R"({"ok":true,"message":"Productos cargados exitosamente"})", "application/json");
-        } else {
-            res.status = 500;
-            res.set_content(R"({"ok":false,"error":"Error al cargar productos"})", "application/json");
-        }
+        bool ok = CSVLoader::loadProducts(tmpPath, branchManager, catalog.getLogger());
+        json r = { {"ok", ok}, {"errors", catalog.getLogger().errorCount()} };
+        res.set_content(r.dump(), "application/json");
     });
 
-    // GET /api/csv/errors - Obtener contenido de errores del log
+    // GET /api/csv/errors - Obtener errores de CSV
     svr.Get("/api/csv/errors", [&](const httplib::Request&, httplib::Response& res) {
         setCORS(res);
-        std::string logContent = catalog.getLogger().getLogContent();
-        json response = {
-            {"ok", true},
-            {"errors", logContent},
-            {"errorCount", catalog.getLogger().errorCount()}
-        };
-        res.set_content(response.dump(), "application/json");
+        json r = { {"errors", catalog.getLogger().errorCount()} };
+        res.set_content(r.dump(), "application/json");
     });
 
-    // DELETE /api/graph/edge  { originId, destId, bidirectional? }
-    svr.Delete("/api/graph/edge", [&](const httplib::Request& req, httplib::Response& res) {
+    // ========== GRAPH ENDPOINTS ==========
+    // POST /api/graph/edge - Agregar arista
+    svr.Post("/api/graph/edge", [&](const httplib::Request& req, httplib::Response& res) {
         setCORS(res);
-        json body = json::parse(req.body, nullptr, false);
-        if (body.is_discarded()) {
+        json body;
+        try { body = json::parse(req.body); }
+        catch (...) {
             res.status = 400;
             res.set_content(R"({"error":"JSON invalido"})", "application/json");
             return;
         }
-        int  originId = body.value("originId", -1);
-        int  destId   = body.value("destId",   -1);
-        bool bidir    = body.value("bidirectional", false);
 
-        if (!graph.removeEdge(originId, destId, bidir)) {
-            res.status = 404;
-            res.set_content(R"({"error":"Conexion no encontrada"})", "application/json");
+        int originId = body.value("originId", -1);
+        int destId = body.value("destId", -1);
+        double tiempo = body.value("tiempo", 1.0);
+        double costo = body.value("costo", 1.0);
+        bool bidirectional = body.value("bidirectional", true);
+
+        if (originId <= 0 || destId <= 0) {
+            res.status = 400;
+            res.set_content(R"({"error":"IDs deben ser mayores a 0"})", "application/json");
             return;
         }
+
+        // Agregar nodos de sucursales si existen
+        if (branchManager.findBranch(originId)) graph.addBranch(originId);
+        if (branchManager.findBranch(destId)) graph.addBranch(destId);
+
+        bool added = graph.addEdge(originId, destId, tiempo, costo, bidirectional);
+        if (!added) {
+            res.status = 409;
+            res.set_content(R"({"error":"La arista ya existe o los nodos no existen"})", "application/json");
+            return;
+        }
+
         res.set_content(R"({"ok":true})", "application/json");
     });
 
-    // GET /api/graph/path?from=1&to=2[&criteria=cost]
+    // GET /api/graph/path?from=X&to=Y&criteria=time|cost
     svr.Get("/api/graph/path", [&](const httplib::Request& req, httplib::Response& res) {
         setCORS(res);
-        int from = 0, to = 0;
-        try {
-            from = std::stoi(req.get_param_value("from"));
-            to   = std::stoi(req.get_param_value("to"));
-        } catch (...) {
+        int from = std::stoi(req.get_param_value("from"), nullptr, 0);
+        int to = std::stoi(req.get_param_value("to"), nullptr, 0);
+        std::string criteria = req.get_param_value("criteria");
+
+        if (from <= 0 || to <= 0) {
             res.status = 400;
-            res.set_content(R"({"error":"Parametros 'from' y 'to' requeridos"})", "application/json");
+            res.set_content(R"({"error":"IDs invalidos"})", "application/json");
             return;
         }
-        if (!branchManager.findBranch(from) || !branchManager.findBranch(to)) {
+
+        bool useCost = (criteria == "cost");
+        PathResult result = useCost ? graph.shortestPathByCost(from, to) : graph.shortestPathByTime(from, to);
+
+        if (result.length == 0) {
             res.status = 404;
-            res.set_content(R"({"error":"Sucursal origen o destino no existe"})", "application/json");
+            res.set_content(R"({"error":"No hay ruta disponible"})", "application/json");
             return;
         }
 
-        bool useCost = (req.get_param_value("criteria") == "cost");
-        int  path[200];
-        int  pathLen = 0;
-
-        if (useCost) graph.dijkstraByCost(from, to, path, pathLen);
-        else         graph.dijkstraByTime(from, to, path, pathLen);
-
-        if (pathLen == 0) {
-            res.status = 404;
-            res.set_content(R"({"error":"No hay ruta entre las sucursales"})", "application/json");
-            return;
+        json path = json::array();
+        for (int i = 0; i < result.length; ++i) {
+            path.push_back(result.path[i]);
         }
 
-        // Calcular distancia total sumando pesos del camino
-        double total = 0.0;
-        for (int i = 0; i < pathLen - 1; ++i)
-            total += graph.edgeWeight(path[i], path[i + 1], useCost);
-
-        json pathArr = json::array();
-        for (int i = 0; i < pathLen; ++i) pathArr.push_back(path[i]);
-
-        res.set_content(json{{"distance", total}, {"path", pathArr}}.dump(), "application/json");
+        json r = {
+            {"path", path},
+            {"distance", result.total}
+        };
+        res.set_content(r.dump(), "application/json");
     });
 
-    // GET /api/graph/neighbors/{id}
-    svr.Get(R"(/api/graph/neighbors/(\d+))", [&](const httplib::Request& req, httplib::Response& res) {
+    // GET /api/graph/dot - Obtener DOT y SVG del grafo
+    svr.Get("/api/graph/dot", [&](const httplib::Request&, httplib::Response& res) {
         setCORS(res);
-        int id = std::stoi(req.matches[1].str());
-        if (!branchManager.findBranch(id)) {
-            res.status = 404;
-            res.set_content(R"({"error":"Sucursal no encontrada"})", "application/json");
+
+        if (graph.nodeCount() == 0) {
+            json r = {{"dot", ""}, {"svg", ""}};
+            res.set_content(r.dump(), "application/json");
             return;
         }
-        json arr = json::array();
-        graph.forEachNeighbor(id, [&](int dest, double tiempo, double costo) {
-            arr.push_back({{"destId", dest}, {"tiempo", tiempo}, {"costo", costo}});
+
+        std::string dotPath = "../resultados/temp_graph.dot";
+        std::string svgPath = "../resultados/temp_graph.svg";
+        std::ofstream out(dotPath);
+
+        if (!out.is_open()) {
+            res.status = 500;
+            res.set_content(R"({"error":"No se pudo crear archivo temporal"})", "application/json");
+            return;
+        }
+
+        graph.toDot(out, [&](int branchId) -> std::string {
+            const Branch* b = branchManager.findBranch(branchId);
+            return b ? b->getNombre() : "";
         });
-        res.set_content(arr.dump(), "application/json");
+        out.close();
+
+        // Generar SVG con graphviz
+        std::string cmd = "/usr/bin/dot -Tsvg \"" + dotPath + "\" -o \"" + svgPath + "\"";
+        int ret = system(cmd.c_str());
+
+        std::string svgContent;
+        if (ret == 0) {
+            std::ifstream svgFile(svgPath);
+            svgContent = std::string((std::istreambuf_iterator<char>(svgFile)),
+                                     std::istreambuf_iterator<char>());
+        }
+
+        std::ifstream in(dotPath);
+        std::string dotContent((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
+        in.close();
+
+        json r = {{"dot", dotContent}, {"svg", svgContent}};
+        res.set_content(r.dump(), "application/json");
     });
 
     std::cout << "Backend corriendo en http://localhost:8080\n";
