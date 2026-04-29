@@ -21,6 +21,6 @@ export class BranchService {
   }
 
   getBranchProducts(branchId: number): Observable<Product[]> {
-    return this.http.get<Product[]>(`/branch/${branchId}/products`);
+    return this.http.get<Product[]>(`/api/branch/${branchId}/products`);
   }
 }
