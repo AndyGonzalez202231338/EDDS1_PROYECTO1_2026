@@ -8,13 +8,25 @@
       Compara el rendimiento de LinkedList, SortedLinkedList y AVL Tree para operaciones de búsqueda.
     </p>
   </div>
-  <button class="btn btn-primary" (click)="run()" [disabled]="loading()">
-    @if (loading()) {
-      <span class="spinner-border spinner-border-sm me-1"></span> Ejecutando...
-    } @else {
-      <i class="bi bi-play-fill me-1"></i>Ejecutar Benchmark
-    }
-  </button>
+  <div class="d-flex gap-2 flex-wrap">
+    <select
+      class="form-select form-select-sm"
+      (change)="onBranchChange($event)"
+      [value]="selectedBranchId() ? selectedBranchId()!.toString() : ''"
+      style="max-width: 250px;">
+      <option value="">-- Selecciona una sucursal --</option>
+      @for (branch of branches(); track branch.id) {
+        <option [value]="branch.id.toString()">{{ branch.nombre }} ({{ branch.ubicacion }})</option>
+      }
+    </select>
+    <button class="btn btn-primary btn-sm" (click)="run()" [disabled]="loading() || selectedBranchId() === null">
+      @if (loading()) {
+        <span class="spinner-border spinner-border-sm me-1"></span> Ejecutando...
+      } @else {
+        <i class="bi bi-play-fill me-1"></i>Ejecutar
+      }
+    </button>
+  </div>
 </div>
 
 @if (error()) {
@@ -52,6 +64,14 @@
 }
 
 @if (results().length > 0) {
+  <!-- Branch info header -->
+  <div class="alert alert-info d-flex align-items-center gap-2 mb-4" role="alert">
+    <i class="bi bi-building flex-shrink-0"></i>
+    <span>
+      <strong>Sucursal:</strong> {{ selectedBranchName }}
+    </span>
+  </div>
+
   <!-- Results table -->
   <div class="card border-0 shadow-sm mb-4">
     <div class="card-header bg-dark text-white fw-semibold">

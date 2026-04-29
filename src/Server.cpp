@@ -738,8 +738,8 @@ int main() {
         res.set_content(arr.dump(), "application/json");
     });
 
-    // GET /branch/{id}/products
-    svr.Get(R"(/branch/(\d+)/products)", [&](const httplib::Request& req, httplib::Response& res) {
+    // GET /api/branch/{id}/products
+    svr.Get(R"(/api/branch/(\d+)/products)", [&](const httplib::Request& req, httplib::Response& res) {
         int branchId = std::stoi(req.matches[1].str());
         std::string error;
         auto products = inventory.listProducts(branchId, error);

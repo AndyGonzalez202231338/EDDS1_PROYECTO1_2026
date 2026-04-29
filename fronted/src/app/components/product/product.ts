@@ -22,7 +22,9 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   message = '';
   error = '';
+  lastTimeUs: number | null = null;
   foundProduct: Product | null = null;
+  foundTimeUs: number | null = null;
 
   // Listado
   products: Product[] = [];
@@ -72,6 +74,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.tab = t;
     this.resetMessages();
     this.foundProduct = null;
+    this.foundTimeUs = null;
     if (t === 'list' && this.branchId !== null) {
       this.loadProducts();
     }
@@ -116,7 +119,8 @@ export class ProductComponent implements OnInit, OnDestroy {
     if (this.addForm.invalid) { this.addForm.markAllAsTouched(); return; }
 
     this.inventory.insertProduct(this.branchId, this.addForm.value as Product).subscribe({
-      next: () => {
+      next: (res) => {
+        this.lastTimeUs = res.timeUs ?? null;
         this.message = 'Producto agregado correctamente';
         this.addForm.reset({ price: 0, stock: 0 });
         this.cdr.markForCheck();
@@ -139,6 +143,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
     this.inventory.searchByBarcode(this.branchId, barcode).subscribe({
       next: (p) => {
+        this.foundTimeUs = p.timeUs ?? null;
         this.foundProduct = p;
         this.cdr.markForCheck();
       },
@@ -158,7 +163,8 @@ export class ProductComponent implements OnInit, OnDestroy {
     if (!barcode) return;
 
     this.inventory.removeProduct(this.branchId, barcode).subscribe({
-      next: () => {
+      next: (res) => {
+        this.lastTimeUs = res.timeUs ?? null;
         this.message = 'Producto eliminado correctamente';
         this.deleteForm.reset();
         this.cdr.markForCheck();
@@ -171,8 +177,14 @@ export class ProductComponent implements OnInit, OnDestroy {
     });
   }
 
+  formatTime(us: number): string {
+    if (us >= 1000) return (us / 1000).toFixed(2) + ' ms';
+    return us.toFixed(1) + ' µs';
+  }
+
   private resetMessages(): void {
     this.message = '';
     this.error = '';
+    this.lastTimeUs = null;
   }
 }

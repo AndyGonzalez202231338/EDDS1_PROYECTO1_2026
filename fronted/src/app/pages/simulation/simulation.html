@@ -1,0 +1,193 @@
+<div class="simulation-container">
+  <!-- Header -->
+  <div [class]="'status-bar ' + (connected ? 'connected' : 'disconnected')">
+    {{ connected ? '🟢 Conectado' : '🔴 Desconectado' }} |
+    <strong>Tick: {{ currentTick }}</strong>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="main-grid">
+    <!-- Formulario + Batch -->
+    <div class="left-panel">
+      <!-- Formulario -->
+      <section class="form-section">
+        <h2>Agregar Transferencia</h2>
+        <form [formGroup]="form">
+          <div class="form-group">
+            <label>Sucursal Origen</label>
+            <select formControlName="originId" (change)="onOriginChange()" [disabled]="loadingProducts">
+              <option value="">Seleccionar...</option>
+              <option *ngFor="let b of branches" [value]="b.id">{{ b.nombre }} (ID: {{ b.id }})</option>
+            </select>
+            <span class="error" *ngIf="isInvalid('originId')">Requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label>Sucursal Destino</label>
+            <select formControlName="destId" (change)="onDestChange()">
+              <option value="">Seleccionar...</option>
+              <option *ngFor="let b of branches" [value]="b.id">{{ b.nombre }} (ID: {{ b.id }})</option>
+            </select>
+            <span class="error" *ngIf="isInvalid('destId')">Requerido</span>
+          </div>
+
+          <div class="form-group">
+            <label>Producto</label>
+            <select formControlName="barcode" (change)="onProductSelect(form.get('barcode')!.value)">
+              <option value="">Seleccionar...</option>
+              <option *ngFor="let p of branchProducts" [value]="p.barcode">
+                {{ p.name }} ({{ p.stock }} stock)
+              </option>
+            </select>
+            <span class="loading" *ngIf="loadingProducts">Cargando...</span>
+          </div>
+
+          <div *ngIf="selectedProduct" class="product-info">
+            <div><strong>Código:</strong> {{ selectedProduct.barcode }}</div>
+            <div><strong>Stock:</strong> {{ selectedProduct.stock }}</div>
+          </div>
+
+          <div class="form-group">
+            <label>Cantidad</label>
+            <input type="number" formControlName="quantity" [max]="maxQuantity" min="1">
+            <span class="error" *ngIf="isInvalid('quantity')">Mín 1, Máx {{ maxQuantity }}</span>
+          </div>
+
+          <div class="form-group">
+            <label>Criterio</label>
+            <div class="radio-group">
+              <label>
+                <input type="radio" formControlName="criteria" value="time" (change)="onCriteriaChange()">
+                ⏱️ Tiempo
+              </label>
+              <label>
+                <input type="radio" formControlName="criteria" value="cost">
+                💰 Costo
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Etiqueta (opcional)</label>
+            <input type="text" formControlName="label" placeholder="ej: Urgente">
+          </div>
+
+          <div *ngIf="routePreview" class="route-preview">
+            <strong>Ruta:</strong> {{ routePreview.nodes.join(' → ') }}
+          </div>
+
+          <div class="button-group">
+            <button type="button" (click)="viewRoute()" class="btn-secondary">Ver Ruta</button>
+            <button type="button" (click)="addToBatch()" [disabled]="form.invalid || submitting" class="btn-primary">
+              {{ submitting ? 'Agregando...' : 'Agregar al Batch' }}
+            </button>
+          </div>
+
+          <div class="message" *ngIf="submitSuccess" [class.success]="true">{{ submitSuccess }}</div>
+          <div class="message" *ngIf="submitError" [class.error]="true">{{ submitError }}</div>
+        </form>
+      </section>
+
+      <!-- Batch Panel -->
+      <section class="batch-section">
+        <h2>Batch Pendiente ({{ pendingBatch.length }})</h2>
+        <div class="batch-list">
+          <div *ngIf="pendingBatch.length === 0" class="empty">Sin transferencias</div>
+          <div *ngFor="let item of pendingBatch" class="batch-item">
+            <div class="batch-header">{{ item.label || item.barcode }}</div>
+            <div class="batch-route">{{ item.originName }} → {{ item.destName }}</div>
+            <div class="batch-meta">
+              <span class="qty">Qty: {{ item.quantity }}</span>
+              <span class="criteria">{{ item.byTime ? '⏱️' : '💰' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="button-group">
+          <button (click)="clearBatch()" class="btn-danger">Limpiar</button>
+          <button (click)="executeBatch()" [disabled]="pendingBatch.length === 0 || executingBatch" class="btn-success">
+            {{ executingBatch ? 'Ejecutando...' : 'Ejecutar Todas' }}
+          </button>
+        </div>
+        <div *ngIf="batchResults.length > 0" class="batch-results">
+          <strong>Resultados:</strong>
+          <div *ngFor="let r of batchResults" [class]="r.ok ? 'result-ok' : 'result-error'">
+            {{ r.ok ? '✓' : '✗' }} {{ r.barcode }} → {{ r.transferId ? r.transferId.substring(0, 8) + '...' : r.error }}
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Grafo -->
+    <div class="right-panel">
+      <section class="graph-section">
+        <h2>Red de Sucursales</h2>
+        <div *ngIf="loadingGraph" class="loading">Cargando grafo...</div>
+        <div #graphContainer [innerHTML]="graphSvg" class="graph-container"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Transferencias Activas -->
+  <section class="active-section">
+    <h2>Transferencias Activas</h2>
+    <div *ngIf="activeBranches.length === 0" class="empty">Sin actividad</div>
+    <div *ngFor="let branch of activeBranches" class="branch-card">
+      <div class="branch-header">{{ branch.branchName }} <span class="branch-id">(ID: {{ branch.branchId }})</span></div>
+      <div class="queues">
+        <div class="queue ingreso">
+          <div class="queue-title">📥 Ingreso</div>
+          <div *ngIf="branch.colaIngreso.length === 0" class="queue-empty">vacía</div>
+          <div *ngFor="let item of branch.colaIngreso" class="queue-item" [style.border-left-color]="getTransferColor(item.transferId)">
+            <strong>{{ item.productName }}</strong>
+            <div class="item-detail">Qty: {{ item.stock }}, ID: {{ item.transferId.substring(0, 8) }}...</div>
+            <div class="item-detail">Espera: {{ item.waitTicks }} | ETA: {{ item.etaTicks | number: '1.0-0' }}</div>
+          </div>
+        </div>
+        <div class="queue traspaso">
+          <div class="queue-title">⚙️ Preparación</div>
+          <div *ngIf="branch.colaTraspaso.length === 0" class="queue-empty">vacía</div>
+          <div *ngFor="let item of branch.colaTraspaso" class="queue-item" [style.border-left-color]="getTransferColor(item.transferId)">
+            <strong>{{ item.productName }}</strong>
+            <div class="item-detail">Qty: {{ item.stock }}, ID: {{ item.transferId.substring(0, 8) }}...</div>
+            <div class="item-detail">Espera: {{ item.waitTicks }} | ETA: {{ item.etaTicks | number: '1.0-0' }}</div>
+          </div>
+        </div>
+        <div class="queue salida">
+          <div class="queue-title">📤 Salida</div>
+          <div *ngIf="branch.colaSalida.length === 0" class="queue-empty">vacía</div>
+          <div *ngFor="let item of branch.colaSalida" class="queue-item" [style.border-left-color]="getTransferColor(item.transferId)">
+            <strong>{{ item.productName }}</strong>
+            <div class="item-detail">Qty: {{ item.stock }}, ID: {{ item.transferId.substring(0, 8) }}...</div>
+            <div class="item-detail">Espera: {{ item.waitTicks }} | ETA: {{ item.etaTicks | number: '1.0-0' }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Completadas -->
+  <section class="completed-section">
+    <h2>Últimas Transferencias Completadas</h2>
+    <div *ngIf="completedSlice.length === 0" class="empty">Sin completadas</div>
+    <table *ngIf="completedSlice.length > 0" class="completed-table">
+      <thead>
+        <tr>
+          <th>Transfer ID</th>
+          <th>Código</th>
+          <th>Ruta</th>
+          <th>Tick</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of completedSlice" [class.row-ok]="c.ok" [class.row-error]="!c.ok">
+          <td>{{ c.transferId.substring(0, 12) }}...</td>
+          <td>{{ c.barcode }}</td>
+          <td>{{ branchName(c.originId) }} → {{ branchName(c.destId) }}</td>
+          <td>{{ c.completedTick }}</td>
+          <td>{{ c.ok ? '✓ OK' : '✗ Error' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

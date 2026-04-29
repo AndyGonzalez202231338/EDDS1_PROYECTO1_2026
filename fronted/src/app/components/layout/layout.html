@@ -48,6 +48,24 @@
         <li class="nav-item">
           <a
             class="nav-link px-3 rounded"
+            routerLink="/transfer"
+            routerLinkActive="active bg-white bg-opacity-10"
+          >
+            <i class="bi bi-arrow-left-right me-1"></i>Transferencia
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link px-3 rounded"
+            routerLink="/simulation"
+            routerLinkActive="active bg-white bg-opacity-10"
+          >
+            <i class="bi bi-cpu me-1"></i>Simulación
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link px-3 rounded"
             routerLink="/csv-import"
             routerLinkActive="active bg-white bg-opacity-10"
           >
@@ -68,6 +86,6 @@
   </div>
 </nav>
 
-<main class="container-fluid py-4 px-4">
-  <router-outlet />
+<main class="main-content">
+  <router-outlet></router-outlet>
 </main>

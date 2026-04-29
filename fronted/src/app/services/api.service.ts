@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TransferRequest, TransferResult } from '../models/transfer.model';
-import { Branch } from '../models/branch.model';
 
 export interface Product {
   name: string;
@@ -146,5 +144,9 @@ export class ApiService {
   // Benchmark
   runBenchmark(): Observable<BenchmarkResult[]> {
     return this.http.get<BenchmarkResult[]>(`${this.base}/benchmark`);
+  }
+
+  runBranchBenchmark(branchId: number): Observable<BenchmarkResult[]> {
+    return this.http.get<BenchmarkResult[]>(`${this.base}/branches/${branchId}/benchmark`);
   }
 }
