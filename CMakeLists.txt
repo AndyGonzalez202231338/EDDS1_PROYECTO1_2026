@@ -23,6 +23,8 @@ set(COMMON_SOURCES
     src/Branch.cpp
     src/BranchManager.cpp
     src/TransferService.cpp
+    src/BranchBenchmark.cpp
+    src/utils/FileDialog.cpp
 )
 
 # Ejecutable 1: menú de consola interactivo 
@@ -43,6 +45,8 @@ add_executable(supermercado_server
     ${COMMON_SOURCES}
     src/Server.cpp
     src/InventoryService.cpp
+    src/RealtimeTransfer.cpp
+    src/SimulationEngine.cpp
 )
 target_include_directories(supermercado_server PRIVATE include)
 

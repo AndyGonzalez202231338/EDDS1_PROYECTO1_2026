@@ -2,6 +2,7 @@
 #define INVENTORY_SERVICE_H
 
 #include <string>
+#include <vector>
 #include "BranchManager.h"
 #include "Product.h"
 
@@ -20,6 +21,7 @@ public:
     bool removeProduct(int branchId, const std::string& barcode, std::string& error);
     Product* searchByBarcode(int branchId, const std::string& barcode, std::string& error);
     Product* searchByName(int branchId, const std::string& name, std::string& error);
+    std::vector<Product> listProducts(int branchId, std::string& error);
 
 private:
     BranchManager& _branchManager;

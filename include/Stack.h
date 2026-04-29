@@ -36,6 +36,8 @@ public:
 
     T& top() const { return _top->data; }
     bool isEmpty() const { return _size == 0; }
+    int getSize() const { return _size; }
+    SNode<T>* getTopNode() const { return _top; }
 
     void clear() {
         while (_top) {
