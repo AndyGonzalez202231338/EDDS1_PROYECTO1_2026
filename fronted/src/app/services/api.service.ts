@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TransferRequest, TransferResult } from '../models/transfer.model';
-import { Branch } from '../models/branch.model';
 
 export interface Product {
   name: string;
@@ -40,6 +38,22 @@ export interface DotResult {
   ok: boolean;
   label: string;
   files: DotFile[];
+}
+
+export interface ProductPayload {
+  name: string;
+  barcode: string;
+  category: string;
+  expiry_date: string;
+  brand: string;
+  price: number;
+  stock: number;
+}
+
+export interface ProductResponse extends ProductPayload {
+  status?: 'AVAILABLE' | 'IN_TRANSIT' | 'DEPLETED';
+  branchId?: number;
+  timeUs?: number;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -147,4 +161,53 @@ export class ApiService {
   runBenchmark(): Observable<BenchmarkResult[]> {
     return this.http.get<BenchmarkResult[]>(`${this.base}/benchmark`);
   }
+
+  runBranchBenchmark(branchId: number): Observable<BenchmarkResult[]> {
+    return this.http.get<BenchmarkResult[]>(`${this.base}/branches/${branchId}/benchmark`);
+  }
+
+  // Productos por sucursal — estos 4 métodos
+getBranchProducts(branchId: number): Observable<Product[]> {
+  return this.http.get<Product[]>(`/api/branch/${branchId}/products`);
+}
+
+addProductToBranch(branchId: number, p: ProductPayload): Observable<any> {
+  return this.http.post(`/branch/${branchId}/product`, p);
+  // sin /api y singular "product"
+}
+
+deleteBranchProduct(branchId: number, barcode: string): Observable<any> {
+  return this.http.delete(`/branch/${branchId}/product/${encodeURIComponent(barcode)}`);
+  // sin /api y singular "product"
+}
+
+searchBranchProductByBarcode(branchId: number, barcode: string): Observable<ProductResponse> {
+  return this.http.get<ProductResponse>(
+    `/branch/${branchId}/product/${encodeURIComponent(barcode)}`
+  );
+}
+
+searchBranchProductByName(branchId: number, name: string): Observable<ProductResponse> {
+  return this.http.get<ProductResponse>(
+    `/branch/${branchId}/products/name/${encodeURIComponent(name)}`
+  );
+}
+
+searchBranchProductsByCategory(branchId: number, category: string): Observable<{ products: ProductResponse[]; count: number; timeUs?: number }> {
+  return this.http.get<{ products: ProductResponse[]; count: number; timeUs?: number }>(
+    `/branch/${branchId}/products/category/${encodeURIComponent(category)}`
+  );
+}
+
+searchBranchProductsByDateRange(branchId: number, d1: string, d2: string): Observable<{ products: ProductResponse[]; count: number; timeUs?: number }> {
+  return this.http.get<{ products: ProductResponse[]; count: number; timeUs?: number }>(
+    `/branch/${branchId}/products/range?d1=${d1}&d2=${d2}`
+  );
+}
+
+getBranchTrees(branchId: number): Observable<{ avl: string; btree: string; bplus: string; hash: string }> {
+  return this.http.get<{ avl: string; btree: string; bplus: string; hash: string }>(
+    `/branch/${branchId}/trees`
+  );
+}
 }

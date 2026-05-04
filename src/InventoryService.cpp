@@ -1,5 +1,6 @@
 #include "InventoryService.h"
 #include <stdexcept>
+#include <vector>
 
 InventoryService::InventoryService(BranchManager& branchManager)
     : _branchManager(branchManager) {}
@@ -66,5 +67,16 @@ Product* InventoryService::searchByName(int branchId, const std::string& name, s
         return nullptr;
     }
     return branch->searchByName(name);
+}
+
+std::vector<Product> InventoryService::listProducts(int branchId, std::string& error) {
+    Branch* branch = _branchManager.findBranch(branchId);
+    if (!branch) {
+        error = "Branch no existe";
+        return {};
+    }
+    std::vector<Product> result;
+    branch->getProducts([&](const Product& p) { result.push_back(p); });
+    return result;
 }
 

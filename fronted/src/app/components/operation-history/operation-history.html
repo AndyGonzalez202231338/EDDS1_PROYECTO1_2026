@@ -1,0 +1,74 @@
+<div class="operation-history" *ngIf="history.length > 0">
+  <!-- Banner de última acción -->
+  <div class="last-action-banner">
+    <div class="banner-content">
+      <span class="arrow">↩</span>
+      <div class="banner-text">
+        <p class="banner-label">Última acción:</p>
+        <p class="banner-action">{{ history[0].description }}</p>
+      </div>
+    </div>
+    <button 
+      class="undo-button"
+      (click)="handleUndo()"
+      [disabled]="isUndoLoading"
+      type="button">
+      <span class="undo-icon">↶</span>
+      Deshacer
+    </button>
+  </div>
+
+  <!-- Mostrar error si lo hay -->
+  <div class="error-message" *ngIf="errorMessage">
+    <span class="error-icon">⚠</span>
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <!-- Panel colapsable -->
+  <div class="history-panel">
+    <button 
+      class="panel-header"
+      (click)="toggleExpanded()"
+      type="button">
+      <span>Ver pila completa ({{ history.length }})</span>
+      <span class="chevron" [class.expanded]="isExpanded">▼</span>
+    </button>
+
+    <div class="panel-content" *ngIf="isExpanded">
+      <div class="stack-items">
+        <div 
+          *ngFor="let entry of history; let i = index"
+          class="stack-item"
+          [class.top-of-stack]="i === 0"
+          [class.inactive]="i !== 0"
+          [title]="i !== 0 ? 'Para deshacer esta operación primero debes deshacer las anteriores' : ''">
+          
+          <div class="item-header">
+            <span class="item-icon" [ngClass]="getIconClass(entry.type)">
+              {{ getIcon(entry.type) }}
+            </span>
+            <div class="item-info">
+              <p class="item-description">{{ entry.description }}</p>
+              <p class="item-barcode">📦 {{ entry.barcode }}</p>
+              <p class="item-branch">🏪 Sucursal {{ entry.branchId }}</p>
+            </div>
+          </div>
+
+          <div class="item-footer" *ngIf="i === 0">
+            <span class="top-label">← tope de la pila</span>
+          </div>
+
+          <button
+            class="item-undo-button"
+            [class.disabled]="i !== 0"
+            [disabled]="i !== 0 || isUndoLoading"
+            (click)="handleUndo()"
+            type="button">
+            <span class="undo-icon">↶</span>
+            Deshacer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

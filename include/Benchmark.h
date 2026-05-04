@@ -9,7 +9,7 @@
  * Modos de busqueda por nombre para el benchmark comparativo.
  * El PDF pide comparar: lista sin ordenar, lista ordenada y AVL.
  */
-enum class SearchMode { LIST, SORTED, AVL };
+enum class SearchMode { LIST, SORTED, AVL , BTree, BPlus};
 
 /*
  * BenchmarkResult

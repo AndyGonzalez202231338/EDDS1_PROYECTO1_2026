@@ -1,10 +1,22 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-layout',
-  imports: [RouterLink, RouterLinkActive, RouterOutlet],
+  standalone: true,
+  imports: [CommonModule, RouterLink, RouterOutlet],
   templateUrl: './layout.html',
-  styleUrl: './layout.css',
+  styleUrl: './layout.css'
 })
-export class Layout {}
+export class Layout {
+  navItems = [
+    { label: 'Sucursales', path: '/branches' },
+    { label: 'Productos', path: '/products' },
+    { label: 'Transacciones', path: '/transactions' },
+    { label: 'Simulación', path: '/simulation' },
+    { label: 'Grafo', path: '/graph' },
+    { label: 'Importar CSV', path: '/csv-import' },
+    { label: 'Benchmark', path: '/benchmark' }
+  ];
+}

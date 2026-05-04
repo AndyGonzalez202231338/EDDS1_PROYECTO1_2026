@@ -8,19 +8,19 @@ export class InventoryService {
   constructor(private http: HttpClient) {}
 
   listProducts(branchId: number): Observable<Product[]> {
-    return this.http.get<Product[]>(`/branch/${branchId}/products`);
+    return this.http.get<Product[]>(`/api/branch/${branchId}/products`);
   }
 
-  insertProduct(branchId: number, product: Product): Observable<{ ok?: boolean; error?: string }> {
-    return this.http.post<{ ok?: boolean; error?: string }>(`/branch/${branchId}/product`, product);
+  insertProduct(branchId: number, product: Product): Observable<{ ok?: boolean; error?: string; timeUs?: number }> {
+    return this.http.post<{ ok?: boolean; error?: string; timeUs?: number }>(`/api/branch/${branchId}/product`, product);
   }
 
-  searchByBarcode(branchId: number, barcode: string): Observable<Product> {
-    return this.http.get<Product>(`/branch/${branchId}/product/${encodeURIComponent(barcode)}`);
+  searchByBarcode(branchId: number, barcode: string): Observable<Product & { timeUs?: number }> {
+    return this.http.get<Product & { timeUs?: number }>(`/api/branch/${branchId}/product/${encodeURIComponent(barcode)}`);
   }
 
-  removeProduct(branchId: number, barcode: string): Observable<{ ok?: boolean; error?: string }> {
-    return this.http.delete<{ ok?: boolean; error?: string }>(`/branch/${branchId}/product/${encodeURIComponent(barcode)}`);
+  removeProduct(branchId: number, barcode: string): Observable<{ ok?: boolean; error?: string; timeUs?: number }> {
+    return this.http.delete<{ ok?: boolean; error?: string; timeUs?: number }>(`/api/branch/${branchId}/product/${encodeURIComponent(barcode)}`);
   }
 
   transfer(barcode: string, originId: number, destId: number) {

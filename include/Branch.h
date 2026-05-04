@@ -3,6 +3,7 @@
 
 #include <string>
 #include <functional>
+#include <mutex>
 #include "Product.h"
 #include "LinkedList.h"
 #include "SortedLinkedList.h"
@@ -47,7 +48,26 @@ public:
     bool isInventoryEmpty() const;
     void getProducts(const std::function<void(const Product&)>& fn) const;
 
+    // Raw structure access for BranchBenchmark (no mutex, single-threaded use only)
+    LinkedList&             rawList()       { return _list; }
+    const LinkedList&       rawList()       const { return _list; }
+    SortedLinkedList&       rawSortedList() { return _sortedList; }
+    const SortedLinkedList& rawSortedList() const { return _sortedList; }
+    AVLTree&                rawAVL()        { return _avl; }
+    BTree&                  rawBTree()      { return _btree; }
+    BPlusTree&              rawBPlus()      { return _bplus; }
+    HashTable&              rawHash()       { return _hash; }
+
+    // Thread-safe queue wrappers (usados por TransferService y RealtimeTransfer)
+    void enqueueIngreso(const Product& p);
+    void dequeueIngreso();
+    void enqueuePreparacion(const Product& p);
+    void dequeuePreparacion();
+    void enqueueSalida(const Product& p);
+    void dequeueSalida();
+
 private:
+    mutable std::mutex _mtx;
     int _id;
     std::string _nombre;
     std::string _ubicacion;

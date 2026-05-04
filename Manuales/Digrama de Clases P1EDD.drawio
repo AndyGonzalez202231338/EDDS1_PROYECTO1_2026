@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" version="29.6.1">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36">
   <diagram name="Página-1" id="FfI1CR-Ngl8qWggUqz78">
-    <mxGraphModel dx="1888" dy="899" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2250" dy="1085" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -85,7 +85,7 @@
         <mxCell id="linkedlist_pub" parent="1" style="text;html=1;strokeColor=#d79b00;fillColor=#fff3e0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=11;fontFamily=Courier New;whiteSpace=wrap;" value="+ insertFront(p : Product) : void&#xa;+ remove(barcode : string) : void&#xa;+ searchSequential(key : string) : Product*&#xa;+ size() : int" vertex="1">
           <mxGeometry height="84" width="310" x="35" y="766" as="geometry" />
         </mxCell>
-        <mxCell id="sortedlist_title" parent="1" style="text;html=1;strokeColor=none;fillColor=#d79b00;align=center;verticalAlign=middle;spacingTop=-4;fontStyle=1;fontSize=13;fontColor=#ffffff;whiteSpace=wrap;" value="SortedLinkedList" vertex="1">
+        <mxCell id="sortedlist_title" parent="1" style="text;html=1;strokeColor=none;fillColor=#d79b00;align=center;verticalAlign=middle;spacingTop=-4;fontStyle=1;fontSize=13;fontColor=#ffffff;whiteSpace=wrap;" value="Hash" vertex="1">
           <mxGeometry height="30" width="310" x="70" y="926" as="geometry" />
         </mxCell>
         <mxCell id="sortedlist_attrs" parent="1" style="text;html=1;strokeColor=#d79b00;fillColor=#fff3e0;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=11;fontFamily=Courier New;whiteSpace=wrap;" value="- head : ListNode*&#xa;- _size : int" vertex="1">
@@ -264,6 +264,119 @@
         </mxCell>
         <mxCell id="aHy_I_9mqWr8XLsxYXqS-4" connectable="0" parent="aHy_I_9mqWr8XLsxYXqS-3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontStyle=2;" value="usa" vertex="1">
           <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-1" parent="1" style="text;html=1;strokeColor=none;fillColor=#f8cecc;align=center;verticalAlign=middle;spacingTop=-4;fontStyle=1;fontSize=13;fontColor=#b85450;whiteSpace=wrap;" value="Sucursal" vertex="1">
+          <mxGeometry height="30" width="260" x="304" y="1159" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-2" parent="1" style="text;html=1;strokeColor=#b85450;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=11;fontFamily=Courier New;whiteSpace=wrap;" value="&lt;span style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;- id : int&lt;/span&gt;&lt;br style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;- nombre : string&lt;/span&gt;&lt;br style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;&lt;br style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;- hash : HashTable&lt;/span&gt;&lt;br style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;- avl : AVLTree&lt;/span&gt;&lt;br style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;- btree : BTree&lt;/span&gt;&lt;br style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;&lt;br style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;- queueIngreso : Queue&lt;/span&gt;&lt;br style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;- queueSalida : Queue&lt;/span&gt;" vertex="1">
+          <mxGeometry height="160" width="260" x="304" y="1189" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-3" parent="1" style="text;html=1;strokeColor=#b85450;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=11;fontFamily=Courier New;whiteSpace=wrap;" value="&lt;span style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;+ insertProduct()&lt;/span&gt;&lt;br style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; text-align: center; text-wrap-mode: nowrap;&quot;&gt;+ searchByBarcode()&lt;/span&gt;" vertex="1">
+          <mxGeometry height="56" width="260" x="304" y="1349" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-4" parent="1" style="text;html=1;strokeColor=none;fillColor=#f8cecc;align=center;verticalAlign=middle;spacingTop=-4;fontStyle=1;fontSize=13;fontColor=#b85450;whiteSpace=wrap;" value="BranchManager" vertex="1">
+          <mxGeometry height="30" width="260" x="690" y="1100" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-5" parent="1" style="text;html=1;strokeColor=#b85450;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=11;fontFamily=Courier New;whiteSpace=wrap;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: transparent; font-size: 12px; text-wrap-mode: nowrap;&quot;&gt;&lt;font face=&quot;Helvetica&quot;&gt;- branches : Branch[]&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="260" x="690" y="1130" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-6" parent="1" style="text;html=1;strokeColor=#b85450;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=11;fontFamily=Courier New;whiteSpace=wrap;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;font face=&quot;Helvetica&quot;&gt;&lt;span style=&quot;font-size: 12px; text-wrap-mode: nowrap;&quot;&gt;+ addBranch()&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;font face=&quot;Helvetica&quot;&gt;&lt;span style=&quot;font-size: 12px; text-wrap-mode: nowrap;&quot;&gt;+ findBranch()&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="56" width="260" x="690" y="1180" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-10" parent="1" style="text;html=1;strokeColor=none;fillColor=#5f5e5a;align=center;verticalAlign=middle;spacingTop=-4;fontStyle=1;fontSize=13;fontColor=#ffffff;whiteSpace=wrap;" value="SimulationEngine" vertex="1">
+          <mxGeometry height="30" width="250" x="695" y="1267" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-11" parent="1" style="text;html=1;strokeColor=#888780;fillColor=#f1efe8;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=11;fontFamily=Courier New;whiteSpace=wrap;" value="&lt;div&gt;- graph : Graph&lt;/div&gt;&lt;div&gt;- branchManager : BranchManager&lt;/div&gt;" vertex="1">
+          <mxGeometry height="48" width="250" x="695" y="1297" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-12" parent="1" style="text;html=1;strokeColor=#888780;fillColor=#f1efe8;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=11;fontFamily=Courier New;whiteSpace=wrap;" value="&lt;div&gt;+ startTransfer()&lt;/div&gt;&lt;div&gt;+ processTick()&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="250" x="695" y="1345" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-13" parent="1" style="text;html=1;strokeColor=none;fillColor=#3b6d11;align=center;verticalAlign=middle;spacingTop=-4;fontStyle=1;fontSize=13;fontColor=#ffffff;whiteSpace=wrap;" value="Graph" vertex="1">
+          <mxGeometry height="30" width="250" x="1060" y="1180" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-14" parent="1" style="text;html=1;strokeColor=#6aaf6a;fillColor=#eaf5ea;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=11;fontFamily=Courier New;whiteSpace=wrap;" value="&lt;div&gt;- nodes : GraphNode*&lt;/div&gt;&lt;div&gt;- count : int&lt;/div&gt;" vertex="1">
+          <mxGeometry height="46" width="250" x="1060" y="1210" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-15" parent="1" style="text;html=1;strokeColor=#6aaf6a;fillColor=#eaf5ea;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=11;fontFamily=Courier New;whiteSpace=wrap;" value="&lt;div&gt;+ addBranch(id)&lt;/div&gt;&lt;div&gt;+ addEdge(o,d,t,c)&lt;/div&gt;&lt;div&gt;+ removeEdge()&lt;/div&gt;&lt;div&gt;+ shortestPathByTime()&lt;/div&gt;&lt;div&gt;+ shortestPathByCost()&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="250" x="1060" y="1256" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-16" parent="1" style="text;html=1;strokeColor=none;fillColor=#3b6d11;align=center;verticalAlign=middle;spacingTop=-4;fontStyle=1;fontSize=13;fontColor=#ffffff;whiteSpace=wrap;" value="GraphNode" vertex="1">
+          <mxGeometry height="30" width="250" x="1380" y="1258" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-17" parent="1" style="text;html=1;strokeColor=#6aaf6a;fillColor=#eaf5ea;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=11;fontFamily=Courier New;whiteSpace=wrap;" value="&lt;div&gt;- branchId : int&lt;/div&gt;&lt;div&gt;- edges : Edge*&lt;/div&gt;" vertex="1">
+          <mxGeometry height="46" width="250" x="1380" y="1288" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-19" parent="1" style="text;html=1;strokeColor=none;fillColor=#3b6d11;align=center;verticalAlign=middle;spacingTop=-4;fontStyle=1;fontSize=13;fontColor=#ffffff;whiteSpace=wrap;" value="Edge" vertex="1">
+          <mxGeometry height="30" width="250" x="1380" y="1112" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-20" parent="1" style="text;html=1;strokeColor=#6aaf6a;fillColor=#eaf5ea;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=11;fontFamily=Courier New;whiteSpace=wrap;" value="&lt;div&gt;- destId : int&lt;/div&gt;&lt;div&gt;- tiempo : double&lt;/div&gt;&lt;div&gt;- costo : double&lt;/div&gt;" vertex="1">
+          <mxGeometry height="56" width="250" x="1380" y="1142" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-22" edge="1" parent="1" source="LwgBIb3p-er41dENo-JT-1" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;endArrow=open;endFill=0;startArrow=none;strokeColor=#b85450;dashed=1;" target="catalog_pub">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="1169" />
+              <mxPoint x="640" y="1100" />
+              <mxPoint x="670" y="1100" />
+              <mxPoint x="670" y="1068" />
+            </Array>
+            <mxPoint x="916" y="1416" as="sourcePoint" />
+            <mxPoint x="310" y="1394" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-24" edge="1" parent="1" source="LwgBIb3p-er41dENo-JT-6" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0.984;entryY=0.433;entryDx=0;entryDy=0;endArrow=open;endFill=0;startArrow=none;strokeColor=#b85450;dashed=1;entryPerimeter=0;" target="LwgBIb3p-er41dENo-JT-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="680" y="1258" />
+              <mxPoint x="641" y="1258" />
+              <mxPoint x="641" y="1260" />
+              <mxPoint x="666" y="1260" />
+              <mxPoint x="666" y="1258" />
+            </Array>
+            <mxPoint x="610" y="1561" as="sourcePoint" />
+            <mxPoint x="666" y="1460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-25" edge="1" parent="1" source="LwgBIb3p-er41dENo-JT-12" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.997;entryY=0.866;entryDx=0;entryDy=0;endArrow=open;endFill=0;startArrow=none;strokeColor=#888780;dashed=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryPerimeter=0;" target="LwgBIb3p-er41dENo-JT-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="695" y="1350" />
+              <mxPoint x="670" y="1350" />
+              <mxPoint x="670" y="1328" />
+            </Array>
+            <mxPoint x="770" y="1580" as="sourcePoint" />
+            <mxPoint x="570" y="1581" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-26" connectable="0" parent="LwgBIb3p-er41dENo-JT-25" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontStyle=2;" value="usa" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-27" edge="1" parent="1" source="LwgBIb3p-er41dENo-JT-12" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;endArrow=open;endFill=0;startArrow=none;strokeColor=#888780;dashed=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" target="LwgBIb3p-er41dENo-JT-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="945" y="1350" />
+              <mxPoint x="1020" y="1350" />
+              <mxPoint x="1020" y="1276" />
+            </Array>
+            <mxPoint x="1250" y="1500" as="sourcePoint" />
+            <mxPoint x="1050" y="1501" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-28" connectable="0" parent="LwgBIb3p-er41dENo-JT-27" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontStyle=2;" value="usa" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-29" edge="1" parent="1" source="LwgBIb3p-er41dENo-JT-15" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;endArrow=diamond;endFill=1;startArrow=none;strokeColor=#3b6d11;" target="LwgBIb3p-er41dENo-JT-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1340" y="1400" as="sourcePoint" />
+            <mxPoint x="1430" y="1421" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LwgBIb3p-er41dENo-JT-30" edge="1" parent="1" source="LwgBIb3p-er41dENo-JT-14" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=diamond;endFill=1;startArrow=none;strokeColor=#3b6d11;" target="LwgBIb3p-er41dENo-JT-20">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1360" y="1170" as="sourcePoint" />
+            <mxPoint x="1450" y="1191" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>

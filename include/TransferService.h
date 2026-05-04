@@ -11,10 +11,11 @@ struct TransferResult {
     int         path[200];
     int         length;
     double      totalTime;
+    double      totalCost;
     std::string steps[600];
     int         stepCount;
 
-    TransferResult() : ok(false), length(0), totalTime(0.0), stepCount(0) {}
+    TransferResult() : ok(false), length(0), totalTime(0.0), totalCost(0.0), stepCount(0) {}
 };
 
 class TransferService {

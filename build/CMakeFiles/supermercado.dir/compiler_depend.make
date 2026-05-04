@@ -1783,12 +1783,17 @@ CMakeFiles/supermercado.dir/src/Catalog.cpp.o: ../src/Catalog.cpp \
   ../include/CSVLoader.h \
   ../include/BranchManager.h \
   ../include/Branch.h \
-  /usr/include/c++/11/iostream \
+  /usr/include/c++/11/mutex \
   /usr/include/c++/11/chrono \
   /usr/include/c++/11/ratio \
   /usr/include/c++/11/limits \
   /usr/include/c++/11/ctime \
   /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/include/c++/11/bits/std_mutex.h \
+  /usr/include/c++/11/bits/unique_lock.h \
+  ../include/Queue.h \
+  ../include/Graph.h \
+  /usr/include/c++/11/iostream \
   /usr/include/c++/11/iomanip \
   /usr/include/c++/11/locale \
   /usr/include/c++/11/bits/locale_facets_nonio.h \
@@ -3332,6 +3337,10 @@ CMakeFiles/supermercado.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
+
+../src/Graph.cpp:
+
 /usr/include/stdlib.h:
 
 /usr/include/c++/11/bits/string_view.tcc:
@@ -3361,6 +3370,8 @@ CMakeFiles/supermercado.dir/src/main.cpp.o: ../src/main.cpp \
 ../src/LinkedList.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
+
+/usr/include/c++/11/mutex:
 
 /usr/include/c++/11/ext/atomicity.h:
 
@@ -3421,8 +3432,6 @@ CMakeFiles/supermercado.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/unordered_map:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
-../include/Product.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
@@ -3518,6 +3527,12 @@ CMakeFiles/supermercado.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/bits/stl_iterator.h:
 
+/usr/include/c++/11/climits:
+
+/usr/include/c++/11/bits/sstream.tcc:
+
+/usr/include/c++/11/new:
+
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h:
 
 /usr/include/c++/11/string_view:
@@ -3558,6 +3573,12 @@ CMakeFiles/supermercado.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/linux/errno.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h:
+
+/usr/include/c++/11/debug/debug.h:
+
+/usr/include/features-time64.h:
+
 /usr/include/c++/11/ext/string_conversions.h:
 
 /usr/include/c++/11/bits/exception_ptr.h:
@@ -3575,6 +3596,8 @@ CMakeFiles/supermercado.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/debug/assertions.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
+
+/usr/include/c++/11/bits/std_mutex.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
@@ -3612,6 +3635,10 @@ CMakeFiles/supermercado.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/cstdint:
 
+../include/Product.h:
+
+../include/Queue.h:
+
 /usr/include/wchar.h:
 
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
@@ -3635,8 +3662,6 @@ CMakeFiles/supermercado.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/bits/predefined_ops.h:
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
-
-../src/Graph.cpp:
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
 
@@ -3756,21 +3781,7 @@ CMakeFiles/supermercado.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/bits/stl_relops.h:
 
-/usr/include/c++/11/debug/debug.h:
-
-/usr/include/features-time64.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h:
-
 /usr/include/c++/11/array:
-
-/usr/include/c++/11/bits/sstream.tcc:
-
-/usr/include/c++/11/new:
-
-/usr/include/c++/11/climits:
-
-/usr/include/c++/11/bits/uses_allocator.h:
 
 /usr/include/c++/11/bits/refwrap.h:
 
@@ -3834,8 +3845,6 @@ CMakeFiles/supermercado.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
-
 /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
 
 /usr/include/c++/11/bits/locale_conv.h:
@@ -3855,3 +3864,7 @@ CMakeFiles/supermercado.dir/src/main.cpp.o: ../src/main.cpp \
 ../include/BranchManager.h:
 
 ../src/Catalog.cpp:
+
+/usr/include/c++/11/bits/uses_allocator.h:
+
+/usr/include/c++/11/bits/unique_lock.h:

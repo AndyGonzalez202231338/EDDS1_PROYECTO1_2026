@@ -1,1 +1,14 @@
-<p>branch-detail works!</p>
+<div class="branch-detail-container">
+  <h1>Productos - Sucursal {{ branchId }}</h1>
+
+  <!-- Componente de historial -->
+  <app-operation-history 
+    [branchId]="branchId"
+    (refreshProducts)="onRefreshFromHistory()">
+  </app-operation-history>
+
+  <!-- Tu tabla de productos existente -->
+  <div class="products-table">
+    <!-- ...tabla de productos... -->
+  </div>
+</div>

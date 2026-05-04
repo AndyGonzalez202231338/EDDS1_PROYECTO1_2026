@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
 
-# Fuentes comunes a ambos ejecutables (sin main ni server)
+# Fuentes comunes a ambos ejecutables
 set(COMMON_SOURCES
     src/Product.cpp
     src/Logger.cpp
@@ -23,6 +23,7 @@ set(COMMON_SOURCES
     src/Branch.cpp
     src/BranchManager.cpp
     src/TransferService.cpp
+    src/BranchBenchmark.cpp
 )
 
 # Ejecutable 1: menú de consola interactivo 
@@ -43,6 +44,8 @@ add_executable(supermercado_server
     ${COMMON_SOURCES}
     src/Server.cpp
     src/InventoryService.cpp
+    src/RealtimeTransfer.cpp
+    src/SimulationEngine.cpp
 )
 target_include_directories(supermercado_server PRIVATE include)
 

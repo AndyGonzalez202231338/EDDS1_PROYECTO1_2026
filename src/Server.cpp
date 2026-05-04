@@ -2,15 +2,24 @@
 #include "json.hpp"
 #include "Catalog.h"
 #include "Benchmark.h"
+#include "BranchBenchmark.h"
 #include "BranchManager.h"
 #include "InventoryService.h"
 #include "Graph.h"
 #include "CSVLoader.h"
 #include "TransferService.h"
+#include "RealtimeTransfer.h"
+#include "SimulationEngine.h"
+#include "Stack.h"
+#include "OperationHistory.h"
 #include <fstream>
 #include <cstdlib>
 #include <iostream>
 #include <vector>
+#include <chrono>
+
+using SvClock = std::chrono::high_resolution_clock;
+using SvUs    = std::chrono::duration<double, std::micro>;
 
 using json = nlohmann::json;
 
@@ -47,6 +56,12 @@ static void setCORS(httplib::Response& res) {
     res.set_header("Access-Control-Allow-Origin", "*");
 }
 
+static std::string getBranchName(BranchManager& bm, int branchId) {
+    Branch* b = bm.findBranch(branchId);
+    if (b) return b->getNombre();
+    return "Sucursal " + std::to_string(branchId);
+}
+
 int main() {
     system("mkdir -p ../resultados");
     Catalog catalog("../resultados/errors.log");
@@ -55,6 +70,11 @@ int main() {
     InventoryService inventory(branchManager);
     Graph graph;
     TransferService transferService(branchManager, graph);
+    RealtimeTransferManager realtimeMgr;
+    SimulationEngine simEngine(branchManager, graph);
+
+    // Historial de operaciones (máximo 50 entradas)
+    Stack<HistoryEntry> operationHistory;
 
     httplib::Server svr;
 
@@ -127,8 +147,8 @@ int main() {
         std::string barcode  = body.value("barcode",  "");
         int         originId = body.value("originId", -1);
         int         destId   = body.value("destId",   -1);
-        // Accept "type" (PDF spec) or legacy "criteria"
         std::string typeVal  = body.value("type", body.value("criteria", "time"));
+        std::string mode     = body.value("mode", "fast");
         bool        byTime   = (typeVal != "cost");
 
         if (barcode.empty() || originId <= 0 || destId <= 0) {
@@ -138,28 +158,302 @@ int main() {
             return;
         }
 
-        TransferResult tr = transferService.simulate(barcode, originId, destId, byTime);
+        if (mode == "realtime") {
+            std::string error;
+            std::string tid = realtimeMgr.startTransfer(barcode, originId, destId, byTime,
+                                                        branchManager, graph, error);
+            if (tid.empty()) {
+                res.status = 400;
+                res.set_content(json{{"ok", false}, {"error", error}}.dump(), "application/json");
+                return;
+            }
+            res.set_content(json{{"ok", true}, {"transferId", tid}}.dump(), "application/json");
+            return;
+        }
 
+        // mode == "fast" (comportamiento original)
+        TransferResult tr = transferService.simulate(barcode, originId, destId, byTime);
         if (!tr.ok) {
             res.status = 400;
-            res.set_content(json{{"ok", false}, {"error", tr.error}}.dump(),
-                            "application/json");
+            res.set_content(json{{"ok", false}, {"error", tr.error}}.dump(), "application/json");
             return;
         }
 
         json path = json::array();
         for (int i = 0; i < tr.length; ++i) path.push_back(tr.path[i]);
-
         json steps = json::array();
         for (int i = 0; i < tr.stepCount; ++i) steps.push_back(tr.steps[i]);
 
-        json r = {
+        res.set_content(json{
             {"ok",        true},
             {"path",      path},
             {"totalTime", tr.totalTime},
+            {"totalCost", tr.totalCost},
             {"steps",     steps}
+        }.dump(), "application/json");
+    });
+
+    // GET /api/transfer/status/{id}
+    svr.Get(R"(/api/transfer/status/(.+))", [&](const httplib::Request& req, httplib::Response& res) {
+        setCORS(res);
+        std::string tid = req.matches[1].str();
+        TransferProgress prog;
+        if (!realtimeMgr.getProgress(tid, prog)) {
+            res.status = 404;
+            res.set_content(R"({"error":"Transfer no encontrado"})", "application/json");
+            return;
+        }
+
+        auto queueStr = [](QueueType q) -> std::string {
+            switch (q) {
+                case QueueType::INGRESO:     return "INGRESO";
+                case QueueType::PREPARACION: return "PREPARACION";
+                case QueueType::SALIDA:      return "SALIDA";
+            }
+            return "INGRESO";
         };
+
+        json stepsArr = json::array();
+        for (const auto& s : prog.steps) stepsArr.push_back(s);
+
+        json queuesArr = json::array();
+        for (const auto& q : prog.queues) {
+            queuesArr.push_back({
+                {"branchId",       q.branchId},
+                {"queue",          queueStr(q.queue)},
+                {"position",       q.position},
+                {"elapsedSeconds", q.elapsedSeconds}
+            });
+        }
+
+        json r = {
+            {"id",               prog.id},
+            {"completed",        prog.completed},
+            {"currentBranch",    prog.currentBranch},
+            {"currentQueue",     queueStr(prog.currentQueue)},
+            {"totalAccumulated", prog.totalAccumulated},
+            {"steps",            stepsArr},
+            {"queues",           queuesArr}
+        };
+        if (!prog.error.empty()) r["error"] = prog.error;
+
         res.set_content(r.dump(), "application/json");
+    });
+
+    // ── SIMULACIÓN TICK-BASED ────────────────────────────────────────────────
+
+    // POST /api/sim/transfer — encola una transferencia en el motor de simulación
+    svr.Post("/api/sim/transfer", [&](const httplib::Request& req, httplib::Response& res) {
+        setCORS(res);
+        auto body = json::parse(req.body, nullptr, false);
+        if (body.is_discarded()) {
+            res.status = 400;
+            res.set_content(R"({"error":"JSON invalido"})", "application/json");
+            return;
+        }
+        std::string barcode  = body.value("barcode",  "");
+        int         originId = body.value("originId", -1);
+        int         destId   = body.value("destId",   -1);
+        std::string typeVal  = body.value("type", body.value("criteria", "time"));
+        bool        byTime   = (typeVal != "cost");
+        int         quantity = body.value("quantity", 0); // 0 = stock completo
+
+        if (barcode.empty() || originId <= 0 || destId <= 0) {
+            res.status = 400;
+            res.set_content(R"({"error":"barcode, originId y destId son requeridos"})", "application/json");
+            return;
+        }
+
+        // Validación de stock cuando se especifica quantity (solo lectura, sin modificar origen)
+        if (quantity > 0) {
+            Branch* origin = branchManager.findBranch(originId);
+            if (!origin) {
+                res.status = 404;
+                res.set_content(json{{"ok", false}, {"error", "Sucursal origen no encontrada"}}.dump(), "application/json");
+                return;
+            }
+            Product* prod = origin->searchByBarcode(barcode);
+            if (!prod) {
+                res.status = 404;
+                res.set_content(json{{"ok", false}, {"error", "Producto no encontrado en sucursal origen"}}.dump(), "application/json");
+                return;
+            }
+            if (prod->stock < quantity) {
+                res.status = 400;
+                res.set_content(json{{"ok", false}, {"error",
+                    "Stock insuficiente: disponible " + std::to_string(prod->stock)}}.dump(), "application/json");
+                return;
+            }
+        }
+
+        std::string error;
+        std::string tid = simEngine.startTransfer(barcode, originId, destId, byTime, error, quantity);
+        if (tid.empty()) {
+            res.status = 400;
+            res.set_content(json{{"ok", false}, {"error", error}}.dump(), "application/json");
+            return;
+        }
+        res.set_content(json{{"ok", true}, {"transferId", tid}}.dump(), "application/json");
+    });
+
+    // GET /api/sim/state — snapshot del estado actual de todas las transferencias activas
+    svr.Get("/api/sim/state", [&](const httplib::Request&, httplib::Response& res) {
+        setCORS(res);
+        SimSnapshot snap = simEngine.getSnapshot();
+
+        json branchesArr = json::array();
+        for (const auto& bs : snap.branches) {
+            auto fillQueue = [](const std::vector<SimQueueEntry>& q) {
+                json arr = json::array();
+                for (const auto& e : q)
+                    arr.push_back({
+                        {"transferId",  e.transferId},
+                        {"barcode",     e.barcode},
+                        {"productName", e.productName},
+                        {"waitTicks",   e.waitTicks},
+                        {"etaTicks",    e.etaTicks}
+                    });
+                return arr;
+            };
+            branchesArr.push_back({
+                {"branchId",     bs.branchId},
+                {"branchName",   bs.branchName},
+                {"colaIngreso",  fillQueue(bs.colaIngreso)},
+                {"colaTraspaso", fillQueue(bs.colaTraspaso)},
+                {"colaSalida",   fillQueue(bs.colaSalida)}
+            });
+        }
+
+        json completedArr = json::array();
+        for (const auto& c : snap.recentCompleted)
+            completedArr.push_back({
+                {"transferId",    c.transferId},
+                {"barcode",       c.barcode},
+                {"completedTick", c.completedTick},
+                {"originId",      c.originId},
+                {"destId",        c.destId},
+                {"ok",            c.ok},
+                {"error",         c.error}
+            });
+
+        res.set_content(json{
+            {"currentTick",      snap.currentTick},
+            {"branches",         branchesArr},
+            {"recentCompleted",  completedArr}
+        }.dump(), "application/json");
+    });
+
+    // GET /api/sim/tick — tick actual
+    svr.Get("/api/sim/tick", [&](const httplib::Request&, httplib::Response& res) {
+        setCORS(res);
+        res.set_content(json{{"tick", simEngine.getCurrentTick()}}.dump(), "application/json");
+    });
+
+    // ── BATCH QUEUE ──────────────────────────────────────────────────────────
+    // POST /api/sim/batch/add — agrega una transferencia a la cola pendiente
+    svr.Post("/api/sim/batch/add", [&](const httplib::Request& req, httplib::Response& res) {
+        setCORS(res);
+        auto body = json::parse(req.body, nullptr, false);
+        if (body.is_discarded()) {
+            res.status = 400;
+            res.set_content(R"({"error":"JSON invalido"})", "application/json");
+            return;
+        }
+        BatchTransferRequest r;
+        r.barcode  = body.value("barcode",  "");
+        r.originId = body.value("originId", -1);
+        r.destId   = body.value("destId",   -1);
+        r.label    = body.value("label",    "");
+        r.quantity = body.value("quantity", 0);
+        std::string typeVal = body.value("type", body.value("criteria", "time"));
+        r.byTime   = (typeVal != "cost");
+
+        if (r.barcode.empty() || r.originId <= 0 || r.destId <= 0) {
+            res.status = 400;
+            res.set_content(R"({"error":"barcode, originId y destId son requeridos"})", "application/json");
+            return;
+        }
+
+        // Validación de stock cuando se especifica quantity
+        if (r.quantity > 0) {
+            Branch* origin = branchManager.findBranch(r.originId);
+            if (!origin) {
+                res.status = 404;
+                res.set_content(json{{"ok", false}, {"error", "Sucursal origen no encontrada"}}.dump(), "application/json");
+                return;
+            }
+            Product* prod = origin->searchByBarcode(r.barcode);
+            if (!prod) {
+                res.status = 404;
+                res.set_content(json{{"ok", false}, {"error", "Producto no encontrado en sucursal origen"}}.dump(), "application/json");
+                return;
+            }
+            if (prod->stock < r.quantity) {
+                res.status = 400;
+                res.set_content(json{{"ok", false}, {"error",
+                    "Stock insuficiente: disponible " + std::to_string(prod->stock)}}.dump(), "application/json");
+                return;
+            }
+        }
+
+        std::string error;
+        if (!simEngine.addToBatch(r, error)) {
+            res.status = 400;
+            res.set_content(json{{"ok", false}, {"error", error}}.dump(), "application/json");
+            return;
+        }
+        auto batch = simEngine.getBatch();
+        res.set_content(json{{"ok", true}, {"pendingCount", (int)batch.size()}}.dump(), "application/json");
+    });
+
+    // GET /api/sim/batch — lista las transferencias pendientes en la cola
+    svr.Get("/api/sim/batch", [&](const httplib::Request&, httplib::Response& res) {
+        setCORS(res);
+        auto batch = simEngine.getBatch();
+        json arr = json::array();
+        for (int i = 0; i < (int)batch.size(); ++i) {
+            const auto& r = batch[i];
+            Branch* ob = branchManager.findBranch(r.originId);
+            Branch* db = branchManager.findBranch(r.destId);
+            arr.push_back({
+                {"index",      i},
+                {"barcode",    r.barcode},
+                {"originId",   r.originId},
+                {"originName", ob ? ob->getNombre() : ""},
+                {"destId",     r.destId},
+                {"destName",   db ? db->getNombre() : ""},
+                {"byTime",     r.byTime},
+                {"quantity",   r.quantity},
+                {"label",      r.label}
+            });
+        }
+        res.set_content(json{{"pending", arr}}.dump(), "application/json");
+    });
+
+    // DELETE /api/sim/batch — limpia la cola pendiente sin ejecutar
+    svr.Delete("/api/sim/batch", [&](const httplib::Request&, httplib::Response& res) {
+        setCORS(res);
+        simEngine.clearBatch();
+        res.set_content(R"({"ok":true})", "application/json");
+    });
+
+    // POST /api/sim/batch/execute — ejecuta todas las transferencias pendientes en orden
+    svr.Post("/api/sim/batch/execute", [&](const httplib::Request&, httplib::Response& res) {
+        setCORS(res);
+        auto results = simEngine.executeBatch();
+        json arr = json::array();
+        for (const auto& r : results) {
+            json item = {
+                {"barcode",    r.barcode},
+                {"originId",   r.originId},
+                {"destId",     r.destId},
+                {"ok",         !r.transferId.empty()},
+                {"transferId", r.transferId}
+            };
+            if (!r.error.empty()) item["error"] = r.error;
+            arr.push_back(item);
+        }
+        res.set_content(json{{"executed", (int)results.size()}, {"results", arr}}.dump(), "application/json");
     });
 
     svr.Options(".*", [](const httplib::Request&, httplib::Response& res) {
@@ -269,16 +563,42 @@ int main() {
     });
 
     // ELIMINAR PRODUCTO
-    svr.Delete(R"(/api/products/(.+))", [&](const httplib::Request& req, httplib::Response& res) {
-        setCORS(res);
-        std::string barcode = urlDecode(req.matches[1]);
-        if (catalog.removeProduct(barcode)) {
-            res.set_content("{\"ok\":true}", "application/json");
-        } else {
-            res.status = 404;
-            res.set_content("{\"error\":\"Producto no encontrado\"}", "application/json");
-        }
-    });
+    // DELETE /branch/{id}/product/{barcode}
+svr.Delete(R"(/branch/(\d+)/product/([^/]+))", [&](const httplib::Request& req, httplib::Response& res) {
+    setCORS(res);  // <-- AGREGAR ESTO
+    int branchId = std::stoi(req.matches[1].str());
+    std::string barcode = req.matches[2].str();
+
+    // Copiar el producto ANTES de eliminarlo (no guardar el puntero)
+    std::string searchError;
+    Product* ptr = inventory.searchByBarcode(branchId, barcode, searchError);
+    bool hadProduct = (ptr != nullptr);
+    Product productCopy;          // <-- copia por valor
+    if (hadProduct) productCopy = *ptr;  // <-- copiar antes del delete
+
+    std::string error;
+    auto t0 = SvClock::now();
+    bool removed = inventory.removeProduct(branchId, barcode, error);
+    auto t1 = SvClock::now();
+    double timeUs = SvUs(t1 - t0).count();
+
+    if (!removed) {
+        res.status = 404;
+        res.set_content(json({{"error", error}}).dump(), "application/json");
+        return;
+    }
+
+    // Usar la copia, no el puntero original
+    if (hadProduct && operationHistory.getSize() < 50) {
+        std::string branchName = getBranchName(branchManager, branchId);
+        std::string desc = "Eliminar " + productCopy.name + " de " + branchName;
+        HistoryEntry entry(OpType::REMOVE, branchId, productCopy, desc);
+        operationHistory.push(entry);
+    }
+
+    res.status = 200;
+    res.set_content(json({{"ok", true}, {"timeUs", timeUs}}).dump(), "application/json");
+});
 
     // CARGAR CSV POR RUTA
     svr.Post("/api/load", [&](const httplib::Request& req, httplib::Response& res) {
@@ -411,6 +731,75 @@ int main() {
         res.set_content(arr.dump(), "application/json");
     });
 
+    // GET /api/branches/{id}/benchmark — benchmark de las estructuras de una sucursal
+    svr.Get(R"(/api/branches/(\d+)/benchmark)", [&](const httplib::Request& req, httplib::Response& res) {
+        setCORS(res);
+        int branchId = std::stoi(req.matches[1].str());
+        Branch* branch = branchManager.findBranch(branchId);
+        if (!branch) {
+            res.status = 404;
+            res.set_content(R"({"error":"Sucursal no encontrada"})", "application/json");
+            return;
+        }
+        if (branch->isInventoryEmpty()) {
+            res.status = 400;
+            res.set_content(R"({"error":"La sucursal no tiene productos. Carga al menos uno primero."})",
+                            "application/json");
+            return;
+        }
+        BranchBenchmark bm(*branch, 20, 5);
+        bm.run();
+        json arr = json::array();
+        for (int i = 0; i < bm.getResultCount(); ++i) {
+            const BenchmarkResult& r = bm.getResults()[i];
+            arr.push_back({
+                {"operation",  r.operation},
+                {"structure",  r.structure},
+                {"caseType",   r.caseType},
+                {"avgTimeUs",  r.avgTimeUs},
+                {"minTimeUs",  r.minTimeUs},
+                {"maxTimeUs",  r.maxTimeUs}
+            });
+        }
+        res.set_content(arr.dump(), "application/json");
+    });
+
+    // GET /api/branch/{id}/products
+    svr.Get(R"(/api/branch/(\d+)/products)", [&](const httplib::Request& req, httplib::Response& res) {
+        int branchId = std::stoi(req.matches[1].str());
+        std::string error;
+        auto products = inventory.listProducts(branchId, error);
+        if (!error.empty()) {
+            res.status = 404;
+            res.set_content(json({{"error", error}}).dump(), "application/json");
+            return;
+        }
+        auto statusStr = [](ProductStatus s) -> std::string {
+            switch (s) {
+                case ProductStatus::IN_TRANSIT:    return "IN_TRANSIT";
+                case ProductStatus::DEPLETED:      return "DEPLETED";
+                case ProductStatus::EN_PREPARACION: return "EN_PREPARACION";
+                case ProductStatus::EN_ESPERA:     return "EN_ESPERA";
+                default:                           return "AVAILABLE";
+            }
+        };
+        json arr = json::array();
+        for (const auto& p : products) {
+            arr.push_back({
+                {"name", p.name},
+                {"barcode", p.barcode},
+                {"category", p.category},
+                {"expiry_date", p.expiry_date},
+                {"brand", p.brand},
+                {"price", p.price},
+                {"stock", p.stock},
+                {"status", statusStr(p.status)},
+                {"branchId", p.branchId}
+            });
+        }
+        res.set_content(arr.dump(), "application/json");
+    });
+
     // POST /branch/{id}/product
     svr.Post(R"(/branch/(\d+)/product)", [&](const httplib::Request& req, httplib::Response& res) {
         int branchId = std::stoi(req.matches[1].str());
@@ -433,14 +822,27 @@ int main() {
         );
 
         std::string error;
-        if (!inventory.insertProduct(branchId, p, error)) {
+        auto t0 = SvClock::now();
+        bool inserted = inventory.insertProduct(branchId, p, error);
+        auto t1 = SvClock::now();
+        double timeUs = SvUs(t1 - t0).count();
+
+        if (!inserted) {
             res.status = (error == "Branch no existe") ? 404 : 400;
             res.set_content(json({{"error", error}}).dump(), "application/json");
             return;
         }
 
+        // Registrar en el historial si la pila no está llena
+        if (operationHistory.getSize() < 50) {
+            std::string branchName = getBranchName(branchManager, branchId);
+            std::string desc = "Insertar " + p.name + " en " + branchName;
+            HistoryEntry entry(OpType::INSERT, branchId, p, desc);
+            operationHistory.push(entry);
+        }
+
         res.status = 201;
-        res.set_content(R"({"ok":true})", "application/json");
+        res.set_content(json({{"ok", true}, {"timeUs", timeUs}}).dump(), "application/json");
     });
 
     // GET /branch/{id}/product/{barcode}
@@ -449,7 +851,11 @@ int main() {
         std::string barcode = req.matches[2].str();
 
         std::string error;
+        auto t0 = SvClock::now();
         Product* p = inventory.searchByBarcode(branchId, barcode, error);
+        auto t1 = SvClock::now();
+        double timeUs = SvUs(t1 - t0).count();
+
         if (!error.empty()) {
             res.status = 404;
             res.set_content(json({{"error", error}}).dump(), "application/json");
@@ -469,7 +875,8 @@ int main() {
             {"brand", p->brand},
             {"price", p->price},
             {"stock", p->stock},
-            {"branchId", p->branchId}
+            {"branchId", p->branchId},
+            {"timeUs", timeUs}
         };
 
         res.status = 200;
@@ -481,15 +888,165 @@ int main() {
         int branchId = std::stoi(req.matches[1].str());
         std::string barcode = req.matches[2].str();
 
+        // Obtener el producto antes de eliminarlo (para el historial)
+        std::string searchError;
+        Product* productToRemove = inventory.searchByBarcode(branchId, barcode, searchError);
+
         std::string error;
-        if (!inventory.removeProduct(branchId, barcode, error)) {
-            res.status = (error == "Branch no existe") ? 404 : 404;
+        auto t0 = SvClock::now();
+        bool removed = inventory.removeProduct(branchId, barcode, error);
+        auto t1 = SvClock::now();
+        double timeUs = SvUs(t1 - t0).count();
+
+        if (!removed) {
+            res.status = 404;
             res.set_content(json({{"error", error}}).dump(), "application/json");
             return;
         }
 
+        // Registrar en el historial si la pila no está llena
+        if (productToRemove && operationHistory.getSize() < 50) {
+            std::string branchName = getBranchName(branchManager, branchId);
+            std::string desc = "Eliminar " + productToRemove->name + " de " + branchName;
+            HistoryEntry entry(OpType::REMOVE, branchId, *productToRemove, desc);
+            operationHistory.push(entry);
+        }
+
         res.status = 200;
-        res.set_content(R"({"ok":true})", "application/json");
+        res.set_content(json({{"ok", true}, {"timeUs", timeUs}}).dump(), "application/json");
+    });
+
+    // GET /branch/{id}/products/name/{name}  — AVL
+    svr.Get(R"(/branch/(\d+)/products/name/(.+))", [&](const httplib::Request& req, httplib::Response& res) {
+        setCORS(res);
+        int branchId = std::stoi(req.matches[1].str());
+        std::string name = urlDecode(req.matches[2].str());
+
+        std::string error;
+        auto t0 = SvClock::now();
+        Product* p = inventory.searchByName(branchId, name, error);
+        auto t1 = SvClock::now();
+        double timeUs = SvUs(t1 - t0).count();
+
+        if (!error.empty()) {
+            res.status = 404;
+            res.set_content(json({{"error", error}}).dump(), "application/json");
+            return;
+        }
+        if (p == nullptr) {
+            res.status = 404;
+            res.set_content(R"({"error":"Producto no encontrado"})", "application/json");
+            return;
+        }
+
+        json out = productToJson(*p);
+        out["timeUs"] = timeUs;
+        res.status = 200;
+        res.set_content(out.dump(), "application/json");
+    });
+
+    // GET /branch/{id}/products/category/{category}
+    svr.Get(R"(/branch/(\d+)/products/category/(.+))", [&](const httplib::Request& req, httplib::Response& res) {
+        setCORS(res);
+        int branchId = std::stoi(req.matches[1].str());
+        std::string category = urlDecode(req.matches[2].str());
+
+        Branch* branch = branchManager.findBranch(branchId);
+        if (!branch) {
+            res.status = 404;
+            res.set_content(json({{"ok", false}, {"error", "Sucursal no encontrada"}}).dump(), "application/json");
+            return;
+        }
+
+        Product* results[1000];
+        int count = 0;
+        branch->searchByCategory(category, results, count, 1000);
+
+        json arr = json::array();
+        for (int i = 0; i < count; ++i) arr.push_back(productToJson(*results[i]));
+
+        res.set_content(json({
+            {"ok", true},
+            {"branchId", branchId},
+            {"category", category},
+            {"count", count},
+            {"products", arr}
+        }).dump(), "application/json");
+    });
+
+    // GET /branch/{id}/products/range?d1=YYYY-MM-DD&d2=YYYY-MM-DD
+    svr.Get(R"(/branch/(\d+)/products/range)", [&](const httplib::Request& req, httplib::Response& res) {
+        setCORS(res);
+        int branchId = std::stoi(req.matches[1].str());
+        std::string d1 = req.get_param_value("d1");
+        std::string d2 = req.get_param_value("d2");
+
+        if (d1.empty() || d2.empty()) {
+            res.status = 400;
+            res.set_content(json({{"ok", false}, {"error", "Faltan parámetros d1 y d2"}}).dump(), "application/json");
+            return;
+        }
+
+        Branch* branch = branchManager.findBranch(branchId);
+        if (!branch) {
+            res.status = 404;
+            res.set_content(json({{"ok", false}, {"error", "Sucursal no encontrada"}}).dump(), "application/json");
+            return;
+        }
+
+        Product* results[1000];
+        int count = 0;
+        branch->searchByDateRange(d1, d2, results, count, 1000);
+
+        json arr = json::array();
+        for (int i = 0; i < count; ++i) arr.push_back(productToJson(*results[i]));
+
+        res.set_content(json({
+            {"ok", true},
+            {"branchId", branchId},
+            {"d1", d1},
+            {"d2", d2},
+            {"count", count},
+            {"products", arr}
+        }).dump(), "application/json");
+    });
+
+    // GET /branch/{id}/trees — genera SVG de AVL, BTree y BPlus de la sucursal
+    svr.Get(R"(/branch/(\d+)/trees)", [&](const httplib::Request& req, httplib::Response& res) {
+        setCORS(res);
+        int branchId = std::stoi(req.matches[1].str());
+
+        Branch* branch = branchManager.findBranch(branchId);
+        if (!branch) {
+            res.status = 404;
+            res.set_content(json({{"error", "Sucursal no encontrada"}}).dump(), "application/json");
+            return;
+        }
+
+        auto genSVG = [&](const std::string& treeType,
+                          std::function<void(std::ofstream&)> writeFn) -> std::string {
+            std::string base    = "../resultados/branch_" + std::to_string(branchId) + "_" + treeType;
+            std::string dotPath = base + ".dot";
+            std::string svgPath = base + ".svg";
+
+            { std::ofstream out(dotPath); if (!out.is_open()) return ""; writeFn(out); }
+
+            std::string cmd = "/usr/bin/dot -Tsvg \"" + dotPath + "\" -o \"" + svgPath + "\" 2>/dev/null";
+            if (system(cmd.c_str()) != 0) return "";
+
+            std::ifstream svgFile(svgPath);
+            if (!svgFile.is_open()) return "";
+            return std::string((std::istreambuf_iterator<char>(svgFile)),
+                               std::istreambuf_iterator<char>());
+        };
+
+        json r = {
+            {"avl",   genSVG("AVL",   [&](std::ofstream& o){ branch->rawAVL().toDot(o);   })},
+            {"btree", genSVG("BTree", [&](std::ofstream& o){ branch->rawBTree().toDot(o); })},
+            {"bplus", genSVG("BPlus", [&](std::ofstream& o){ branch->rawBPlus().toDot(o); })},
+            {"hash",  genSVG("Hash",  [&](std::ofstream& o){ branch->rawHash().toDot(o);  })}
+        };
+        res.set_content(r.dump(), "application/json");
     });
 
     // ========== CSV ENDPOINTS ==========
@@ -679,6 +1236,76 @@ int main() {
         json r = {{"dot", dotContent}, {"svg", svgContent}};
         res.set_content(r.dump(), "application/json");
     });
+
+    // ========== UNDO/HISTORY ENDPOINTS ==========
+
+    // POST /api/undo - Deshacer última operación
+    svr.Post("/api/undo", [&](const httplib::Request&, httplib::Response& res) {
+        setCORS(res);
+
+        if (operationHistory.isEmpty()) {
+            res.status = 400;
+            res.set_content(json({{"ok", false}, {"error", "No hay operaciones para deshacer"}}).dump(), "application/json");
+            return;
+        }
+
+        HistoryEntry entry = operationHistory.pop();
+        Branch* branch = branchManager.findBranch(entry.branchId);
+
+        if (!branch) {
+            res.status = 404;
+            res.set_content(json({{"ok", false}, {"error", "Sucursal no encontrada"}}).dump(), "application/json");
+            return;
+        }
+
+        // Deshacer según el tipo de operación
+        std::string undoDescription;
+        if (entry.type == OpType::INSERT) {
+            branch->removeProduct(entry.product.barcode);
+            undoDescription = "Deshacer: Insertar " + entry.product.name;
+        } else {
+            branch->insertProduct(entry.product);
+            undoDescription = "Deshacer: Eliminar " + entry.product.name;
+        }
+
+        res.status = 200;
+        res.set_content(json({
+            {"ok", true},
+            {"undone", undoDescription},
+            {"branchId", entry.branchId},
+            {"barcode", entry.product.barcode}
+        }).dump(), "application/json");
+    });
+
+    // GET /api/undo/history - Ver historial sin modificarlo
+    svr.Get("/api/undo/history", [&](const httplib::Request&, httplib::Response& res) {
+        setCORS(res);
+
+        json arr = json::array();
+
+        // Iterar la pila desde el tope (más reciente) hacia abajo
+        // Usando acceso a _top del template SNode
+        SNode<HistoryEntry>* current = operationHistory.getTopNode();
+
+        while (current != nullptr) {
+            const HistoryEntry& entry = current->data;
+            std::string typeStr = (entry.type == OpType::INSERT) ? "INSERT" : "REMOVE";
+
+            arr.push_back({
+                {"type", typeStr},
+                {"branchId", entry.branchId},
+                {"barcode", entry.product.barcode},
+                {"description", entry.description}
+            });
+
+            current = current->next;
+        }
+
+        res.set_content(arr.dump(), "application/json");
+    });
+
+    // Servir archivos estáticos desde la carpeta public/
+    svr.set_mount_point("/", "../fronted/public");
 
     std::cout << "Backend corriendo en http://localhost:8080\n";
     svr.listen("0.0.0.0", 8080);

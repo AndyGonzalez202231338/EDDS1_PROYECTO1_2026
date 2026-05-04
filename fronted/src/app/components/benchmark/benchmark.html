@@ -1,20 +1,32 @@
-<!-- Header -->
+<!-- ── Header ──────────────────────────────────────────────────────────────── -->
 <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
   <div>
     <h5 class="mb-0 fw-bold">
       <i class="bi bi-graph-up-arrow me-2 text-primary"></i>Benchmark de Estructuras de Datos
     </h5>
     <p class="text-muted small mb-0 mt-1">
-      Compara el rendimiento de LinkedList, SortedLinkedList y AVL Tree para operaciones de búsqueda.
+      Compara LinkedList, SortedList, HashTable, AVL, B-Tree y B+ Tree por operación y caso.
     </p>
   </div>
-  <button class="btn btn-primary" (click)="run()" [disabled]="loading()">
-    @if (loading()) {
-      <span class="spinner-border spinner-border-sm me-1"></span> Ejecutando...
-    } @else {
-      <i class="bi bi-play-fill me-1"></i>Ejecutar Benchmark
-    }
-  </button>
+  <div class="d-flex gap-2 flex-wrap align-items-center">
+    <select
+      class="form-select form-select-sm"
+      (change)="onBranchChange($event)"
+      [value]="selectedBranchId() ? selectedBranchId()!.toString() : ''"
+      style="max-width: 260px;">
+      <option value="">-- Selecciona una sucursal --</option>
+      @for (branch of branches(); track branch.id) {
+        <option [value]="branch.id.toString()">{{ branch.nombre }} ({{ branch.ubicacion }})</option>
+      }
+    </select>
+    <button class="btn btn-primary btn-sm" (click)="run()" [disabled]="loading() || selectedBranchId() === null">
+      @if (loading()) {
+        <span class="spinner-border spinner-border-sm me-1"></span> Ejecutando...
+      } @else {
+        <i class="bi bi-play-fill me-1"></i>Ejecutar
+      }
+    </button>
+  </div>
 </div>
 
 @if (error()) {
@@ -24,26 +36,32 @@
   </div>
 }
 
-@if (results().length === 0 && !loading()) {
+<!-- ── Empty state ─────────────────────────────────────────────────────────── -->
+@if (!hasResults() && !loading()) {
   <div class="card border-0 shadow-sm">
     <div class="card-body text-center py-5 text-muted">
       <i class="bi bi-speedometer2 display-3 d-block mb-3 opacity-25"></i>
       <p class="fw-semibold mb-1">No hay resultados aún</p>
-      <p class="small mb-3">Haz clic en "Ejecutar Benchmark" para comparar las estructuras.</p>
-      <div class="d-flex justify-content-center gap-4 text-start small">
+      <p class="small mb-3">Selecciona una sucursal y haz clic en <strong>Ejecutar</strong>.</p>
+      <div class="d-flex justify-content-center gap-5 text-start small">
         <div>
-          <p class="mb-1 fw-semibold text-dark">Estructuras comparadas:</p>
-          <ul class="list-unstyled mb-0">
-            <li><i class="bi bi-dot text-primary"></i> LinkedList — O(n)</li>
-            <li><i class="bi bi-dot text-warning"></i> SortedLinkedList — O(log n) búsqueda binaria</li>
-            <li><i class="bi bi-dot text-success"></i> AVL Tree — O(log n)</li>
+          <p class="mb-2 fw-semibold text-dark">Estructuras comparadas:</p>
+          <ul class="list-unstyled mb-0 d-flex flex-column gap-1">
+            <li><span class="badge bg-danger me-1">LinkedList</span> lista sin orden</li>
+            <li><span class="badge bg-warning text-dark me-1">SortedList</span> lista ordenada</li>
+            <li><span class="badge bg-secondary me-1">HashTable</span> tabla hash (por barcode)</li>
+            <li><span class="badge bg-success me-1">AVL</span> árbol AVL (por nombre)</li>
+            <li><span class="badge bg-primary me-1">B-Tree</span> árbol B (por fecha)</li>
+            <li><span class="badge bg-info text-dark me-1">B+ Tree</span> árbol B+ (por categoría)</li>
           </ul>
         </div>
         <div>
-          <p class="mb-1 fw-semibold text-dark">Casos de prueba:</p>
-          <ul class="list-unstyled mb-0">
-            <li><i class="bi bi-check-circle text-success me-1"></i>Hit — elemento existente</li>
-            <li><i class="bi bi-x-circle text-danger me-1"></i>Miss — elemento inexistente</li>
+          <p class="mb-2 fw-semibold text-dark">Casos de búsqueda:</p>
+          <ul class="list-unstyled mb-0 d-flex flex-column gap-1">
+            <li><strong>Aleatorio</strong> — elemento en posición aleatoria</li>
+            <li><strong>Miss</strong> — elemento inexistente (recorre todo)</li>
+            <li><strong>Mejor caso</strong> — primero en lista ordenada</li>
+            <li><strong>Peor caso</strong> — último en lista sin orden</li>
           </ul>
         </div>
       </div>
@@ -51,103 +69,188 @@
   </div>
 }
 
-@if (results().length > 0) {
-  <!-- Results table -->
-  <div class="card border-0 shadow-sm mb-4">
-    <div class="card-header bg-dark text-white fw-semibold">
-      <i class="bi bi-table me-2"></i>Resultados detallados
-    </div>
-    <div class="table-responsive">
-      <table class="table table-hover align-middle mb-0">
-        <thead class="table-secondary">
-          <tr>
-            <th>Operación</th>
-            <th>Estructura</th>
-            <th>Caso</th>
-            <th class="text-end">Promedio</th>
-            <th class="text-end">Mínimo</th>
-            <th class="text-end">Máximo</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (r of results(); track r.structure + r.operation + r.caseType) {
-            <tr>
-              <td class="fw-semibold">{{ r.operation }}</td>
-              <td>
-                <span
-                  class="badge"
-                  [class.bg-danger]="r.structure === 'LinkedList'"
-                  [class.bg-warning]="r.structure === 'SortedLinkedList'"
-                  [class.text-dark]="r.structure === 'SortedLinkedList'"
-                  [class.bg-success]="r.structure === 'AVLTree'"
-                >
-                  {{ r.structure }}
-                </span>
-              </td>
-              <td>
-                @if (r.caseType === 'hit') {
-                  <span class="badge bg-success-subtle text-success">
-                    <i class="bi bi-check-circle me-1"></i>Hit
-                  </span>
-                } @else {
-                  <span class="badge bg-danger-subtle text-danger">
-                    <i class="bi bi-x-circle me-1"></i>Miss
-                  </span>
-                }
-              </td>
-              <td class="text-end" [class]="speedClass(r.avgTimeUs)">
-                {{ formatTime(r.avgTimeUs) }}
-              </td>
-              <td class="text-end text-muted small">{{ formatTime(r.minTimeUs) }}</td>
-              <td class="text-end text-muted small">{{ formatTime(r.maxTimeUs) }}</td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    </div>
+<!-- ── Results ─────────────────────────────────────────────────────────────── -->
+@if (hasResults()) {
+  <div class="alert alert-info d-flex align-items-center gap-2 mb-3 py-2" role="alert">
+    <i class="bi bi-building flex-shrink-0"></i>
+    <span><strong>Sucursal:</strong> {{ selectedBranchName }}</span>
+    <span class="ms-3 text-muted small">N=20 operaciones · M=5 repeticiones · tiempos promedio por operación individual</span>
   </div>
 
-  <!-- Summary cards -->
-  <h6 class="text-muted fw-semibold mb-2">
-    <i class="bi bi-trophy me-1 text-warning"></i>Resumen por estructura
-  </h6>
-  <div class="row g-3">
-    @for (struct of structures(); track struct) {
-      <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100">
-          <div
-            class="card-header fw-bold"
-            [class.bg-danger]="struct === 'LinkedList'"
-            [class.bg-warning]="struct === 'SortedLinkedList'"
-            [class.bg-success]="struct !== 'LinkedList' && struct !== 'SortedLinkedList'"
-            [class.text-white]="struct !== 'SortedLinkedList'"
-          >
-            <i class="bi bi-list-ul me-1"></i>{{ struct }}
-          </div>
-          <div class="card-body p-3">
-            <div class="d-flex flex-column gap-2">
-              @for (r of results(); track r.caseType) {
-                @if (r.structure === struct) {
-                  <div class="d-flex justify-content-between align-items-center">
-                    <span class="small text-muted">{{ r.operation }} / {{ r.caseType }}</span>
-                    <span class="fw-semibold" [class]="speedClass(r.avgTimeUs)">
-                      {{ formatTime(r.avgTimeUs) }}
-                    </span>
-                  </div>
-                }
+  <!-- Tab navigation -->
+  <ul class="nav nav-tabs mb-0">
+    <li class="nav-item">
+      <button class="nav-link" [class.active]="activeTab() === 'busqueda'" (click)="activeTab.set('busqueda')">
+        <i class="bi bi-search me-1"></i>Búsqueda
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" [class.active]="activeTab() === 'insercion'" (click)="activeTab.set('insercion')">
+        <i class="bi bi-plus-circle me-1"></i>Inserción
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" [class.active]="activeTab() === 'eliminacion'" (click)="activeTab.set('eliminacion')">
+        <i class="bi bi-dash-circle me-1"></i>Eliminación
+      </button>
+    </li>
+  </ul>
+
+  <div class="border border-top-0 rounded-bottom p-3 shadow-sm bg-white">
+
+    <!-- ── Búsqueda ── -->
+    @if (activeTab() === 'busqueda') {
+      <p class="text-muted small mb-3">
+        <i class="bi bi-info-circle me-1"></i>
+        LinkedList · AVL buscan por <strong>nombre</strong>.
+        HashTable busca por <strong>barcode</strong> (aleatorio y miss únicamente).
+        B-Tree busca por <strong>fecha de vencimiento</strong>.
+        B+ Tree busca por <strong>categoría</strong>.
+      </p>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle mb-0">
+          <thead class="table-dark">
+            <tr>
+              <th style="min-width:130px">Estructura</th>
+              @for (c of SEARCH_CASES; track c) {
+                <th class="text-center" style="min-width:120px">{{ caseLabels[c] }}</th>
               }
-            </div>
-          </div>
-        </div>
+            </tr>
+          </thead>
+          <tbody>
+            @for (struct of searchStructures(); track struct) {
+              <tr>
+                <td>
+                  <span class="badge fs-6 fw-semibold px-2 py-1" [ngClass]="structBadgeClass(struct)">
+                    {{ structureLabels[struct] }}
+                  </span>
+                </td>
+                @for (c of SEARCH_CASES; track c) {
+                  <td class="text-center py-2">
+                    @if (getSearch(struct, c); as res) {
+                      <span class="d-block fs-6" [class]="speedClass(res.avgTimeUs)">
+                        {{ formatTime(res.avgTimeUs) }}
+                      </span>
+                      <div class="progress mt-1 mb-1" style="height:4px; background:#e9ecef;">
+                        <div class="progress-bar"
+                             [style.width]="barWidth(res.avgTimeUs, searchMaxByCase()[c])"
+                             [style.background-color]="barColor(res.avgTimeUs)">
+                        </div>
+                      </div>
+                      <small class="text-muted" style="font-size:0.7rem">
+                        ↓{{ formatTime(res.minTimeUs) }} ↑{{ formatTime(res.maxTimeUs) }}
+                      </small>
+                    } @else {
+                      <span class="text-muted">—</span>
+                    }
+                  </td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
       </div>
     }
-  </div>
 
-  <div class="mt-3 p-3 bg-light rounded border small text-muted">
-    <i class="bi bi-info-circle me-1"></i>
-    Los tiempos son promedios en microsegundos (µs) o milisegundos (ms).
-    <strong class="text-success">Verde</strong> = &lt; 10 µs,
-    <strong class="text-warning">Amarillo</strong> = &lt; 100 µs,
-    <strong class="text-danger">Rojo</strong> = ≥ 100 µs.
+    <!-- ── Inserción ── -->
+    @if (activeTab() === 'insercion') {
+      <p class="text-muted small mb-3">
+        <i class="bi bi-info-circle me-1"></i>
+        Costo de insertar un producto nuevo en cada estructura de forma independiente (N=20, M=5).
+      </p>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle mb-0">
+          <thead class="table-dark">
+            <tr>
+              <th style="min-width:130px">Estructura</th>
+              <th class="text-center" style="min-width:140px">Promedio</th>
+              <th class="text-center" style="min-width:110px">Mínimo</th>
+              <th class="text-center" style="min-width:110px">Máximo</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (struct of insertStructures(); track struct) {
+              @if (getInsert(struct); as res) {
+                <tr>
+                  <td>
+                    <span class="badge fs-6 fw-semibold px-2 py-1" [ngClass]="structBadgeClass(struct)">
+                      {{ structureLabels[struct] }}
+                    </span>
+                  </td>
+                  <td class="text-center py-2">
+                    <span class="d-block fs-6" [class]="speedClass(res.avgTimeUs)">
+                      {{ formatTime(res.avgTimeUs) }}
+                    </span>
+                    <div class="progress mt-1" style="height:4px; background:#e9ecef;">
+                      <div class="progress-bar"
+                           [style.width]="barWidth(res.avgTimeUs, insertMax())"
+                           [style.background-color]="barColor(res.avgTimeUs)">
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center text-muted">{{ formatTime(res.minTimeUs) }}</td>
+                  <td class="text-center text-muted">{{ formatTime(res.maxTimeUs) }}</td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+
+    <!-- ── Eliminación ── -->
+    @if (activeTab() === 'eliminacion') {
+      <p class="text-muted small mb-3">
+        <i class="bi bi-info-circle me-1"></i>
+        Costo de eliminar un producto existente en cada estructura (se reinserta tras cada eliminación).
+      </p>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle mb-0">
+          <thead class="table-dark">
+            <tr>
+              <th style="min-width:130px">Estructura</th>
+              <th class="text-center" style="min-width:140px">Promedio</th>
+              <th class="text-center" style="min-width:110px">Mínimo</th>
+              <th class="text-center" style="min-width:110px">Máximo</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (struct of removeStructures(); track struct) {
+              @if (getRemove(struct); as res) {
+                <tr>
+                  <td>
+                    <span class="badge fs-6 fw-semibold px-2 py-1" [ngClass]="structBadgeClass(struct)">
+                      {{ structureLabels[struct] }}
+                    </span>
+                  </td>
+                  <td class="text-center py-2">
+                    <span class="d-block fs-6" [class]="speedClass(res.avgTimeUs)">
+                      {{ formatTime(res.avgTimeUs) }}
+                    </span>
+                    <div class="progress mt-1" style="height:4px; background:#e9ecef;">
+                      <div class="progress-bar"
+                           [style.width]="barWidth(res.avgTimeUs, removeMax())"
+                           [style.background-color]="barColor(res.avgTimeUs)">
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center text-muted">{{ formatTime(res.minTimeUs) }}</td>
+                  <td class="text-center text-muted">{{ formatTime(res.maxTimeUs) }}</td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+
+    <!-- Legend -->
+    <div class="mt-3 px-2 py-2 bg-light rounded border small text-muted d-flex flex-wrap gap-3 align-items-center">
+      <span><i class="bi bi-info-circle me-1"></i>Tiempos promedio por operación individual.</span>
+      <span><strong class="text-success">Verde</strong> &lt; 10 µs</span>
+      <span><strong class="text-warning">Amarillo</strong> &lt; 100 µs</span>
+      <span><strong class="text-danger">Rojo</strong> ≥ 100 µs</span>
+      <span class="ms-auto">↓ mín &nbsp;↑ máx</span>
+    </div>
   </div>
 }
