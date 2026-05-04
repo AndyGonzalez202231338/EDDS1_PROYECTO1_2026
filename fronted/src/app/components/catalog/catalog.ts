@@ -1,4 +1,4 @@
-import { Component, signal, computed, inject, OnInit } from '@angular/core';
+import { Component, signal, computed, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService, DotFile, Product } from '../../services/api.service';
 
@@ -12,6 +12,7 @@ type SearchMode = 'name' | 'barcode' | 'category' | 'daterange';
 })
 export class Catalog implements OnInit {
   private api = inject(ApiService);
+  private cdr = inject(ChangeDetectorRef);
 
   protected Math = Math;
 
@@ -177,7 +178,10 @@ export class Catalog implements OnInit {
   }
 
   submitLoadCSV() {
-    if (!this.csvContent) { this.error.set('Selecciona un archivo CSV primero.'); return; }
+    if (!this.csvContent) { 
+      this.error.set('Selecciona un archivo CSV primero.'); 
+      return; 
+    }
     this.api.uploadCSV(this.csvContent).subscribe({
       next: (r) => {
         this.showLoadCsvModal.set(false);
@@ -185,7 +189,10 @@ export class Catalog implements OnInit {
         this.csvContent = '';
         this.selectedFileName.set('');
         this.loadAll();
-        if (r.errors > 0) this.loadErrors();
+        if (r.errors > 0) {
+          this.loadErrors();
+          this.cdr.detectChanges(); // ← Aquí también
+        }
       },
       error: () => this.error.set('Error al cargar el CSV.'),
     });
@@ -213,23 +220,35 @@ export class Catalog implements OnInit {
       next: (r) => {
         this.errorLog.set(r.log?.trim() || 'Sin errores registrados.');
         this.errorLogLoading.set(false);
+        this.cdr.detectChanges(); // ← Cambiado de markForCheck()
       },
       error: () => {
         this.errorLog.set('No se pudo leer el log de errores.');
         this.errorLogLoading.set(false);
+        this.cdr.detectChanges(); // ← Cambiado de markForCheck()
       },
     });
   }
 
   toggleErrorLog() {
     this.showErrorLog.update(v => !v);
-    if (this.showErrorLog() && !this.errorLog()) this.loadErrors();
+    if (this.showErrorLog() && !this.errorLog()) {
+      this.loadErrors();
+    }
+    this.cdr.detectChanges(); // ← Añade aquí también
   }
 
   clearErrorLog() {
     this.api.clearErrors().subscribe({
-      next: () => { this.errorLog.set('Log limpiado.'); this.success.set('Log de errores limpiado.'); },
-      error: () => this.error.set('Error al limpiar el log.'),
+      next: () => {
+        this.errorLog.set('Log limpiado.');
+        this.success.set('Log de errores limpiado.');
+        this.cdr.detectChanges(); // ← Cambiado de markForCheck()
+      },
+      error: () => {
+        this.error.set('Error al limpiar el log.');
+        this.cdr.detectChanges();
+      },
     });
   }
 

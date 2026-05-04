@@ -18,6 +18,5 @@ export class Layout {
     { label: 'Grafo', path: '/graph' },
     { label: 'Importar CSV', path: '/csv-import' },
     { label: 'Benchmark', path: '/benchmark' }
-    // ❌ REMOVIDO: { label: 'Multi-Transacciones', path: '/multitransacciones' }
   ];
 }

@@ -55,7 +55,9 @@ void Benchmark::runSearchBenchmark() {
     Modo modos[] = {
         { SearchMode::LIST,   "LinkedList" },
         { SearchMode::SORTED, "SortedList" },
-        { SearchMode::AVL,    "AVL"        }
+        { SearchMode::AVL,    "AVL"        },
+        { SearchMode::BTree,   "BTree"      },
+        { SearchMode::BPlus,  "BPlus"      }
     };
 
     for (auto& caso : casos) {

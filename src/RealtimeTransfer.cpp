@@ -18,6 +18,7 @@ std::string RealtimeTransferManager::startTransfer(
     const std::string& barcode, int originId, int destId, bool byTime,
     BranchManager& bm, Graph& graph, std::string& error)
 {
+    // Primero todas las validaciones
     Branch* origin = bm.findBranch(originId);
     if (!origin) { error = "Sucursal origen no existe (ID=" + std::to_string(originId) + ")"; return ""; }
     Branch* dest = bm.findBranch(destId);
@@ -35,6 +36,15 @@ std::string RealtimeTransferManager::startTransfer(
         return "";
     }
 
+    // Todo válido ahora sí marcar IN_TRANSIT
+    Product* prod = origin->searchByBarcode(barcode);
+    if (prod) {
+        Product updated = *prod;
+        updated.status = ProductStatus::IN_TRANSIT;
+        origin->removeProduct(barcode);
+        origin->insertProduct(updated);
+    }
+
     std::string id = generateId();
     {
         std::lock_guard<std::mutex> lk(_mutex);
@@ -47,11 +57,11 @@ std::string RealtimeTransferManager::startTransfer(
         _active[id]           = std::move(prog);
     }
 
-    std::thread t(&RealtimeTransferManager::runTransfer, this,
-                  id, barcode, originId, destId, byTime, &bm, &graph);
+    std::thread t(&RealtimeTransferManager::runTransfer, this, id, barcode, originId, destId, byTime, &bm, &graph);
     t.detach();
     return id;
 }
+
 
 bool RealtimeTransferManager::getProgress(const std::string& id, TransferProgress& out) {
     std::lock_guard<std::mutex> lk(_mutex);
@@ -94,7 +104,10 @@ void RealtimeTransferManager::runTransfer(
 
     double accumulated = 0.0;
 
-    // Sleeps `secs` seconds, ticking accumulated time and updating the snapshot elapsed.
+    /**
+     * sleepTick: simula el paso del tiempo para cada etapa, actualizando el progreso cada segundo.
+     *  
+     * */ 
     auto sleepTick = [&](int secs, int bId, QueueType qt) {
         for (int s = 0; s < secs; ++s) {
             std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -115,8 +128,7 @@ void RealtimeTransferManager::runTransfer(
         if (!b) continue;
         bool isLast       = (i == pr.length - 1);
         std::string bName = b->getNombre();
-
-        // ── Ingreso ──────────────────────────────────────────────────────────
+        //ingreso
         {
             int t = b->getTiempoIngreso();
             std::string step = "Ingreso en " + bName + " (+" + std::to_string(t) + " min)";
@@ -135,7 +147,7 @@ void RealtimeTransferManager::runTransfer(
             std::string nextName = nextB ? nextB->getNombre()
                                         : "Sucursal " + std::to_string(nextId);
 
-            // ── Preparacion ───────────────────────────────────────────────
+            // Preparacion 
             {
                 int t = b->getTiempoPreparacion();
                 std::string step = "Preparacion en " + bName + " (+" + std::to_string(t) + " min)";
@@ -148,7 +160,7 @@ void RealtimeTransferManager::runTransfer(
                 sleepTick(t, bId, QueueType::PREPARACION);
             }
 
-            // ── Salida ────────────────────────────────────────────────────
+            // Salida
             {
                 int t = b->getIntervaloDespacho();
                 std::string step = "Salida desde " + bName + " hacia " + nextName +
@@ -162,7 +174,7 @@ void RealtimeTransferManager::runTransfer(
                 sleepTick(t, bId, QueueType::SALIDA);
             }
 
-            // ── Tránsito ──────────────────────────────────────────────────
+            // Tránsito
             {
                 double tEdge    = g->edgeWeight(bId, nextId, false);
                 if (tEdge < 0) tEdge = 0;
@@ -176,7 +188,7 @@ void RealtimeTransferManager::runTransfer(
                 sleepTick(tEdgeInt, nextId, QueueType::INGRESO);
             }
         } else {
-            // ── Entrega final ─────────────────────────────────────────────
+            // Entrega final 
             std::string step = "Entrega en " + bName + " - producto disponible";
             updateProgress(transferId, [step](TransferProgress& p) {
                 p.steps.push_back(step);
@@ -185,7 +197,7 @@ void RealtimeTransferManager::runTransfer(
         }
     }
 
-    // ── Mover producto en inventario ─────────────────────────────────────────
+    // Mover producto en inventario 
     std::string moveError;
     Branch* origin = bm->findBranch(originId);
     Branch* dest   = bm->findBranch(destId);

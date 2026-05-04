@@ -1,7 +1,7 @@
 <div class="simulation-container">
   <!-- Header -->
   <div [class]="'status-bar ' + (connected ? 'connected' : 'disconnected')">
-    {{ connected ? '🟢 Conectado' : '🔴 Desconectado' }} |
+    {{ connected ? 'Conectado' : 'Desconectado' }} |
     <strong>Tick: {{ currentTick }}</strong>
   </div>
 
@@ -58,11 +58,11 @@
             <div class="radio-group">
               <label>
                 <input type="radio" formControlName="criteria" value="time" (change)="onCriteriaChange()">
-                ⏱️ Tiempo
+                Tiempo
               </label>
               <label>
                 <input type="radio" formControlName="criteria" value="cost">
-                💰 Costo
+                $ Costo
               </label>
             </div>
           </div>
@@ -73,7 +73,7 @@
           </div>
 
           <div *ngIf="routePreview" class="route-preview">
-            <strong>Ruta:</strong> {{ routePreview.nodes.join(' → ') }}
+            <strong>Ruta:</strong> {{ routePreview.nodes.join(' --> ') }}
           </div>
 
           <div class="button-group">
@@ -98,7 +98,7 @@
             <div class="batch-route">{{ item.originName }} → {{ item.destName }}</div>
             <div class="batch-meta">
               <span class="qty">Qty: {{ item.quantity }}</span>
-              <span class="criteria">{{ item.byTime ? '⏱️' : '💰' }}</span>
+              <span class="criteria">{{ item.byTime ? 'Tiempo' : '$ Costo' }}</span>
             </div>
           </div>
         </div>
@@ -111,7 +111,7 @@
         <div *ngIf="batchResults.length > 0" class="batch-results">
           <strong>Resultados:</strong>
           <div *ngFor="let r of batchResults" [class]="r.ok ? 'result-ok' : 'result-error'">
-            {{ r.ok ? '✓' : '✗' }} {{ r.barcode }} → {{ r.transferId ? r.transferId.substring(0, 8) + '...' : r.error }}
+            {{ r.ok ? 'aceptado' : 'rechazado' }} {{ r.barcode }} → {{ r.transferId ? r.transferId.substring(0, 8) + '...' : r.error }}
           </div>
         </div>
       </section>
@@ -135,7 +135,7 @@
       <div class="branch-header">{{ branch.branchName }} <span class="branch-id">(ID: {{ branch.branchId }})</span></div>
       <div class="queues">
         <div class="queue ingreso">
-          <div class="queue-title">📥 Ingreso</div>
+          <div class="queue-title">Ingreso</div>
           <div *ngIf="branch.colaIngreso.length === 0" class="queue-empty">vacía</div>
           <div *ngFor="let item of branch.colaIngreso" class="queue-item" [style.border-left-color]="getTransferColor(item.transferId)">
             <strong>{{ item.productName }}</strong>
@@ -144,7 +144,7 @@
           </div>
         </div>
         <div class="queue traspaso">
-          <div class="queue-title">⚙️ Preparación</div>
+          <div class="queue-title">Preparación</div>
           <div *ngIf="branch.colaTraspaso.length === 0" class="queue-empty">vacía</div>
           <div *ngFor="let item of branch.colaTraspaso" class="queue-item" [style.border-left-color]="getTransferColor(item.transferId)">
             <strong>{{ item.productName }}</strong>
@@ -153,7 +153,7 @@
           </div>
         </div>
         <div class="queue salida">
-          <div class="queue-title">📤 Salida</div>
+          <div class="queue-title">Salida</div>
           <div *ngIf="branch.colaSalida.length === 0" class="queue-empty">vacía</div>
           <div *ngFor="let item of branch.colaSalida" class="queue-item" [style.border-left-color]="getTransferColor(item.transferId)">
             <strong>{{ item.productName }}</strong>
@@ -185,7 +185,7 @@
           <td>{{ c.barcode }}</td>
           <td>{{ branchName(c.originId) }} → {{ branchName(c.destId) }}</td>
           <td>{{ c.completedTick }}</td>
-          <td>{{ c.ok ? '✓ OK' : '✗ Error' }}</td>
+          <td>{{ c.ok ? 'aceptado' : 'rechazado' }}</td>
         </tr>
       </tbody>
     </table>

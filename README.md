@@ -1,4 +1,4 @@
-# EDDS1_PROYECTO1_2026
+# EDDS1_FASE2_PROYECTO1_2026
 
 #   --INTALAR--
 g++ --version
@@ -25,44 +25,96 @@ mkdir build
 cd build
 cmake ..
 make
+## Tecnologías
+- **Frontend**: Angular 18+, Bootstrap 5, RxJS, Reactive Forms
+- **Backend**: C++17, cpp-httplib, nlohmann/json
+- **Estado**: BehaviorSubject (RxJS)
+- **Patrón**: Servicios compartidos, Componentes standalone
 
-#   --Ejecucion--
+###  --Ejecucion--
+## Iniciar Backend
 # Desde el directorio build/
+cd build
+cmake .. && cmake --build .
+./supermercado_server
 
-# Iniciar con catálogo vacío
-./supermercado
+## Iniciar Frontend
+cd frontend
+npm install  # si no lo ha hecho
+npm run dev
 
-# Cargar CSV automáticamente al iniciar
-./supermercado ../data/productos.csv
+### Acceder a la Aplicación
+http://localhost:4200/
 
-# Cargar CSV de demostración (20 productos, ideal para visualizar árboles)
-./supermercado ../data/productos_demo.csv
+### Backend puerto
+El backend escucha en `http://0.0.0.0:8080`
 
-#   --MENU PRINCIPAL--
-  1. Agregar producto
-  2. Buscar por nombre            AVL  O(log n)
-  3. Buscar por código de barra   Lista secuencial O(n)
-  4. Buscar por categoría         B+ tree O(log n + k)
-  5. Buscar por rango de fechas   B tree O(log n + k)
-  6. Eliminar producto
-  7. Listar todos (orden alfabético)
-  8. Cargar CSV
-  9. Ejecutar benchmark
- 10. Generar archivos .dot y PNG
-  0. Salir
+## Flujo de Uso
+1. **Seleccionar Sucursal**: En la pestaña "Sucursales", haz clic en una sucursal para activarla
+2. **Gestionar Productos**: 
+   - Ir a "Productos"
+   - Agregar nuevo producto (formulario izquierdo)
+   - Buscar por código de barra (formulario derecho)
+   - Eliminar si es necesario
+3. **Transferir**: En "Transferencias", especificar origen, destino, barcode y cantidad
 
-#   --Archivos Generados--
-Todos los archivos de salida se guardan en resultados/, al mismo nivel que src/
+## Estrutura de Datos (Backend)
+Cada sucursal mantiene:
+- LinkedList (búsqueda secuencial)
+- AVLTree (búsqueda binaria)
+- BTree (por fecha de caducidad)
+- BPlusTree (por categoría)
+- HashTable (por código de barra)
 
-resultados/errors.log           Errores de carga del CSV (líneas malformadas, duplicados)
-resultados/<nombre>_AVL.dot     Graphviz del árbol AVL
-resultados/<nombre>_AVL.png     Imagen del árbol AVL
-resultados/<nombre>_BTree.dot   Graphviz del árbol B
-resultados/<nombre>_BTree.png   Imagen del árbol B
-resultados/<nombre>_BPlus.dot   Graphviz del árbol B+
-resultados/<nombre>_BPlus.png   Imagen del árbol B+
+## API Response Examples
 
-#   --Formato CSV--
-"Nombre","CodigoBarra","Categoria","FechaCaducidad","Marca","Precio","Stock"
-"Leche Entera","7500000000001","Lacteos","2026-06-15","Lala",18.50,100
+### GET /api/branches
+[
+  {
+    "id": 1,
+    "nombre": "Sucursal Centro",
+    "ubicacion": "Calle Principal 123",
+    "tiempoIngreso": 5,
+    "tiempoPreparacion": 10,
+    "intervaloDespacho": 15
+  }
+]
 
+
+### POST /api/branch/1/product
+{
+  "name": "Arroz",
+  "barcode": "123456789",
+  "category": "Alimentos",
+  "expiry_date": "2026-12-31",
+  "brand": "Marca A",
+  "price": 25.50,
+  "stock": 100
+}
+
+
+### GET /api/branch/1/product/123456789
+{
+  "name": "Arroz",
+  "barcode": "123456789",
+  "category": "Alimentos",
+  "expiry_date": "2026-12-31",
+  "brand": "Marca A",
+  "price": 25.50,
+  "stock": 100,
+  "branchId": 1
+}
+
+### POST /api/transfer
+{
+  "barcode": "123456789",
+  "originId": 1,
+  "destId": 2,
+  "quantity": 10
+}
+
+| GET | `/api/branches` | Listar sucursales |
+| POST | `/api/branch/{id}/product` | Agregar producto a sucursal |
+| GET | `/api/branch/{id}/product/{barcode}` | Buscar producto en sucursal |
+| DELETE | `/api/branch/{id}/product/{barcode}` | Eliminar producto de sucursal |
+| POST | `/api/transfer` | Transferir entre sucursales |

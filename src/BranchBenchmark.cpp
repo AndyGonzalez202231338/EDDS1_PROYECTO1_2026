@@ -127,6 +127,95 @@ void BranchBenchmark::runSearchBenchmark() {
             r.N = _N; r.M = _M;
         }
     }
+
+    // ── Por fecha: BTree ──────────────────────────────────────────────────────
+    {
+        std::string rDate, firstDate, lastDate;
+        const std::string mDate = "1900-01-01";
+        const ListNode* nd = _branch.rawList().getHead();
+        if (nd) {
+            rDate = firstDate = lastDate = nd->data.expiry_date;
+            while (nd) {
+                if (nd->data.expiry_date < firstDate) firstDate = nd->data.expiry_date;
+                if (nd->data.expiry_date > lastDate)  lastDate  = nd->data.expiry_date;
+                nd = nd->next;
+            }
+        }
+        if (!rDate.empty()) {
+            Caso btCasos[] = {
+                { "hit_random", rDate     },
+                { "miss       ", mDate    },
+                { "hit_first  ", firstDate },
+                { "hit_last   ", lastDate  }
+            };
+            for (auto& caso : btCasos) {
+                double total = 0, minT = 1e18, maxT = 0;
+                for (int rep = 0; rep < _M; ++rep) {
+                    auto t0 = Clock::now();
+                    for (int n = 0; n < _N; ++n) _branch.rawBTree().search(caso.key);
+                    auto t1 = Clock::now();
+                    double e = Us(t1 - t0).count();
+                    total += e;
+                    if (e < minT) minT = e;
+                    if (e > maxT) maxT = e;
+                }
+                auto& r = _results[_resultCount++];
+                r.operation = "busqueda";
+                r.structure = "BTree";
+                r.caseType  = caso.label;
+                r.avgTimeUs = total / (_M * _N);
+                r.minTimeUs = minT  / _N;
+                r.maxTimeUs = maxT  / _N;
+                r.N = _N; r.M = _M;
+            }
+        }
+    }
+
+    // ── Por categoría: BPlus ──────────────────────────────────────────────────
+    {
+        std::string rCat, firstCat, lastCat;
+        const std::string mCat = "ZZZZZ_NO_CATEGORIA";
+        const ListNode* nd = _branch.rawList().getHead();
+        if (nd) {
+            rCat = firstCat = lastCat = nd->data.category;
+            while (nd) {
+                if (nd->data.category < firstCat) firstCat = nd->data.category;
+                if (nd->data.category > lastCat)  lastCat  = nd->data.category;
+                nd = nd->next;
+            }
+        }
+        if (!rCat.empty()) {
+            Caso bpCasos[] = {
+                { "hit_random", rCat     },
+                { "miss       ", mCat    },
+                { "hit_first  ", firstCat },
+                { "hit_last   ", lastCat  }
+            };
+            for (auto& caso : bpCasos) {
+                double total = 0, minT = 1e18, maxT = 0;
+                for (int rep = 0; rep < _M; ++rep) {
+                    auto t0 = Clock::now();
+                    for (int n = 0; n < _N; ++n) {
+                        Product* bpRes[64]; int bpCnt = 0;
+                        _branch.rawBPlus().searchCategory(caso.key, bpRes, bpCnt, 64);
+                    }
+                    auto t1 = Clock::now();
+                    double e = Us(t1 - t0).count();
+                    total += e;
+                    if (e < minT) minT = e;
+                    if (e > maxT) maxT = e;
+                }
+                auto& r = _results[_resultCount++];
+                r.operation = "busqueda";
+                r.structure = "BPlus";
+                r.caseType  = caso.label;
+                r.avgTimeUs = total / (_M * _N);
+                r.minTimeUs = minT  / _N;
+                r.maxTimeUs = maxT  / _N;
+                r.N = _N; r.M = _M;
+            }
+        }
+    }
 }
 
 // ── Insert ────────────────────────────────────────────────────────────────────

@@ -82,8 +82,6 @@ export interface QueueSnapshot {
   elapsedSeconds: number;
 }
 
-// ── Batch simulation ───────────────────────────────────────────────────────────
-
 export interface BatchPendingItem {
   index: number;
   barcode: string;

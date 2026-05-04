@@ -81,11 +81,6 @@
 },
 {
   "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
-  "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado.dir/src/utils/FileDialog.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/utils/FileDialog.cpp\"",
-  "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/utils/FileDialog.cpp"
-},
-{
-  "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
   "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado.dir/src/Menu.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Menu.cpp\"",
   "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/Menu.cpp"
 },
@@ -173,11 +168,6 @@
   "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
   "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado_server.dir/src/BranchBenchmark.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BranchBenchmark.cpp\"",
   "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/BranchBenchmark.cpp"
-},
-{
-  "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",
-  "command": "/usr/bin/g++ -I\"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/include\"  -Wall -Wextra -Wpedantic -g -std=gnu++17 -o CMakeFiles/supermercado_server.dir/src/utils/FileDialog.cpp.o -c \"/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/utils/FileDialog.cpp\"",
-  "file": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/src/utils/FileDialog.cpp"
 },
 {
   "directory": "/home/andy/Escritorio/Ingenería/QuintoSemestre/Estructura de datos/Proyecto1/build",

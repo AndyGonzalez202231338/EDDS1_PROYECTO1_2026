@@ -399,20 +399,36 @@ export class SimulationComponent implements OnInit, OnDestroy, AfterViewChecked 
     const container = this.graphContainerRef?.nativeElement as HTMLElement | undefined;
     if (!container || !this.snapshot) return;
 
-    const activeIdSet = new Set(
-      this.snapshot.branches
-        .filter(b => this.totalItems(b) > 0)
-        .map(b => String(b.branchId))
-    );
+    const branchColors = new Map<string, { fill: string; stroke: string }>();
+
+    this.snapshot.branches.forEach(b => {
+      const branchIdStr = String(b.branchId);
+      let fill = '#06b6d4';
+      let stroke = '#0891b2';
+
+      if (b.colaSalida.length > 0) {
+        fill = '#ff6b6b';
+        stroke = '#dc2626';
+      } else if (b.colaTraspaso.length > 0) {
+        fill = '#fbbf24';
+        stroke = '#d97706';
+      } else if (b.colaIngreso.length > 0) {
+        fill = '#22c55e';
+        stroke = '#16a34a';
+      }
+
+      branchColors.set(branchIdStr, { fill, stroke });
+    });
 
     container.querySelectorAll<SVGGElement>('g.node').forEach(node => {
       const title = node.querySelector('title')?.textContent?.trim() ?? '';
       const shape = node.querySelector<SVGElement>('polygon, ellipse, rect');
       if (!shape) return;
 
-      if (activeIdSet.has(title)) {
-        shape.style.fill = '#ff6b6b';
-        shape.style.stroke = '#dc2626';
+      const colors = branchColors.get(title);
+      if (colors) {
+        shape.style.fill = colors.fill;
+        shape.style.stroke = colors.stroke;
         shape.style.strokeWidth = '3';
       }
     });

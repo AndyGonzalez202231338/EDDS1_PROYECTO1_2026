@@ -563,16 +563,42 @@ int main() {
     });
 
     // ELIMINAR PRODUCTO
-    svr.Delete(R"(/api/products/(.+))", [&](const httplib::Request& req, httplib::Response& res) {
-        setCORS(res);
-        std::string barcode = urlDecode(req.matches[1]);
-        if (catalog.removeProduct(barcode)) {
-            res.set_content("{\"ok\":true}", "application/json");
-        } else {
-            res.status = 404;
-            res.set_content("{\"error\":\"Producto no encontrado\"}", "application/json");
-        }
-    });
+    // DELETE /branch/{id}/product/{barcode}
+svr.Delete(R"(/branch/(\d+)/product/([^/]+))", [&](const httplib::Request& req, httplib::Response& res) {
+    setCORS(res);  // <-- AGREGAR ESTO
+    int branchId = std::stoi(req.matches[1].str());
+    std::string barcode = req.matches[2].str();
+
+    // Copiar el producto ANTES de eliminarlo (no guardar el puntero)
+    std::string searchError;
+    Product* ptr = inventory.searchByBarcode(branchId, barcode, searchError);
+    bool hadProduct = (ptr != nullptr);
+    Product productCopy;          // <-- copia por valor
+    if (hadProduct) productCopy = *ptr;  // <-- copiar antes del delete
+
+    std::string error;
+    auto t0 = SvClock::now();
+    bool removed = inventory.removeProduct(branchId, barcode, error);
+    auto t1 = SvClock::now();
+    double timeUs = SvUs(t1 - t0).count();
+
+    if (!removed) {
+        res.status = 404;
+        res.set_content(json({{"error", error}}).dump(), "application/json");
+        return;
+    }
+
+    // Usar la copia, no el puntero original
+    if (hadProduct && operationHistory.getSize() < 50) {
+        std::string branchName = getBranchName(branchManager, branchId);
+        std::string desc = "Eliminar " + productCopy.name + " de " + branchName;
+        HistoryEntry entry(OpType::REMOVE, branchId, productCopy, desc);
+        operationHistory.push(entry);
+    }
+
+    res.status = 200;
+    res.set_content(json({{"ok", true}, {"timeUs", timeUs}}).dump(), "application/json");
+});
 
     // CARGAR CSV POR RUTA
     svr.Post("/api/load", [&](const httplib::Request& req, httplib::Response& res) {
@@ -890,6 +916,35 @@ int main() {
         res.set_content(json({{"ok", true}, {"timeUs", timeUs}}).dump(), "application/json");
     });
 
+    // GET /branch/{id}/products/name/{name}  — AVL
+    svr.Get(R"(/branch/(\d+)/products/name/(.+))", [&](const httplib::Request& req, httplib::Response& res) {
+        setCORS(res);
+        int branchId = std::stoi(req.matches[1].str());
+        std::string name = urlDecode(req.matches[2].str());
+
+        std::string error;
+        auto t0 = SvClock::now();
+        Product* p = inventory.searchByName(branchId, name, error);
+        auto t1 = SvClock::now();
+        double timeUs = SvUs(t1 - t0).count();
+
+        if (!error.empty()) {
+            res.status = 404;
+            res.set_content(json({{"error", error}}).dump(), "application/json");
+            return;
+        }
+        if (p == nullptr) {
+            res.status = 404;
+            res.set_content(R"({"error":"Producto no encontrado"})", "application/json");
+            return;
+        }
+
+        json out = productToJson(*p);
+        out["timeUs"] = timeUs;
+        res.status = 200;
+        res.set_content(out.dump(), "application/json");
+    });
+
     // GET /branch/{id}/products/category/{category}
     svr.Get(R"(/branch/(\d+)/products/category/(.+))", [&](const httplib::Request& req, httplib::Response& res) {
         setCORS(res);
@@ -954,6 +1009,44 @@ int main() {
             {"count", count},
             {"products", arr}
         }).dump(), "application/json");
+    });
+
+    // GET /branch/{id}/trees — genera SVG de AVL, BTree y BPlus de la sucursal
+    svr.Get(R"(/branch/(\d+)/trees)", [&](const httplib::Request& req, httplib::Response& res) {
+        setCORS(res);
+        int branchId = std::stoi(req.matches[1].str());
+
+        Branch* branch = branchManager.findBranch(branchId);
+        if (!branch) {
+            res.status = 404;
+            res.set_content(json({{"error", "Sucursal no encontrada"}}).dump(), "application/json");
+            return;
+        }
+
+        auto genSVG = [&](const std::string& treeType,
+                          std::function<void(std::ofstream&)> writeFn) -> std::string {
+            std::string base    = "../resultados/branch_" + std::to_string(branchId) + "_" + treeType;
+            std::string dotPath = base + ".dot";
+            std::string svgPath = base + ".svg";
+
+            { std::ofstream out(dotPath); if (!out.is_open()) return ""; writeFn(out); }
+
+            std::string cmd = "/usr/bin/dot -Tsvg \"" + dotPath + "\" -o \"" + svgPath + "\" 2>/dev/null";
+            if (system(cmd.c_str()) != 0) return "";
+
+            std::ifstream svgFile(svgPath);
+            if (!svgFile.is_open()) return "";
+            return std::string((std::istreambuf_iterator<char>(svgFile)),
+                               std::istreambuf_iterator<char>());
+        };
+
+        json r = {
+            {"avl",   genSVG("AVL",   [&](std::ofstream& o){ branch->rawAVL().toDot(o);   })},
+            {"btree", genSVG("BTree", [&](std::ofstream& o){ branch->rawBTree().toDot(o); })},
+            {"bplus", genSVG("BPlus", [&](std::ofstream& o){ branch->rawBPlus().toDot(o); })},
+            {"hash",  genSVG("Hash",  [&](std::ofstream& o){ branch->rawHash().toDot(o);  })}
+        };
+        res.set_content(r.dump(), "application/json");
     });
 
     // ========== CSV ENDPOINTS ==========
